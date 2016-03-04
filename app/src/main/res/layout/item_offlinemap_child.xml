@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="@dimen/offline_map_city_item_height">
+
+    <TextView
+        android:id="@+id/tv_city_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="left"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/offline_map_city_item_title_margin_left"
+        android:maxWidth="@dimen/offline_map_city_item_title_width"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:includeFontPadding="false"/>
+
+    <TextView
+        android:id="@+id/tv_city_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tv_city_name"
+        android:layout_marginLeft="@dimen/offline_map_city_item_size_margin_left"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/black" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_city_down"
+        android:layout_width="@dimen/offline_map_city_item_ctrl_touch_width"
+        android:layout_height="@dimen/offline_map_city_item_ctrl_touch_height"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/offline_map_city_item_ctrl_touch_margin_right"
+        android:layout_centerVertical="true">
+
+
+        <Button
+            android:id="@+id/btn_city_down"
+            android:layout_width="@dimen/offline_map_city_item_ctrl_width"
+            android:layout_height="@dimen/offline_map_city_item_ctrl_height"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/offline_map_city_item_ctrl_margin_right"
+            android:text="@string/offline_map_download"
+            android:textAllCaps="false"
+            android:clickable="false"/>
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_city_status"
+        android:layout_width="@dimen/offline_map_city_item_ctrl_width"
+        android:layout_height="@dimen/offline_map_city_item_ctrl_height"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/offline_map_city_item_crtl_text_margin_right"
+        android:visibility="gone"/>
+
+</RelativeLayout>

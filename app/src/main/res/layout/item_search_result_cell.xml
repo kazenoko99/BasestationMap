@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="3dp"
+        android:id="@+id/cell_icon"
+        android:layout_alignTop="@+id/cell_name"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/map_poi"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cell_icon"
+        android:id="@+id/cell_name"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:text="地方名称这个东西一个不会太差"
+        style="@style/TextNormal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cell_name"
+        android:id="@+id/cell_tyoe"
+        android:layout_alignParentRight="true"
+        android:text="GSM小区"
+        android:layout_marginRight="20dp"
+        style="@style/TextMedium"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/cell_icon"
+        android:id="@+id/cell_address"
+        android:layout_below="@id/cell_name"
+        android:text="地方名称这个东西一个不会太差"
+        android:maxLines="2"
+        style="@style/TextMedium"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cell_go_there"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:layout_alignLeft="@+id/cell_name"
+        android:text="去这里"
+        android:textColor="@color/blue"
+        android:layout_below="@+id/cell_address"
+        android:drawableLeft="@drawable/map_icon_route_light"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cell_distance"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="20dp"
+        android:text="13.2公里"
+        android:layout_below="@+id/cell_address"/>
+</RelativeLayout>

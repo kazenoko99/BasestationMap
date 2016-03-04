@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!--<EditText
+        android:id="@+id/et_search_city"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:singleLine="true"
+        android:hint="输入城市名"/>-->
+
+    <RelativeLayout
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:background="@color/blue"
+        >
+
+        <ImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/mz_ic_tab_search_normal"/>
+        <AutoCompleteTextView
+            android:id="@+id/searchview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="@dimen/mc_search_edit_padding_right"
+            android:background="@drawable/mz_search_view_textfield_hover_color_dodgerblue"
+            android:layout_marginRight="5dp"
+            android:hint="请输入内容"
+            android:imeOptions="actionNone|flagNoFullscreen|actionSearch"
+            android:inputType="text|textAutoComplete"
+            android:textColor="@color/white"
+            android:textColorHint="@color/light_white"
+            android:textCursorDrawable="@drawable/white_cursor"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="5dp"
+            android:scaleType="center"
+            android:src="@drawable/mz_titlebar_search_layout_ic_delete_white"
+            android:visibility="gone" />
+    </RelativeLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/search_layout">
+    <ListView
+        android:id="@+id/hotcitylist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:cacheColorHint="#00000000"
+        android:childDivider="@drawable/common_list_divider_12dp"
+        android:divider="@drawable/common_list_divider_12dp"
+        android:dividerHeight="2dp"
+        android:listSelector="@drawable/mz_item_background"
+        android:headerDividersEnabled="false" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/black"/>
+    <ListView
+        android:id="@+id/allcitylist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:cacheColorHint="#00000000"
+        android:childDivider="@drawable/common_list_divider_12dp"
+        android:divider="@drawable/common_list_divider_12dp"
+        android:dividerHeight="2dp"
+        android:listSelector="@drawable/mz_item_background"
+        android:headerDividersEnabled="false" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lv_search_result"
+        android:layout_width="match_parent"
+         android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_below="@+id/search_layout"
+        android:visibility="gone"
+        android:divider="@drawable/common_list_divider_12dp"
+        android:dividerHeight="2dp"
+        android:listSelector="@drawable/mz_item_background">
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/map_blank"
+    tools:ignore="NewApi">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/map_bottom_detail_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/map_bottom_detail_two_line_height"
+        android:layout_marginLeft="@dimen/map_bottom_margin_left"
+        android:layout_marginRight="@dimen/map_bottom_margin_right"
+        android:gravity="center_vertical"/>
+
+
+    <LinearLayout
+        android:id="@+id/map_bottom_act_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/map_bottom_act_layout_height"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/map_bottom_basestation"
+            android:layout_width="@dimen/map_bottom_act_view_width_left"
+            android:layout_height="match_parent"
+            android:drawablePadding="@dimen/map_bottom_act_icon_padding"
+            android:paddingStart="@dimen/map_bottom_act_view_padding_left"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/map_icon_nearby"
+            android:text="@string/map_bottom_basestation"
+            android:background="@drawable/map_bottom_view_bg" />
+
+        <TextView
+            android:id="@+id/map_bottom_route"
+            android:layout_width="@dimen/map_bottom_act_view_width_middle"
+            android:layout_height="match_parent"
+            android:drawablePadding="@dimen/map_bottom_act_icon_padding"
+            android:paddingStart="@dimen/map_bottom_act_view_padding"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/map_icon_route_light"
+            android:text="@string/map_bottom_route"
+            android:lines="1"
+            android:background="@drawable/map_bottom_view_bg"
+            />
+
+        <TextView
+            android:id="@+id/map_bottom_navi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawablePadding="@dimen/map_bottom_act_icon_padding"
+            android:paddingStart="@dimen/map_bottom_act_view_padding"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/map_icon_nav"
+            android:text="@string/map_bottom_nav"
+            android:background="@drawable/map_bottom_view_bg" />
+    </LinearLayout>
+</LinearLayout>

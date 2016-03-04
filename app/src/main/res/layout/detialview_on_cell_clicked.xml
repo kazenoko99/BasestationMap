@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:id="@+id/btsname"
+            style="@style/TextMedium"
+            android:textColor="@color/gray"
+            android:text="基站名："
+            />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bts_name"
+        android:layout_marginTop="3dp"
+        style="@style/TextNormal"
+        android:textColor="@color/black"
+       android:layout_toRightOf="@+id/btsname"
+        android:text="市政府街道站"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bts_name"
+        android:id="@+id/btsid"
+        android:text="基站号："
+        style="@style/TextMedium"
+        android:textColor="@color/gray"
+        />
+    <TextView
+        android:id="@+id/cell_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100米"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/btsid"/>
+     <TextView
+         android:id="@+id/celldistance"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="距您 "
+         android:textColor="@color/red"
+         android:layout_toLeftOf="@id/cell_distance"
+         android:layout_alignBottom="@id/btsid"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bts_id"
+            android:text="1234"
+            style="@style/TextMedium"
+            android:layout_toRightOf="@+id/btsid"
+            android:layout_below="@id/bts_name"
+
+            />
+    <View
+        android:layout_below="@id/bts_id"
+        android:id="@+id/map_bottom_separator_line1"
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@id/map_bottom_separator_line1"
+        android:layout_marginTop="3dp"
+        android:id="@+id/vp_cell"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_margin="3dp"
+        />
+    <View
+        android:layout_below="@id/vp_cell"
+        android:id="@+id/map_bottom_separator_line2"
+        style="@style/separatorHorizontal"
+        android:layout_marginStart="@dimen/map_bottom_separate_line_padding"
+        android:layout_marginEnd="@dimen/map_bottom_separate_line_padding"
+        />
+    <TextView
+        android:layout_above="@+id/map_bottom_separator_line2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextSmall"
+        android:text="左右滑动切换小区"
+        android:layout_marginBottom="2dp"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
+

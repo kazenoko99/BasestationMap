@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/poi_icon"
+        android:layout_alignTop="@+id/poi_name"
+        android:src="@drawable/map_poi"/>
+ <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_toRightOf="@+id/poi_icon"
+     android:id="@+id/poi_name"
+     android:layout_marginLeft="5dp"
+     android:layout_marginTop="8dp"
+     android:text="地方名称这个东西一个不会太差"
+     style="@style/TextNormal"
+     />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/poi_icon"
+        android:id="@+id/poi_address"
+        android:layout_below="@id/poi_name"
+        android:text="地方名称这个东西一个不会太差"
+        android:maxLines="2"
+        style="@style/TextMedium"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/poi_go_there"
+        android:layout_toRightOf="@+id/poi_icon"
+        android:layout_alignLeft="@+id/poi_name"
+        android:layout_marginTop="4dp"
+        android:text="去这里"
+        android:textColor="@color/blue"
+        android:layout_below="@+id/poi_address"
+        android:drawableLeft="@drawable/map_icon_route_light"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/poi_distance"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="4dp"
+        android:text="13.2公里"
+        android:layout_below="@+id/poi_address"/>
+</RelativeLayout>

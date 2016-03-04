@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/white"
+    android:clickable="true">
+    <TextView
+        android:id="@+id/mCity"
+        android:paddingTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextLarge"
+        android:text="当前城市："/>
+    <ExpandableListView
+        android:layout_below="@id/mCity"
+        android:id="@+id/drawer_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
+        android:divider="@drawable/common_list_divider_12dp"
+        android:childDivider="@drawable/common_list_divider_12dp"
+        android:dividerHeight="2dp"
+        android:listSelector="@drawable/item_background"/>
+
+</RelativeLayout>

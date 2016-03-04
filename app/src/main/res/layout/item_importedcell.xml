@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_imported_cellname"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/offline_map_city_item_ctrl_height"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_imported_cellid"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/offline_map_city_item_ctrl_height"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_imported_celllat"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/offline_map_city_item_ctrl_height"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_imported_celllon"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/offline_map_city_item_ctrl_height"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        />
+
+</LinearLayout>

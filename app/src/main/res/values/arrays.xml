@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_list">
+        <item>地图</item>
+        <item>基站数据导入</item>
+        <item>常用地址</item>
+        <item>离线包下载</item>
+        <item>工具</item>
+        <item>设置</item>
+    </string-array>
+</resources>

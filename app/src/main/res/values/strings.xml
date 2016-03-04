@@ -1,0 +1,321 @@
+<resources>
+    <string name="app_name">基站地图</string>
+
+    <string name="search_hint">找地点、查基站、搜线路</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_search">SearchActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+
+        <string name="city_beijing_default">北京市</string>
+        <string name="mypoistion">当前位置</string>
+        <string name="mappoistion">地图上的点</string>
+
+        <string name="meter">米</string>
+        <string name="kilometer">公里</string>
+
+        <string name="nearby_search">在附近搜索</string>
+        <string name="no_result">没有搜索到任何结果</string>
+        <string name="ar_search_no_result">5公里内没有搜索到任何结果</string>
+        <string name="error_network">当前网络不可用，请检查你的网络设置</string>
+        <string name="error_no_location">还未定位城市，请在地图上重新定位</string>
+        <string name="city_find_revelent_result">在下列城市找到相关</string>
+        <string name="error_key">key验证无效！</string>
+        <string name="error_other">未知错误，请稍后重试!</string>
+        <string name="title_activity_location">LocationActivity</string>
+        <string name="hello_blank_fragment">Hello blank fragment</string>
+        <string name="map_loading">加载中</string>
+        <string name="arrvie_sound">arrive_sound</string>
+        <string name="input_not_empty">输入不能为空</string>
+
+
+        <string name="detail">详情</string>
+        <string name="common_address">常用地址</string>
+        <string name="clear_history">清空历史记录</string>
+        <string name="search_around">周边</string>
+        <string name="come_here">到这去</string>
+        <string name="search">搜索</string>
+        <string name="search_please_wait">正在搜索，请等待</string>
+        <string name="no_suggest_result">没有任何搜索建议</string>
+        <string name="are_you_looking_for">你要找的是不是</string>
+
+        <string name="search_result_switch_to_map">查看地图</string>
+        <string name="search_result_switch_to_path">查看线路</string>
+        <string name="search_result_no_more_data">没有更多数据了！</string>
+
+        <string name="common_search_bar_hint">输入内容</string>
+        <string name="search_navi_hint">请输入目的地</string>
+        <string name="map_select_point">地图选点</string>
+        <string name="current_location">当前位置</string>
+
+        <string name="around_hot">附近热门</string>
+        <string name="around_eat">美食</string>
+        <string name="around_hotel">宾馆酒店</string>
+        <string name="around_traffic">交通设施</string>
+        <string name="around_play">休闲娱乐</string>
+        <string name="around_life">生活服务</string>
+        <string name="around_buy">购物</string>
+        <string name="around_emergency">应急</string>
+
+
+        <string name="route">路线</string>
+        <string name="phone">打电话</string>
+        <string name="filter_menu_all_catetory">全部分类</string>
+        <string name="filter_menu_all">全部</string>
+
+        <string name="common_address_adjust">点击设置</string>
+        <string name="common_address_edit">编辑</string>
+
+        <string name="drawer_open">打开</string>
+        <string name="drawer_close">关闭</string>
+        <string name="bus_station_on">上车</string>
+        <string name="bus_station_off">下车</string>
+        <string name="bus_station_start">起</string>
+        <string name="bus_station_end">终</string>
+        <string name="menu_action_off_remind">到站提醒</string>
+        <string name="remind_select_head_title">选择站点</string>
+        <string name="remind_select_head_sub_title">我们会在距离目的地500米的地方提醒你</string>
+        <string name="ar_edit_define_dialog_message">输入分类名称</string>
+        <string name="ar_edit_define_dialog_title">新建分类</string>
+        <string name="ar_edit_define_dialog_add">添加</string>
+        <string name="ar_edit_define_dialog_cancel">取消</string>
+        <string name="ar_edit_define_dialog_not_empty">输入不能为空</string>
+        <string name="ar_title_default">实景导航</string>
+        <string name="ar_too_near_tip">距离太近了</string>
+        <string name="ar_title_end">已到达目的地附近</string>
+        <string name="ar_tip_distance_next_road">全程</string>
+        <string name="ar_no_poi_result">未找到结果</string>
+        <string name="ar_nav_exit">退出导航</string>
+        <string name="ar_group_finish">完成</string>
+        <string name="ar_edit_add_group">添加分类</string>
+        <string name="ar_distance_all">全程</string>
+        <string name="ar_nav_less_than_one_minute">小于1分钟</string>
+        <string name="ar_nav_about">约</string>
+        <string name="ar_nav_minute">分钟</string>
+        <string name="ar_nav_enter_next_road">进入</string>
+        <string name="ar_nav_arrive">到达</string>
+        <string name="ar_group_no_search_dialog">5公里内没有找到结果</string>
+        <string name="dialog_util_searching">Searching: </string>
+        <string name="map_traffic_radar_text">路况</string>
+        <string name="map_bottom_detail">详情</string>
+        <string name="map_bottom_nearby">周边</string>
+        <string name="map_bottom_basestation">基站</string>
+        <string name="map_bottom_route">路线</string>
+        <string name="map_bottom_nav">导航</string>
+        <string name="nav_search_title">导航</string>
+        <string name="map_bottom_select_default_name">[位置]</string>
+        <string name="map_select_title">地图选点</string>
+        <string name="map_top_select_switch">确定</string>
+        <string name="map_top_search_result_switch">列表</string>
+        <string name="map_city_change_tip">切换成功到: </string>
+        <string name="loc_fail_cant_do">定位不成功，该操作需要定位数据</string>
+        <string name="end_point_noexit_cant_do">请选择终点</string>
+
+        <string name="flyme_login_exception">账户登录异常，请尝试重新登录</string>
+        <string name="flyme_lgoin_exception_errorcode">登录异常，错误码：</string>
+        <string name="setting_account_not_login">未登录</string>
+
+        <string name="app_exception_title">错误提示</string>
+        <string name="app_exception_message">程序出现未知错误</string>
+        <string name="app_exception_confirm">确定</string>
+
+        <string name="settings_show_log">输出Log</string>
+        <string name="settings_keep_screen_on">保持屏幕常亮</string>
+        <string name="settings_show_zoom_button">显示缩放按钮</string>
+        <string name="settings_city_change">城市切换</string>
+
+        <string name="gps_dialog_never_tip">下次不再提醒</string>
+        <string name="gps_dialog_title_tip">打开GPS定位以提高定位精确度</string>
+
+        <!--    <string name="preference_default_tts_role" translatable="false">xiaoyan</string>
+            <string name="preference_key_tts_speed" translatable="false">tts_speed</string>
+            <string name="preference_key_tts_volume" translatable="false">tts_volume</string>
+            <string name="preference_key_tts_pitch" translatable="false">tts_pitch</string>-->
+        <!--    &lt;!&ndash; 讯飞id &ndash;&gt;
+            <string name="app_id" translatable="false">53ae6a5b</string>
+            <string name="init_navigation_failed">导航模块初始化失败！</string>-->
+
+        <!--    <string name="error_network">搜索失败,请检查网络连接！</string>
+            <string name="error_key">key验证无效！</string>
+            <string name="error_other">未知错误，请稍后重试!错误码为</string>
+            <string name="no_result">对不起，没有搜索到相关数据！</string>-->
+        <string name="input_start_point">输入起点</string>
+        <string name="input_end_point">输入终点</string>
+        <string name="metro_map">地铁线路图</string>
+
+
+        <string name="no_suggest_poi">未找到符合的地址</string>
+        <string name="is_the_terminal_station">您要找的终点是:</string>
+
+
+        <string name="map_dialog_confirm">确定</string>
+        <string name="map_dialog_cancel">取消</string>
+
+        <string name="navi_arrive_destination">到达目的地</string>
+        <string name="navi_is_over">导航结束</string>
+        <string name="navi_route_calculate_fail">路径计算失败，请检查网络或输入参数</string>
+        <string name="navi_traffic_jam_recalculate">前方路线拥堵，路线重新规划</string>
+        <string name="navi_recalculate_for_yaw">您已偏航</string>
+
+        <!-- 分享 -->
+        <string name="share_success">分享成功</string>
+        <string name="share_cancel">分享取消</string>
+        <string name="share_deny">分享被拒绝</string>
+        <string name="share_unknown">分享返回</string>
+        <string name="share_failure">分享失败</string>
+        <string name="create_share_failed">创建分享失败，请重试</string>
+
+        <string name="share_shareto">分享</string>
+        <string name="share_sina_weibo">微博</string>
+        <string name="share_pengyouquan">朋友圈</string>
+        <string name="share_wechat_session">微信好友</string>
+        <string name="share_wechat_favorite">微信收藏</string>
+        <string name="share_email">邮件</string>
+        <string name="share_note">便签</string>
+        <string name="share_bluetouch">蓝牙</string>
+        <string name="share_qq_friend">QQ好友</string>
+        <string name="share_message">短信</string>
+
+        <!-- 侧滑菜单 -->
+        <string name="drawer_item_person_unlogin">未登录</string>
+
+        <!-- 离线包下载 -->
+        <string name="offline_map_title">离线地图</string>
+        <string name="offline_map_download_title">下载管理</string>
+        <string name="offline_map_city_title">城市列表</string>
+
+        <string name="offline_map_mobile_download">使用移动网络下载将会消耗手机流量</string>
+        <string name="offline_map_mobile_update">使用移动网络更新将会消耗手机流量</string>
+        <string name="offline_map_ok">确定</string>
+        <string name="offline_map_cancel">取消</string>
+        <string name="offline_map_remove">删除</string>
+        <string name="offline_map_removing">正在删除</string>
+        <string name="offline_map_network_error">网络异常</string>
+        <string name="offline_map_unit_mb">MB</string>
+        <string name="offline_map_download">下载</string>
+        <string name="offline_map_downloaded">已下载</string>
+        <string name="offline_map_downloading">正在下载</string>
+        <string name="offline_map_download_waiting">正在等待</string>
+        <string name="offline_map_download_pauseing">暂停中</string>
+        <string name="offline_map_download_unziping">正在解压</string>
+        <string name="offline_map_download_error">错误</string>
+
+        <string name="offline_map_download_stop">停止</string>
+        <string name="offline_map_download_see">查看</string>
+        <string name="offline_map_download_update">更新</string>
+        <string name="offline_map_download_pause">暂停</string>
+        <string name="offline_map_download_cancel">取消</string>
+        <string name="offline_map_download_continue">继续</string>
+        <string name="offline_map_redownload">下载</string>
+
+        <string name="offline_map_city_search_hint">输入城市名</string>
+        <string name="offline_map_download_null_network">当前无网络,无法下载</string>
+        <string name="offline_map_update_null_network">当前无网络,无法更新</string>
+        <string name="offline_map_download_null_network_pause_all">WIFI断开,下载暂停</string>
+        <string name="offline_map_download_use_mobile_network">当前使用移动流量,准备开始下载</string>
+        <string name="offline_map_space_not_enough">手机存储空间不足</string>
+        <string name="offline_map_changing">正在切换到</string>
+        <string name="offline_map_change_fail">切换城市失败</string>
+        <string name="offline_map_change_fail_due_to_network">网络异常:切换城市失败</string>
+
+        <!-- 切换城市页面  -->
+        <string name="switch_city_title">城市切换</string>
+        <string name="switch_city_current_city">当前城市</string>
+        <string name="switch_city_search_hint">输入城市名</string>
+        <string name="switch_city_null_network">当前无网络</string>
+        <string name="switch_city_changing">正在切换到</string>
+        <string name="switch_city_change_fail">切换城市失败</string>
+        <string name="switch_city_change_fail_due_to_network">网络异常:切换城市失败</string>
+
+
+        <!-- POI详情页面 -->
+        <string name="poi_detail_title">地点详情</string>
+        <string name="poi_detail_here">当前位置</string>
+        <string name="poi_detail_address">地址</string>
+        <string name="poi_detail_call">打电话</string>
+        <string name="poi_detail_route">到这去</string>
+        <string name="poi_detail_mulit_tel">选择电话</string>
+        <string name="poi_detail_cancel">取消</string>
+        <string name="poi_detail_bus_station_detail">公交站详情</string>
+        <string name="poi_detail_bus_null_network">当前无网络,请检查网络后重试</string>
+        <string name="poi_detail_bus">详情</string>
+        <string name="poi_detail_share_title">的详情</string>
+        <string name="poi_detail_share_from">来自魅族地图</string>
+        <string name="poi_detail_recent_time">(离我最近)</string>
+
+
+        <string name="voice_assistant_activation_failed">语音助手启动异常</string>
+        <string name="voice_assistant_hinttext">试试说\"北京天安门\"</string>
+        <string name="voice_permission_occupied">录音权限被占</string>
+        <string name="voice_error">录音器错误</string>
+        <string name="suggest_path_line">推荐路线</string>
+
+        <string name="convert_path_line">查看返程</string>
+
+        <string name="ar_action_end">到达目的地</string>
+        <string name="ar_action_left">左转</string>
+        <string name="ar_action_right">右转</string>
+        <string name="ar_action_roundabout">环岛</string>
+        <string name="ar_action_left_front">向左前方</string>
+        <string name="ar_action_keep_left">靠左</string>
+        <string name="ar_action_left_behind">向左后方</string>
+        <string name="ar_action_left_turn_round">左转调头</string>
+        <string name="ar_action_right_front">向右前方</string>
+        <string name="ar_action_keep_right">靠右</string>
+        <string name="ar_action_right_behind">向右后方</string>
+        <string name="ar_action_right_turn_round">右转调头</string>
+        <string name="ar_reroute_loading">正在规划路线</string>
+
+        <string name="map_calibration_title">校准指南针</string>
+        <string name="map_calibration_message">手机沿图示方向移动数次</string>
+        <string name="map_calibration_btn_cancel_text">知道了</string>
+
+
+        <!-- 以下城市名称部分不能做翻译 -->
+        <string name="offline_map_city_zhixiashi" translatable="false">直辖市</string>
+        <string name="offline_map_city_gangao" translatable="false">港澳</string>
+        <string name="offline_map_city_gaiyaotu" translatable="false">全国概要图</string>
+        <string name="offline_map_city_hongkong" translatable="false">香港</string>
+        <string name="offline_map_city_macau" translatable="false">澳门</string>
+        <string name="offline_map_city_beijing" translatable="false">北京</string>
+        <string name="offline_map_city_shanghai" translatable="false">上海</string>
+        <string name="offline_map_city_tianjin" translatable="false">天津</string>
+        <string name="offline_map_city_chongqing" translatable="false">重庆</string>
+    <string name="title_activity_route">RouteActivity</string>
+        <!--end-->
+    <!--compass Add begin-->
+    <string name="compass">指南针</string>
+    <string name="direction_north">北</string>
+    <string name="direction_south">南</string>
+    <string name="direction_west">西</string>
+    <string name="direction_east">东</string>
+
+    <string name="direction_due_north" translatable="false">正北</string>
+    <string name="direction_due_south" translatable="false">正南</string>
+    <string name="direction_due_west" translatable="false">正西</string>
+    <string name="direction_due_east" translatable="false">正东</string>
+    <string name="direction_north_west" translatable="false">西北</string>
+    <string name="direction_north_east" translatable="false">东北</string>
+    <string name="direction_south_west" translatable="false">西南</string>
+    <string name="direction_south_east" translatable="false">东南</string>
+    <string name="location_north">北纬</string>
+    <string name="location_south">南纬</string>
+    <string name="location_east">东经</string>
+    <string name="location_west">西经</string>
+    <!--compass Add end-->
+
+    <!--Level Add begin-->
+    <string name="level">水平仪</string>
+    <string name="roll_text">水平</string>
+    <string name="pitch_text">垂直</string>
+    <string name="calibration">将手机沿图示方向移动数次，以校准指南针</string>
+    <string name="calibration_cancel">我知道了</string>
+    <!--Level Add end-->
+
+</resources>

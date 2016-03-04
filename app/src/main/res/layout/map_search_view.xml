@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="RtlCompat"
+    android:id="@+id/searchview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+    android:layout_marginRight="@dimen/mapview_layout_margin_right"
+    android:background="@drawable/map_searchiview_bg"
+    >
+
+    <ImageView
+        android:id="@+id/drawer_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/main_search_view_padding_left"
+        android:paddingEnd="@dimen/main_search_view_icon_padding"
+        android:tint="@color/black_color_ic"
+        android:src="@drawable/mz_titlebar_ic_list"
+        />
+
+    <TextView
+        android:id="@+id/search_hint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/search_hint"
+        android:textSize="@dimen/text_size_normal"
+        android:textColor="@color/text_color_secondary"/>
+
+    <ImageView
+        android:id="@+id/function_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/main_search_view_icon_padding"
+        android:paddingEnd="@dimen/main_search_view_padding_right"
+        android:tint="@color/black_color_ic"
+        android:src="@drawable/toolbar_tool"/>
+
+</LinearLayout>
