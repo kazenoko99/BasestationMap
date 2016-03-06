@@ -7,12 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.csvreader.CsvReader;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.common.Settings;
+import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.Logs;
 
 import java.io.IOException;
@@ -22,25 +24,18 @@ import java.nio.charset.Charset;
  * Created by wen on 2016/1/25.
  */
 public class CsvToSqliteHelper extends SQLiteOpenHelper {
-    private static String Tag = "CsvToSqliteHelper";
     public static final String PACKAGE_NAME = "com.wenruisong.basestationmap";
     public static final String DB_PATH = "/data"
             + Environment.getDataDirectory().getAbsolutePath() + "/"
             + PACKAGE_NAME;
-  //"create table gsm_cells(CID integer 0,NAME VARCHAR2(30),BS VARCHAR2(30)2,LAC integer,BCCH integer4,LAT double,LON double6,
-  // AZIMUTH integer,TOTAL_DOWNTILT integer8,DOWNTILT integer,HEIGHT integer10,TYPE integer,BAIDULAT double12,
-  // BAIDULON double,ADDRESS VARCHAR2(100))14;BSID integer15 ,INDEX Integer16";
-    public static final String CREATE_DB_GSM = "create table gsm_cells(CID integer,NAME VARCHAR2(30),BS VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double,ADDRESS VARCHAR2(100),BSID integer,CELLINDEX integer);";
-    public static final String CREATE_DB_LTE= "create table lte_cells(CID integer,NAME VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double,ADDRESS VARCHAR2(100),BSID integer ,CELLINDEX integer);";
-    public static final String DROP_DB_GSM = "drop table gsm_cells;";
-    public static final String DROP_DB_LTE= "drop table lte_cells;";
 
+    private static String Tag = "CsvToSqliteHelper";
     private static Context mContext;
     private static String mCsvPath;
     private static SQLiteDatabase mDatebase;
     private static int csvRowsCount;
-    Cell.CellType mCellType;
     private static ProgressDialog mProgress;
+    private static Cell.CellType mCellType;
     public CsvToSqliteHelper(Context context, String name, Cell.CellType cellType,String csvPath,int version) {
         super(context, name, null, version);
         mCellType = cellType;
@@ -54,82 +49,43 @@ public class CsvToSqliteHelper extends SQLiteOpenHelper {
         mContext = context;
     }
 
-    public void setCellType(Cell.CellType cellType)
-    {
-        mCellType = cellType;
-    }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+
+
+    public static void createCellTable( SQLiteDatabase db,String path, Cell.CellType type)
+    {
+        Logs.d(Tag,path);
+        mCsvPath = path;
         mDatebase = db;
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-
-    public static void createGsmTable( SQLiteDatabase db )
-    {
-        Logs.d(Tag, CREATE_DB_GSM);
-        mDatebase = db;
-        if(Settings.isTableExsit("GSM")) {
-            Logs.d(Tag, "GSM is Exsit");
-            db.execSQL(DROP_DB_GSM);
-        }
-        db.execSQL(CREATE_DB_GSM);
-        Settings.setTableExsit("GSM",true);
-        //create table gsm_cells(CID integer,NAME VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double);
-        CreateGSMDbTask task = new CreateGSMDbTask();
-        task.execute();
-    }
-
-
-
-    static class CreateGSMDbTask extends AsyncTask<Void, Integer, Integer>
-    {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            showProgress();
-        }
-
-        @Override
-        protected Integer doInBackground(Void... params) {
-            try {
-                CsvReader r = new CsvReader(mCsvPath, ',', Charset.forName("GBK"));
-                    r.readHeaders();
-                csvRowsCount = CsvParser.csvGetRows(mCsvPath);
-                mProgress.setMax(csvRowsCount);
-                Logs.d(Tag, "get csvRowsCount"+csvRowsCount);
-                for (int i=0; i<csvRowsCount;i++)
-                {
-                    CsvParser.csvToDatebaseGSM(mDatebase, r,i);
-                    publishProgress(i);
+        mCellType = type;
+        switch (type) {
+            case GSM: {
+                if (Settings.isTableExsit("GSM")) {
+                    Logs.d(Tag, "GSM is Exsit");
+                    db.execSQL(Constants.DROP_DB_GSM);
                 }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                db.execSQL(Constants.CREATE_DB_GSM);
+                Settings.setTableExsit("GSM", true);
+                //create table gsm_cells(CID integer,NAME VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double);
+            }
+            case LTE: {
+                Logs.d(Tag, Constants.CREATE_DB_LTE);
+                mDatebase = db;
+                if(Settings.isTableExsit("LTE")) {
+                    Logs.d(Tag, "LTE is Exsit");
+                    db.execSQL(Constants.DROP_DB_LTE);
                 }
-            return null;
-        }
+                db.execSQL(Constants.CREATE_DB_LTE);
+                Settings.setTableExsit("LTE", true);
+                //create table gsm_cells(CID integer,NAME VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double);
+            }
 
-        /**
-         * 更新进度条
-         */
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-            //参数值为0-10000，所以要乘以2500，values[0]取值分别是1，2，3，4
-            Logs.d(Tag, "updated" + values[0] );
-            mProgress.setProgress(values[0]);
-            //setProgress(values[0] * 2500);
         }
-        @Override
-        protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
-            Settings.setDatabaseReady("GSM", true);
-        }
+        CreateTableTask task = new CreateTableTask();
+        setCellType(type);
+        task.execute(type);
     }
+
 
     private static  void showProgress(){
         mProgress = new ProgressDialog(mContext);
@@ -157,4 +113,81 @@ public class CsvToSqliteHelper extends SQLiteOpenHelper {
         mProgress.show();
     }
 
+    public static void setCellType(Cell.CellType cellType)
+    {
+        mCellType = cellType;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        mDatebase = db;
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    static class CreateTableTask extends AsyncTask<Cell.CellType, Integer, Integer> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgress();
+        }
+
+        @Override
+        protected Integer doInBackground(Cell.CellType... params) {
+            try {
+                CsvReader r = new CsvReader(mCsvPath, ',', Charset.forName("GBK"));
+                r.readHeaders();
+                csvRowsCount = CsvParser.csvGetRows(mCsvPath);
+                mProgress.setMax(csvRowsCount);
+                Logs.d(Tag, "get csvRowsCount" + csvRowsCount);
+                switch (params[0]) {
+                    case GSM:
+                        for (int i = 0; i < csvRowsCount; i++) {
+                            CsvParser.csvToDatebaseGSM(mDatebase, r, i);
+                            publishProgress(i);
+                        }
+                        break;
+                    case LTE:
+                        for (int i = 0; i < csvRowsCount; i++) {
+                            CsvParser.csvToDatebaseLTE(mDatebase, r, i);
+                            publishProgress(i);
+                        }
+                        break;
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        /**
+         * 更新进度条
+         */
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            //参数值为0-10000，所以要乘以2500，values[0]取值分别是1，2，3，4
+            Logs.d(Tag, "updated" + values[0]);
+            mProgress.setProgress(values[0]);
+            //setProgress(values[0] * 2500);
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            switch (mCellType) {
+                case GSM:
+                    Settings.setDatabaseReady("GSM", true);
+                    break;
+                case LTE:
+                    Settings.setDatabaseReady("LTE", true);
+                    break;
+
+            }
+        }
+    }
 }

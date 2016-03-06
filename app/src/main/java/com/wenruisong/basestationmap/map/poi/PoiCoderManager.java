@@ -31,14 +31,6 @@ public class PoiCoderManager implements OnGetGeoCoderResultListener{
         return instance;
     }
 
-    PoiCoderManager()
-    {
-    }
-    public static void setPoints(ArrayList<Cell> point)
-    {
-        if(!isStarted)
-        cellsToSearch.addAll(point);
-    }
 
     public static void addPoint(Cell cell)
     {
@@ -67,9 +59,6 @@ public class PoiCoderManager implements OnGetGeoCoderResultListener{
 
     @Override
     public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
-
-
-
         if(searchIndex == searchTaskNum-1)
         {
             Settings.setCellAddressReady("GSM", true);

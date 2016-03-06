@@ -7,27 +7,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.model.LatLng;
-import com.wenruisong.basestationmap.MainActivity;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.adapter.CellInfoPagerAdapter;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.BasestationManager;
-import com.wenruisong.basestationmap.basestation.CellMarker;
-import com.wenruisong.basestationmap.basestation.CellMarkerManager;
-import com.wenruisong.basestationmap.basestation.GSMCell;
-import com.wenruisong.basestationmap.basestation.LocelleMarker;
 import com.wenruisong.basestationmap.basestation.SelectedCellMarker;
 import com.wenruisong.basestationmap.utils.Logs;
 import com.wenruisong.basestationmap.utils.ResourcesUtil;
+import com.wenruisong.basestationmap.view.BottomCellView;
 import com.wenruisong.basestationmap.view.WrapContentHeightViewPager;
 
 import java.util.ArrayList;
 
 public class MapBottomController  {
     public WrapContentHeightViewPager mDetailViewPager;
-    private View mBottomLocDetailView;
+    private LinearLayout mBottomDetailView;
     private View mBtmSeparatorLine;
     private LinearLayout mBottomLocActionView;
     private TextView mBottomLocNameView;
@@ -37,20 +32,23 @@ public class MapBottomController  {
     private TextView map_bottom_basestation;
     private TextView map_bottom_route;
     private TextView map_bottom_navi;
+    private BottomCellView bottomCellView;
+    private View bottomCell;
     OnCellInfoPagerListener onCellInfoPagerChanged;
     public LinearLayout mBottomActionView;
     private CellInfoPagerAdapter cellInfoPagerAdapter;
     private Context mContext;
     private BaiduMap mBaiduMap;
     private static int lastSelectedCellIndex = -1;
-    private ArrayList<GSMCell> cells = new ArrayList<>();
+    private ArrayList<Cell> cells = new ArrayList<>();
 
     private int mBtmDetailTwoLineHeight;
     private int mBtmDetailOneLineHeight;
 
     public MapBottomController(Context context) {
         this.mContext = context;
-
+        bottomCellView = new BottomCellView();
+        bottomCell = bottomCellView.initView(context);
     }
 
     public void setBaiduMap( BaiduMap baiduMap) {
@@ -65,10 +63,12 @@ public class MapBottomController  {
 
         mBottomActionView = (LinearLayout)root.findViewById(R.id.map_bottom_actionview);
         map_bottom_basestation = (TextView) root.findViewById(R.id.map_bottom_basestation);
+        map_bottom_basestation.setOnClickListener(onBasestaionBtnClickListener);
         map_bottom_route = (TextView) root.findViewById(R.id.map_bottom_route);
         map_bottom_navi = (TextView) root.findViewById(R.id.map_bottom_navi);
-        mBottomLocDetailView = root.findViewById(R.id.map_bottom_detail_layout);
-
+        mBottomDetailView = (LinearLayout)root.findViewById(R.id.map_bottom_detail_layout);
+        mBottomDetailView.setVisibility(View.VISIBLE);
+        mBottomDetailView.addView(bottomCell);
         mBottomLocActionView =(LinearLayout) root.findViewById(R.id.map_bottom_act_layout);
         mBottomActionView = (LinearLayout) root.findViewById(R.id.map_bottom_actionview);
         mBottomLocAddrView = (TextView) root.findViewById(R.id.map_bottom_address);
@@ -118,7 +118,7 @@ public class MapBottomController  {
     {
 
         SelectedCellMarker.setSelected(mBaiduMap, cell);
-        cells= BasestationManager.getCellsFromBS(cell.bsName);
+        cells= BasestationManager.getCellsFromBS(cell);
         cellInfoPagerAdapter.setDates(cells);
         for (int i=0;i<cells.size();i++ ) {
             if(cells.get(i).cellid == cell.cellid)
@@ -167,6 +167,14 @@ public class MapBottomController  {
     }
 
 
+
+    View.OnClickListener onBasestaionBtnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+
+    };
 
 
     public void registerOnCellInfoPagerListener(OnCellInfoPagerListener onCellInfoPagerChanged)

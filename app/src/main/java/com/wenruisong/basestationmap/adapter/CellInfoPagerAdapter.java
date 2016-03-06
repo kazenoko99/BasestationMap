@@ -15,6 +15,8 @@ import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.GSMCell;
 import com.wenruisong.basestationmap.map.CellInfoGsmView;
+import com.wenruisong.basestationmap.map.CellInfoLteView;
+import com.wenruisong.basestationmap.map.CellInfoView;
 
 import java.util.ArrayList;
 
@@ -22,9 +24,8 @@ import java.util.ArrayList;
  * Created by wen on 2016/1/21.
  */
 public class CellInfoPagerAdapter extends PagerAdapter {
-    ArrayList<GSMCell> mCells = new ArrayList<>();
-    ArrayList<CellInfoGsmView> views = new ArrayList<>();
-    ArrayList<Boolean> flags = new ArrayList<>();
+    ArrayList<Cell> mCells = new ArrayList<>();
+    ArrayList<CellInfoView> views = new ArrayList<>();
     Context context;
 
     public CellInfoPagerAdapter(Context context) {
@@ -43,11 +44,8 @@ public class CellInfoPagerAdapter extends PagerAdapter {
     }
 
 
-    public void setDates(ArrayList<GSMCell> cells) {
+    public void setDates(ArrayList<Cell> cells) {
         mCells = cells;
-        for (GSMCell cell : cells) {
-            flags.add(false);
-        }
         notifyDataSetChanged();
     }
 
@@ -77,13 +75,23 @@ public class CellInfoPagerAdapter extends PagerAdapter {
         if (mCells.size() > 1) {
             itemPos = position % mCells.size();
         }
-        View root = LayoutInflater.from(context).inflate(R.layout.fragment_gsm_cellinfo, null);
 
-        CellInfoGsmView gsmInfoView = new CellInfoGsmView(root);
-        gsmInfoView.initWidget(mCells.get(itemPos));
-        views.add(gsmInfoView);
-        container.addView(root);
-        return root;
+        if(mCells.get(itemPos) instanceof GSMCell) {
+            View root = LayoutInflater.from(context).inflate(R.layout.fragment_gsm_cellinfo, null);
+            CellInfoGsmView gsmInfoView = new CellInfoGsmView(root);
+            gsmInfoView.initWidget(mCells.get(itemPos));
+            views.add(gsmInfoView);
+            container.addView(root);
+            return root;
+        } else {
+            View root = LayoutInflater.from(context).inflate(R.layout.fragment_lte_cellinfo, null);
+            CellInfoLteView lteInfoView = new CellInfoLteView(root);
+            lteInfoView.initWidget(mCells.get(itemPos));
+            views.add(lteInfoView);
+            container.addView(root);
+            return root;
+        }
+
     }
 }
 

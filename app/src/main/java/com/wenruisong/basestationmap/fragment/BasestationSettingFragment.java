@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.squareup.otto.Subscribe;
 import com.wenruisong.basestationmap.MainActivity;
 import com.wenruisong.basestationmap.R;
+import com.wenruisong.basestationmap.basestation.BasestationManager;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.database.CsvToSqliteHelper;
 import com.wenruisong.basestationmap.eventbus.FileExplorerEvents;
@@ -102,7 +103,10 @@ public class BasestationSettingFragment extends BackPressHandledFragment {
            }
              CsvToSqliteHelper dbhelp=new CsvToSqliteHelper(getActivity(),Constants.DBNAME,cellType,f.toString(),1);
              SQLiteDatabase mydb= dbhelp.getReadableDatabase();
-             CsvToSqliteHelper.createGsmTable(mydb);
+
+           // CsvToSqliteHelper.createGsmTable(mydb);
+            CsvToSqliteHelper.createCellTable(mydb, f.toString(), cellType);
+
         }
     }
 

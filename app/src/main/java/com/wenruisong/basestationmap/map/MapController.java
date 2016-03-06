@@ -57,8 +57,14 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
         @Override
         public boolean onMarkerClick(Marker marker) {
             if (marker.getTitle() != null) {
-                Cell cell = btsManager.gsmCells.get(Integer.parseInt(marker.getTitle()));
-                mapBottomController.onCellMarkerClick(cell);
+                if (marker.getZIndex()==2) {
+                    Cell cell = btsManager.gsmCells.get(Integer.parseInt(marker.getTitle()));
+                    mapBottomController.onCellMarkerClick(cell);
+                }
+                else if (marker.getZIndex()==4) {
+                    Cell cell = btsManager.lteCells.get(Integer.parseInt(marker.getTitle()));
+                    mapBottomController.onCellMarkerClick(cell);
+                }
             }
             return false;
         }

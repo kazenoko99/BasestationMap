@@ -13,13 +13,11 @@ public class BsNameMaker {
         this.bs = basestation;
     }
 
-
     public Overlay BSText;
     private TextOptions textOptions=new TextOptions().fontSize(28).fontColor(0XFF000000).zIndex(10);
 
-
     public void showBsNameInMap(BaiduMap mBaiduMap) {
-        if(!bs.isNameShow)
+        if (BSText == null)
             BSText=mBaiduMap.addOverlay(textOptions.text(bs.bsName)
                     .position(bs.baiduLatLng));
         bs.isNameShow=true;
@@ -31,5 +29,4 @@ public class BsNameMaker {
             bs.isNameShow =false;
         }
     }
-
 }

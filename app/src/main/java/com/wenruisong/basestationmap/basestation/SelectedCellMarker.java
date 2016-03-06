@@ -20,7 +20,7 @@ public class SelectedCellMarker {
         if(selectedMarker!=null)
             deSeleted();
         if(cell.type == 1) {
-            selectedMarker = (Marker) baiduMap.addOverlay(marker_select.icon(cell_select_shifen).position(cell.baiduLatLng).rotate(cell.azimuth));
+            selectedMarker = (Marker) baiduMap.addOverlay(marker_select.icon(cell_select_shifen).position(cell.baiduLatLng).rotate(0));
         }
         else {
             selectedMarker = (Marker) baiduMap.addOverlay(marker_select.icon(cell_select).position(cell.baiduLatLng).rotate(cell.azimuth));

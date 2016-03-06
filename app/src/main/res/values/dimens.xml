@@ -17,6 +17,9 @@
     <dimen name="mapview_layout_margin_top">76dp</dimen>
     <dimen name="mapview_layout_margin_bottom">7dp</dimen>
 
+    <dimen name="cellinfo_margin_left">7dp</dimen>
+    <dimen name="cellinfo_margin_right">7dp</dimen>
+
 
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_normal">16sp</dimen>

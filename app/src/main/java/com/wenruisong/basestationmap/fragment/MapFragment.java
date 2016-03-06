@@ -1,18 +1,11 @@
 package com.wenruisong.basestationmap.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -23,10 +16,7 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.model.LatLng;
 import com.wenruisong.basestationmap.R;
-import com.wenruisong.basestationmap.basestation.Basestation;
-import com.wenruisong.basestationmap.basestation.BasestationManager;
-import com.wenruisong.basestationmap.basestation.CellMarkerManager;
-import com.wenruisong.basestationmap.basestation.GSMCell;
+import com.wenruisong.basestationmap.basestation.CellMarkerManager2;
 import com.wenruisong.basestationmap.helper.LocationHelper;
 import com.wenruisong.basestationmap.map.MapController;
 import com.wenruisong.basestationmap.utils.MapViewUtils;
@@ -40,8 +30,8 @@ public class MapFragment extends BackPressHandledFragment {
     private static BaiduMap mBaiduMap;
     private static float mapZoomLevel = 17.0f;
     private static MapController mapController;
-    BasestationManager btsManager = BasestationManager.getInstance();
-    CellMarkerManager markerManager = CellMarkerManager.getInstance();
+
+    CellMarkerManager2 markerManager = CellMarkerManager2.getInstance();
     BitmapDescriptor mCurrentMarker;
     private LocationHelper locationHelper;
 
@@ -64,6 +54,7 @@ public class MapFragment extends BackPressHandledFragment {
         mapController = (MapController) v.findViewById(R.id.map_controller);
         mCurrentMarker = null;
         mBaiduMap = mMapView.getMap();
+        markerManager.setMap(mBaiduMap);
         mapController.setController(this, mBaiduMap);
         mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
                 MyLocationConfiguration.LocationMode.NORMAL, true, mCurrentMarker));
@@ -76,7 +67,7 @@ public class MapFragment extends BackPressHandledFragment {
 
         mBaiduMap.setOnMapStatusChangeListener(new BaiduMap.OnMapStatusChangeListener() {
             public void onMapStatusChangeStart(MapStatus status) {
-                markerManager.showMarkers(mBaiduMap);
+                markerManager.showMarkers();
             }
 
             public void onMapStatusChangeFinish(MapStatus status) {

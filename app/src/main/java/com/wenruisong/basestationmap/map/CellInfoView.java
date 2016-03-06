@@ -10,7 +10,7 @@ import com.wenruisong.basestationmap.basestation.Cell;
 /**
  * Created by wuxuexiang on 15-6-24.
  */
-abstract class CellInfoView {
+public abstract class CellInfoView {
     Context mContext;
     TextView cellid;
     TextView cellname;
