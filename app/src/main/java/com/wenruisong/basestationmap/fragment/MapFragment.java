@@ -20,6 +20,7 @@ import com.wenruisong.basestationmap.basestation.CellMarkerManager2;
 import com.wenruisong.basestationmap.helper.LocationHelper;
 import com.wenruisong.basestationmap.map.MapController;
 import com.wenruisong.basestationmap.utils.MapViewUtils;
+import com.wenruisong.basestationmap.view.BottomCellView;
 
 /**
  * Created by wen on 2016/1/15.
@@ -30,6 +31,7 @@ public class MapFragment extends BackPressHandledFragment {
     private static BaiduMap mBaiduMap;
     private static float mapZoomLevel = 17.0f;
     private static MapController mapController;
+    private BottomCellView mapbottom;
 
     CellMarkerManager2 markerManager = CellMarkerManager2.getInstance();
     BitmapDescriptor mCurrentMarker;
@@ -64,10 +66,10 @@ public class MapFragment extends BackPressHandledFragment {
         mBaiduMap.animateMapStatus(u);
         locationHelper = LocationHelper.getInstance();
         locationHelper.setBaiduMap(mBaiduMap);
-
+        mapbottom = mapController.mapBottomController.bottomCellView;
         mBaiduMap.setOnMapStatusChangeListener(new BaiduMap.OnMapStatusChangeListener() {
             public void onMapStatusChangeStart(MapStatus status) {
-                markerManager.showMarkers();
+
             }
 
             public void onMapStatusChangeFinish(MapStatus status) {
@@ -75,6 +77,8 @@ public class MapFragment extends BackPressHandledFragment {
             }
 
             public void onMapStatusChange(MapStatus status) {
+                markerManager.showMarkers();
+                mapbottom.updateView(mBaiduMap);
             }
         });
         return v;

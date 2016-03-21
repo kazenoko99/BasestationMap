@@ -32,14 +32,13 @@ public class MapBottomController  {
     private TextView map_bottom_basestation;
     private TextView map_bottom_route;
     private TextView map_bottom_navi;
-    private BottomCellView bottomCellView;
-    private View bottomCell;
+    public BottomCellView bottomCellView;
+    public View bottomCell;
     OnCellInfoPagerListener onCellInfoPagerChanged;
     public LinearLayout mBottomActionView;
     private CellInfoPagerAdapter cellInfoPagerAdapter;
     private Context mContext;
     private BaiduMap mBaiduMap;
-    private static int lastSelectedCellIndex = -1;
     private ArrayList<Cell> cells = new ArrayList<>();
 
     private int mBtmDetailTwoLineHeight;
@@ -67,7 +66,7 @@ public class MapBottomController  {
         map_bottom_route = (TextView) root.findViewById(R.id.map_bottom_route);
         map_bottom_navi = (TextView) root.findViewById(R.id.map_bottom_navi);
         mBottomDetailView = (LinearLayout)root.findViewById(R.id.map_bottom_detail_layout);
-        mBottomDetailView.setVisibility(View.VISIBLE);
+        mBottomDetailView.setVisibility(View.GONE);
         mBottomDetailView.addView(bottomCell);
         mBottomLocActionView =(LinearLayout) root.findViewById(R.id.map_bottom_act_layout);
         mBottomActionView = (LinearLayout) root.findViewById(R.id.map_bottom_actionview);
@@ -116,7 +115,6 @@ public class MapBottomController  {
 
     void onCellMarkerClick(Cell cell)
     {
-
         SelectedCellMarker.setSelected(mBaiduMap, cell);
         cells= BasestationManager.getCellsFromBS(cell);
         cellInfoPagerAdapter.setDates(cells);
@@ -162,7 +160,6 @@ public class MapBottomController  {
                 }
             }
         }
-
         mDetailViewPager.setCurrentItem(item, smoothScroll);
     }
 
@@ -171,9 +168,11 @@ public class MapBottomController  {
     View.OnClickListener onBasestaionBtnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+           if(mBottomDetailView.getVisibility() ==View.GONE )
+               mBottomDetailView.setVisibility(View.VISIBLE);
+            else
+               mBottomDetailView.setVisibility(View.GONE);
         }
-
     };
 
 

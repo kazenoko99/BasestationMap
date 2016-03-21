@@ -52,7 +52,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     private ImageView function_btn;
     private CompassView compassView;
     private Context mContext;
-    private MapBottomController mapBottomController;
+    public MapBottomController mapBottomController;
     BaiduMap.OnMarkerClickListener onDefaultModeMarkerClickListener = new BaiduMap.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(Marker marker) {

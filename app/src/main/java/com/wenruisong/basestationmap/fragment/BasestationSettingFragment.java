@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import com.squareup.otto.Subscribe;
 import com.wenruisong.basestationmap.MainActivity;
 import com.wenruisong.basestationmap.R;
-import com.wenruisong.basestationmap.basestation.BasestationManager;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.database.CsvToSqliteHelper;
 import com.wenruisong.basestationmap.eventbus.FileExplorerEvents;
@@ -119,7 +118,7 @@ public class BasestationSettingFragment extends BackPressHandledFragment {
 
     private View initView(LayoutInflater inflater) {
         Logs.d("OfflineMapModule", "OfflineMapFragment initView");
-        View root = inflater.inflate(R.layout.fragment_basestationsetting, null);
+        View root = inflater.inflate(R.layout.fragment_basestation_setting, null);
         mViewPager = (ViewPager) root.findViewById(R.id.vp_container);
         View drawerIcon = root.findViewById(R.id.drawer_icon);
         drawerIcon.setOnClickListener(new View.OnClickListener() {
