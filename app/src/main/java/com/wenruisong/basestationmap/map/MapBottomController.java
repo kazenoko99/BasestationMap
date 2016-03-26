@@ -12,7 +12,7 @@ import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.adapter.CellInfoPagerAdapter;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.BasestationManager;
-import com.wenruisong.basestationmap.basestation.SelectedCellMarker;
+import com.wenruisong.basestationmap.basestation.Marker.SelectedCellMarker;
 import com.wenruisong.basestationmap.utils.Logs;
 import com.wenruisong.basestationmap.utils.ResourcesUtil;
 import com.wenruisong.basestationmap.view.BottomCellView;

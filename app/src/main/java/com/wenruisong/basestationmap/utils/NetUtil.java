@@ -20,11 +20,11 @@ public class NetUtil {
     private static NetType mLastNetworkState;
 
 
-    public static enum NetType {
+    public enum NetType {
         NETWORK_TYPE_NONE, // 断网情况
         NETWORK_TYPE_WIFI, // WiFi模式
         NETWOKR_TYPE_MOBILE // gprs模式
-    };
+    }
 
     public static void initContext(Context context) {
         mContext = context;
@@ -111,6 +111,6 @@ public class NetUtil {
          * @param curNetType 当前网络情况
          * @param lastNetType 上一次的网络情况
          */
-        public void onNetworkStatusChanged(NetUtil.NetType curNetType, NetUtil.NetType lastNetType);
+        void onNetworkStatusChanged(NetUtil.NetType curNetType, NetUtil.NetType lastNetType);
     }
 }

@@ -58,11 +58,11 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
         public boolean onMarkerClick(Marker marker) {
             if (marker.getTitle() != null) {
                 if (marker.getZIndex()==2) {
-                    Cell cell = btsManager.gsmCells.get(Integer.parseInt(marker.getTitle()));
+                    Cell cell = BasestationManager.gsmCells.get(Integer.parseInt(marker.getTitle()));
                     mapBottomController.onCellMarkerClick(cell);
                 }
                 else if (marker.getZIndex()==4) {
-                    Cell cell = btsManager.lteCells.get(Integer.parseInt(marker.getTitle()));
+                    Cell cell = BasestationManager.lteCells.get(Integer.parseInt(marker.getTitle()));
                     mapBottomController.onCellMarkerClick(cell);
                 }
             }
@@ -121,7 +121,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     private OnClickListener onCancelRulerClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            rulerTool.clearAllPoints();
+            RulerTool.clearAllPoints();
             defaultMode();
         }
     };
@@ -203,7 +203,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     public void OnCellClick(SearchResultEvents.OnCellClick event) {
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(event.cellLatLng);
         if (event.cellIndex != -1) {
-            mapBottomController.onCellMarkerClick(btsManager.gsmCells.get(event.cellIndex));
+            mapBottomController.onCellMarkerClick(BasestationManager.gsmCells.get(event.cellIndex));
         }
         mBaiduMap.animateMapStatus(u);
     }
@@ -274,7 +274,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     }
 
     public void onRulerModeMapClick(LatLng latLng) {
-        searchHint.setText(rulerTool.addRulerPoint(mBaiduMap, latLng));
+        searchHint.setText(RulerTool.addRulerPoint(mBaiduMap, latLng));
     }
 
     void showMapModeDialog() {
@@ -300,12 +300,12 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
         mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(pointLatLng));
         MapStatusUpdate u = MapStatusUpdateFactory.zoomTo(18);
         mBaiduMap.animateMapStatus(u);
-        gpsPointMarkerTool.addMarker(mBaiduMap, pointName, pointLatLng);
+        GpsPointMarkerTool.addMarker(mBaiduMap, pointName, pointLatLng);
     }
 
     @Override
     public void clearAllGpsPoint() {
-        gpsPointMarkerTool.clearAllMarkers();
+        GpsPointMarkerTool.clearAllMarkers();
     }
 
     @Override

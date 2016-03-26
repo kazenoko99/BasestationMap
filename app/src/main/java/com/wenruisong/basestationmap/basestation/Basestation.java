@@ -19,5 +19,6 @@ public class Basestation {
 
     public int cellIndex;
     public boolean isNameShow =false;
+    public boolean isMakerShow =false;
 
 }

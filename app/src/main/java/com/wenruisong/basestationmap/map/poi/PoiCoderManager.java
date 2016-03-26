@@ -70,7 +70,6 @@ public class PoiCoderManager implements OnGetGeoCoderResultListener{
             GeoCoderSearcher.reverseGeoCode(new ReverseGeoCodeOption()
                     .location(cellsToSearch.get(searchIndex).baiduLatLng));
             Logs.d(TAG, "onGetReverseGeoCodeResult " + searchIndex + reverseGeoCodeResult.getAddress());
-
         }
     }
 

@@ -1,4 +1,4 @@
-package com.wenruisong.basestationmap.basestation;
+package com.wenruisong.basestationmap.basestation.Marker;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -6,6 +6,7 @@ import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.wenruisong.basestationmap.R;
+import com.wenruisong.basestationmap.basestation.Cell;
 
 /**
  * Created by wen on 2016/3/1.

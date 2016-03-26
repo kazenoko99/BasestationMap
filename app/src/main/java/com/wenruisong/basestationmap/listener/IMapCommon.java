@@ -11,29 +11,29 @@ import com.wenruisong.basestationmap.fragment.BaseFragment;
  * Created by wuxuexiang on 15-6-12.
  */
 public interface IMapCommon {
-    public interface Global {
+    interface Global {
 
-        public void openOrCloseDrawers();
+        void openOrCloseDrawers();
 
-        public BaseFragment getCurrentFragment();
+        BaseFragment getCurrentFragment();
 
-        public void setLock(boolean lock);
+        void setLock(boolean lock);
 
-        public Toolbar getToolbar();
+        Toolbar getToolbar();
     }
 
-    public interface FragShower {
-        public void showFragments(String tag, boolean needback);
+    interface FragShower {
+        void showFragments(String tag, boolean needback);
 
-        public void showFragments(String tag, boolean needback, Bundle bundle);
+        void showFragments(String tag, boolean needback, Bundle bundle);
 
-        public void showFragments(String tag, boolean needback, boolean resultBack);
+        void showFragments(String tag, boolean needback, boolean resultBack);
 
-        public void showFragments(String tag, boolean needback, boolean resultBack, Bundle bundle);
+        void showFragments(String tag, boolean needback, boolean resultBack, Bundle bundle);
 
-        public void showFragments(String tag, boolean needback, boolean clearHistory, boolean resultBack, Bundle bundle);
+        void showFragments(String tag, boolean needback, boolean clearHistory, boolean resultBack, Bundle bundle);
 
-        public void backResultToRequestActivity(Bundle bundle);
+        void backResultToRequestActivity(Bundle bundle);
 
 
         /**
@@ -44,23 +44,23 @@ public interface IMapCommon {
          * @param bundle          启动fragment时给进去的参数
          * @param forceInvalidate 强制重启,查看#CrashHandler#中调用
          */
-        public void showFragments(String tag, boolean needback, boolean clearHistory, boolean resultBack, Bundle bundle, boolean forceInvalidate);
+        void showFragments(String tag, boolean needback, boolean clearHistory, boolean resultBack, Bundle bundle, boolean forceInvalidate);
     }
 
-    public interface DrawerFragChangeListener {
-        public void onDrawerFragChange(int position);
+    interface DrawerFragChangeListener {
+        void onDrawerFragChange(int position);
     }
 
-    public interface NavOnClickListener {
-        public void onNavClick();
+    interface NavOnClickListener {
+        void onNavClick();
     }
 
-    public interface NavOnClickProvider {
-        public void updateNavOnClickListener(NavOnClickListener listener);
+    interface NavOnClickProvider {
+        void updateNavOnClickListener(NavOnClickListener listener);
     }
 
-    public interface BarChangeListener {
-        public void onBarChanged(Fragment fragment);
+    interface BarChangeListener {
+        void onBarChanged(Fragment fragment);
     }
 
 }

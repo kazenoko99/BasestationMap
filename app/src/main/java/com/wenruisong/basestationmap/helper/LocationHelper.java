@@ -74,10 +74,10 @@ public class LocationHelper {
             if (location == null)
                 return;
             if(location.getCity()!=null && isLocated==false) {
-                LocationHelper.this.location = location;
+                LocationHelper.location = location;
                 city = location.getCity();
                 Logs.d("hahaha","getCity"+city);
-                requestLocationCallBack.run(city);
+                requestLocationCallBack.run(city+location.getDistrict());
                 isLocated = true;
             }
             MyLocationData locData = new MyLocationData.Builder()

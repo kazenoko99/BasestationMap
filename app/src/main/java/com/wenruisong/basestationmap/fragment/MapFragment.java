@@ -16,7 +16,7 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.model.LatLng;
 import com.wenruisong.basestationmap.R;
-import com.wenruisong.basestationmap.basestation.CellMarkerManager2;
+import com.wenruisong.basestationmap.basestation.Marker.CellMarkerManager2;
 import com.wenruisong.basestationmap.helper.LocationHelper;
 import com.wenruisong.basestationmap.map.MapController;
 import com.wenruisong.basestationmap.utils.MapViewUtils;
@@ -44,7 +44,7 @@ public class MapFragment extends BackPressHandledFragment {
     }
 
     public BaiduMap getBaiduMap() {
-        return this.mBaiduMap;
+        return mBaiduMap;
     }
 
     @Override
@@ -73,12 +73,11 @@ public class MapFragment extends BackPressHandledFragment {
             }
 
             public void onMapStatusChangeFinish(MapStatus status) {
-
+                markerManager.showMarkers();
+                mapbottom.updateView(mBaiduMap);
             }
 
             public void onMapStatusChange(MapStatus status) {
-                markerManager.showMarkers();
-                mapbottom.updateView(mBaiduMap);
             }
         });
         return v;

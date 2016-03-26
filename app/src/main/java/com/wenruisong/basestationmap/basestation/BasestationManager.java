@@ -123,7 +123,7 @@ public class BasestationManager {
         PoiCoderManager poiCoderManager = PoiCoderManager.getInstance();
         for (Cell cell : cells) {
             if (cell.baiduLatLng != null)
-                poiCoderManager.addPoint(cell);
+                PoiCoderManager.addPoint(cell);
         }
         poiCoderManager.start();
     }

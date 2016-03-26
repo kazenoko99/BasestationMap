@@ -47,7 +47,7 @@ public class Settings {
     }
 
     public interface ScreenOnListener {
-        public void onKeepScreenChange(boolean keepSreenOn);
+        void onKeepScreenChange(boolean keepSreenOn);
     }
 
     public boolean isShowZoomButton() {
@@ -65,7 +65,7 @@ public class Settings {
     }
 
     public interface ZoomSettingListener {
-        public void onZoomSettingChange(boolean showZoomButton);
+        void onZoomSettingChange(boolean showZoomButton);
     }
 
     public boolean isNeverShowGpsDialog() {
@@ -107,7 +107,7 @@ public class Settings {
     }
 
     public interface CenterIndicSettingListener {
-        public void onCenterIndicSettingChange(boolean showCenterIndic);
+        void onCenterIndicSettingChange(boolean showCenterIndic);
     }
 
     public static boolean isDatabaseReady(String str) {
