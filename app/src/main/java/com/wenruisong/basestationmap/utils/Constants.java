@@ -17,7 +17,10 @@ public class Constants {
     public static final String ACTION_AR_NAV_GROUP = "com.wenruisong.basestaionmap.argroup";
     public static final String ACTION_BUS_DETAIL = "com.wenruisong.basestaionmap.bus_detail";
     public static final String ACTION_MAP_VIEW = "com.wenruisong.basestaionmap.mapView";
+    public static final String ACTION_MAP_SEARCH_A_ADDRESS = "com.wenruisong.basestaionmap.search_a_address";
+    public static final String ACTION_MAP_EDIT_A_ADDRESS = "com.wenruisong.basestaionmap.edit_a_address";
 
+    public static final String ACTIVITY_PASS_SEARCH_CITY = "activity_pass_search_city";
     /**
      * **********************用于sharePrefrence*********************
      */
@@ -69,7 +72,29 @@ public class Constants {
     public static final String DROP_DB_GSM = "drop table gsm_cells;";
     public static final String DROP_DB_LTE= "drop table lte_cells;";
 
+    /**
+     * **********************用于route*********************
+     */
 
 
+    public static final String LOCATION_CITY = "CITY";
+    public static final String ROUTE_BUNDLE = "ROUTE";
+    public static final String ROUTE_FROM_NAME = "FROM_NAME";
+    public static final String ROUTE_FROM_LAT = "FROM_LAT";
+    public static final String ROUTE_FROM_LNG= "FROM_LNG";
+
+    public static final String ROUTE_TARGET_NAME = "TARGET_NAME";
+    public static final String ROUTE_TARGET_LAT = "TARGET_LAT";
+    public static final String ROUTE_TARGET_LNG= "TARGET_LNG";
+
+
+    /**
+     * **********************用于search********************
+     */
+
+
+    public static final String SEARCH_TYPE_CELL = "CELL";
+    public static final String SEARCH_TYPE_PLACE = "PLACE";
+    public static final String SEARCH_TYPE_BASESTATION = "BASESTATION";
 
 }

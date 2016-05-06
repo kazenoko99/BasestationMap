@@ -14,7 +14,7 @@ public class BasestationGsmMarker extends BasestationMarker {
 
     private static BitmapDescriptor cell_gsm_shifen = BitmapDescriptorFactory.fromResource(R.drawable.basestation_blue);
 
-    private MarkerOptions marker_gsm_shifen = new MarkerOptions().zIndex(2).icon(cell_gsm_shifen);
+    private MarkerOptions marker_gsm_shifen = new MarkerOptions().zIndex(5).icon(cell_gsm_shifen);
 
     public void showInMap(BaiduMap baiduMap) {
         mBasestation.isMakerShow = true;
@@ -23,6 +23,7 @@ public class BasestationGsmMarker extends BasestationMarker {
         } else {
             basestaionMarker.setPosition(mBasestation.baiduLatLng);
         }
+        basestaionMarker.setTitle(Integer.toString(mBasestation.basestationIndex));
     }
 
     @Override

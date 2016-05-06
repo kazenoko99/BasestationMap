@@ -30,6 +30,27 @@ public class SearchPoiFragment extends BaseFragment implements OnGetPoiSearchRes
     private PoiSearch mPoiSearch = null;
     private SuggestionSearch mSuggestionSearch = null;
     private SuggestionSearchOption suggestionSearchOption;
+    private int mType;
+    private static final String TYPE = "TYPE";
+    public static SearchPoiFragment newInstance(int param1) {
+        SearchPoiFragment fragment = new SearchPoiFragment();
+        Bundle args = new Bundle();
+        args.putInt(TYPE, param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public SearchPoiFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mType = getArguments().getInt(TYPE);
+        }
+    }
 
     @Override
     public View inflateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -84,6 +84,76 @@
         app:tabTextColor="@color/half_white"
         />
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/select_location"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/address_select_point_height"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:visibility="visible">
+       <FrameLayout
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="1">
+        <TextView
+            android:id="@+id/my_location"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/mz_item_background"
+            android:gravity="center"
+            android:paddingBottom="@dimen/search_map_select_point_padding"
+            android:paddingTop="@dimen/search_map_select_point_padding"
+            android:text="@string/current_location"
+            android:textColor="@color/mz_theme_color_dodgerblue"
+            android:textSize="@dimen/search_history_title_text_size" />
+        <View
+            style="@style/separatorVertical"
+            android:layout_gravity="right|center_vertical"
+            android:layout_height="24dp" />
+    </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <TextView
+            android:id="@+id/map_select_bookmark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/mz_item_background"
+            android:gravity="center"
+            android:paddingBottom="@dimen/search_map_select_point_padding"
+            android:paddingTop="@dimen/search_map_select_point_padding"
+            android:text="收藏夹"
+            android:textColor="@color/mz_theme_color_dodgerblue"
+            android:textSize="@dimen/search_history_title_text_size" />
+            <View
+                style="@style/separatorVertical"
+                android:layout_gravity="right|center_vertical"
+                android:layout_height="24dp" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/map_select_point"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/mz_item_background"
+            android:gravity="center"
+            android:paddingBottom="@dimen/search_map_select_point_padding"
+            android:paddingTop="@dimen/search_map_select_point_padding"
+            android:text="@string/map_select_point"
+            android:textColor="@color/mz_theme_color_dodgerblue"
+            android:textSize="@dimen/search_history_title_text_size" />
+        </FrameLayout>
+    </LinearLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_search"
         android:layout_width="match_parent"

@@ -6,12 +6,12 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.support.v4.widget.DrawerLayout;
 import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -35,6 +35,7 @@ public class MainActivity extends MapCoreActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private DrawerLayout dl_navigator;
     private Context mContext;
+
     private final String mPageName = "MainActivity";
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -47,6 +48,7 @@ public class MainActivity extends MapCoreActivity
         dl_navigator =  (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(

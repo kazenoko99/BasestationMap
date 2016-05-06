@@ -7,9 +7,7 @@ import android.graphics.drawable.Drawable;
 
 import java.io.InputStream;
 
-/**
- * Created by juanwu on 15-8-27.
- */
+
 public class ResourcesUtil {
     private static Context sContext;
 

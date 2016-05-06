@@ -1,6 +1,7 @@
 package com.wenruisong.basestationmap.map;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -9,10 +10,13 @@ import android.widget.TextView;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.model.LatLng;
 import com.wenruisong.basestationmap.R;
+import com.wenruisong.basestationmap.RouteActivity;
 import com.wenruisong.basestationmap.adapter.CellInfoPagerAdapter;
-import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.BasestationManager;
+import com.wenruisong.basestationmap.basestation.Cell;
+import com.wenruisong.basestationmap.basestation.Marker.SelectedBasestationMarker;
 import com.wenruisong.basestationmap.basestation.Marker.SelectedCellMarker;
+import com.wenruisong.basestationmap.navi.BNDemoMainActivity;
 import com.wenruisong.basestationmap.utils.Logs;
 import com.wenruisong.basestationmap.utils.ResourcesUtil;
 import com.wenruisong.basestationmap.view.BottomCellView;
@@ -65,6 +69,8 @@ public class MapBottomController  {
         map_bottom_basestation.setOnClickListener(onBasestaionBtnClickListener);
         map_bottom_route = (TextView) root.findViewById(R.id.map_bottom_route);
         map_bottom_navi = (TextView) root.findViewById(R.id.map_bottom_navi);
+        map_bottom_route.setOnClickListener(onRouteBtnClickListener);
+        map_bottom_navi.setOnClickListener(onNaviBtnClickListener);
         mBottomDetailView = (LinearLayout)root.findViewById(R.id.map_bottom_detail_layout);
         mBottomDetailView.setVisibility(View.GONE);
         mBottomDetailView.addView(bottomCell);
@@ -131,6 +137,17 @@ public class MapBottomController  {
 
     }
 
+    void onBasestationMarkerClick(Cell cell)
+    {
+        SelectedBasestationMarker.setSelected(mBaiduMap, cell);
+        cells= BasestationManager.getCellsFromBS(cell);
+        cellInfoPagerAdapter.setDates(cells);
+        mDetailViewPager.setVisibility(View.VISIBLE);
+        mBottomActionView.setVisibility(View.GONE);
+        cellInfoPagerAdapter.notifyDataSetChanged();
+
+    }
+
     private int calculateCurrentItem() {
         int poiCount = cellInfoPagerAdapter.getDataCount();
         int item = mDetailViewPager.getCurrentItem();
@@ -162,6 +179,26 @@ public class MapBottomController  {
         }
         mDetailViewPager.setCurrentItem(item, smoothScroll);
     }
+
+    View.OnClickListener onRouteBtnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(mContext, RouteActivity.class);
+            mContext.startActivity(intent);
+        }
+    };
+
+
+    View.OnClickListener onNaviBtnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(mContext, BNDemoMainActivity.class);
+            mContext.startActivity(intent);
+        }
+    };
+
 
 
 

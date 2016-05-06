@@ -2,7 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <RadioGroup
+
+    <com.baidu.lbsapi.panoramaview.PanoramaView
+        android:id="@+id/panorama"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:clickable="true" />
+
+    <RadioGroup
+        android:layout_below="@+id/panorama"
       android:id="@+id/map_style_radios"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

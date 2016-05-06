@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.baidu.lbsapi.BMapManager;
+import com.wenruisong.basestationmap.BasestationMapApplication;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.GSMCell;
@@ -31,7 +33,6 @@ public class CellInfoPagerAdapter extends PagerAdapter {
     public CellInfoPagerAdapter(Context context) {
         this.context = context;
     }
-
 
     @Override
     public int getCount() {
@@ -78,14 +79,14 @@ public class CellInfoPagerAdapter extends PagerAdapter {
 
         if(mCells.get(itemPos) instanceof GSMCell) {
             View root = LayoutInflater.from(context).inflate(R.layout.fragment_gsm_cellinfo, null);
-            CellInfoGsmView gsmInfoView = new CellInfoGsmView(root);
+            CellInfoGsmView gsmInfoView = new CellInfoGsmView(context, root);
             gsmInfoView.initWidget(mCells.get(itemPos));
             views.add(gsmInfoView);
             container.addView(root);
             return root;
         } else {
             View root = LayoutInflater.from(context).inflate(R.layout.fragment_lte_cellinfo, null);
-            CellInfoLteView lteInfoView = new CellInfoLteView(root);
+            CellInfoLteView lteInfoView = new CellInfoLteView(context,root);
             lteInfoView.initWidget(mCells.get(itemPos));
             views.add(lteInfoView);
             container.addView(root);

@@ -14,6 +14,7 @@ import com.wenruisong.basestationmap.fragment.BaseFragment;
 import com.wenruisong.basestationmap.fragment.BasestationSettingFragment;
 import com.wenruisong.basestationmap.fragment.MapFragment;
 import com.wenruisong.basestationmap.fragment.OfflineMapFragment;
+import com.wenruisong.basestationmap.fragment.SettingFragment;
 import com.wenruisong.basestationmap.listener.IMapCommon;
 import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.Logs;
@@ -39,6 +40,7 @@ public class MapCoreActivity extends AppCompatActivity implements FragmentManage
     public static final String FRAG_BTS_SETTING = "settings_bts_frag";
     public static final String FRAG_AR_PHOTO = "ar_photo_frag";
     public static final String FRAG_OFFLINE_MAP = "offline_map_frag";
+    public static final String FRAG_SETTING = "setting_frag";
     public static final String FRAG_POI_DETAIL = "poi_detail_frag";
     public static final String FRAG_SEARCH_RESULT_LIST = "search_result_list_frag";
     public static final String FRAG_ROUTE = "route_frag";
@@ -294,7 +296,11 @@ public class MapCoreActivity extends AppCompatActivity implements FragmentManage
             return OfflineMapFragment.getInstance(bundle);
         }else if (FRAG_BTS_SETTING.equals(tag)) {
            return BasestationSettingFragment.getInstance(bundle);
+       }else if (FRAG_SETTINGS.equals(tag)) {
+           return SettingFragment.getInstance(bundle);
        }
+
+
 
 
         return null;

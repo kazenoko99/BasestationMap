@@ -18,7 +18,7 @@ public class SelectedCellMarker {
     public static Marker selectedMarker;
 
     public static void setSelected(BaiduMap baiduMap, Cell cell) {
-        if(selectedMarker!=null)
+        SelectedBasestationMarker.deSeleted();
             deSeleted();
         if(cell.type == 1) {
             selectedMarker = (Marker) baiduMap.addOverlay(marker_select.icon(cell_select_shifen).position(cell.baiduLatLng).rotate(0));
@@ -31,6 +31,7 @@ public class SelectedCellMarker {
     }
 
     public static void deSeleted() {
+        if(selectedMarker!=null)
         selectedMarker.remove();
     }
 }

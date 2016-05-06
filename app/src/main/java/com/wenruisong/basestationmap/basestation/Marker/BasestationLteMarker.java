@@ -14,7 +14,7 @@ public class BasestationLteMarker extends BasestationMarker {
 
     private static BitmapDescriptor cell_lte_shifen = BitmapDescriptorFactory.fromResource(R.drawable.basestation_green);
 
-    private MarkerOptions marker_lte_shifen = new MarkerOptions().zIndex(2).icon(cell_lte_shifen);
+    private MarkerOptions marker_lte_shifen = new MarkerOptions().zIndex(6).icon(cell_lte_shifen);
 
     public void showInMap(BaiduMap baiduMap) {
         mBasestation.isMakerShow = true;
@@ -23,6 +23,7 @@ public class BasestationLteMarker extends BasestationMarker {
         } else {
             basestaionMarker.setPosition(mBasestation.baiduLatLng);
         }
+        basestaionMarker.setTitle(Integer.toString(mBasestation.basestationIndex));
     }
 
     @Override

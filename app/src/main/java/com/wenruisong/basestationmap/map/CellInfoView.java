@@ -20,6 +20,10 @@ public abstract class CellInfoView {
     TextView cellazumith;
     TextView cellisshifen;
 
+    TextView goPanorama;
+    TextView goRoute;
+    TextView goNavi;
+
      abstract void initWidget(Cell cell);
 
 }

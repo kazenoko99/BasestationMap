@@ -1,24 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-   >
+                android:id="@+id/layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+    >
+  <com.baidu.lbsapi.panoramaview.PanoramaView
+      android:id="@+id/panorama"
+      android:layout_width="60dp"
+      android:layout_height="60dp"
+      android:layout_centerInParent="true"
+      android:clickable="true"/>
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/bmapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true" />
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_marginTop="24dp"
-        android:layout_height="55dp"
-        android:gravity="center"
-        android:layout_width="match_parent"/>
-    <com.wenruisong.basestationmap.map.MapController
-        android:id="@+id/map_controller"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-    </com.wenruisong.basestationmap.map.MapController>
+  <com.baidu.mapapi.map.MapView
+      android:id="@+id/bmapView"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:clickable="true" />
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_marginTop="24dp"
+      android:layout_height="55dp"
+      android:gravity="center"
+      android:layout_width="match_parent"/>
+  <com.wenruisong.basestationmap.map.MapController
+      android:id="@+id/map_controller"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent">
+  </com.wenruisong.basestationmap.map.MapController>
+
 </RelativeLayout>

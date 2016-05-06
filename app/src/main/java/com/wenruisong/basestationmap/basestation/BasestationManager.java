@@ -3,7 +3,6 @@ package com.wenruisong.basestationmap.basestation;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.model.LatLng;
 import com.wenruisong.basestationmap.BasestationMapApplication;
 import com.wenruisong.basestationmap.common.Settings;
@@ -216,7 +215,7 @@ public class BasestationManager {
         gsmCell.bsName = new String(cursor.getString(2));
         gsmCell.latLng = new LatLng(cursor.getDouble(5), cursor.getDouble(6));
         gsmCell.baiduLatLng = new LatLng(cursor.getDouble(12), cursor.getDouble(13));
-        gsmCell.azimuth = cursor.getInt(7);
+        gsmCell.azimuth = 360-cursor.getInt(7);
         gsmCell.cellid = cursor.getInt(0);
         gsmCell.index = cursor.getInt(16);
         gsmCell.highth = cursor.getInt(10);
@@ -236,7 +235,7 @@ public class BasestationManager {
         lteCell.bsName = new String(cursor.getString(2));
         lteCell.latLng = new LatLng(cursor.getDouble(7), cursor.getDouble(8));
         lteCell.baiduLatLng = new LatLng(cursor.getDouble(14), cursor.getDouble(15));
-        lteCell.azimuth = cursor.getInt(9);
+        lteCell.azimuth = 360-cursor.getInt(9);
         lteCell.cellid = cursor.getInt(0);
         lteCell.index = cursor.getInt(17);
         lteCell.highth = cursor.getInt(12);
@@ -255,7 +254,7 @@ public class BasestationManager {
     public static Basestation db2LteBs(Cursor cursor, int index) {
         Basestation bs = new Basestation();
         bs.bsName = new String(cursor.getString(2));
-        bs.cellIndex = cursor.getInt(17);
+        bs.basestationIndex = cursor.getInt(17);
         bs.latLng = new LatLng(cursor.getDouble(7), cursor.getDouble(8));
         bs.baiduLatLng = new LatLng(cursor.getDouble(14), cursor.getDouble(15));
         bs.type = cursor.getInt(13);
@@ -268,7 +267,7 @@ public class BasestationManager {
     public static Basestation db2GsmBs(Cursor cursor, int index) {
         Basestation bs = new Basestation();
         bs.bsName = new String(cursor.getString(2));
-        bs.cellIndex = cursor.getInt(16);
+        bs.basestationIndex = cursor.getInt(16);
         bs.latLng = new LatLng(cursor.getDouble(5), cursor.getDouble(6));
         bs.baiduLatLng = new LatLng(cursor.getDouble(12), cursor.getDouble(13));
         bs.type = cursor.getInt(11);
