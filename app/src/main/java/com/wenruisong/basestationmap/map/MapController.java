@@ -21,11 +21,10 @@ import com.squareup.otto.Subscribe;
 import com.wenruisong.basestationmap.MainActivity;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.SearchActivity;
-import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.BasestationManager;
+import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.eventbus.MapToolsEvents;
 import com.wenruisong.basestationmap.eventbus.SearchResultEvents;
-import com.wenruisong.basestationmap.fragment.MapFragment;
 import com.wenruisong.basestationmap.helper.DirectionHelper;
 import com.wenruisong.basestationmap.tools.GpsPointMarkerTool;
 import com.wenruisong.basestationmap.tools.RulerTool;
@@ -52,13 +51,33 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     private ImageView function_btn;
     private CompassView compassView;
     private Context mContext;
-    private MapBottomController mapBottomController;
+    public MapBottomController mapBottomController;
     BaiduMap.OnMarkerClickListener onDefaultModeMarkerClickListener = new BaiduMap.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(Marker marker) {
+            Cell cell;
             if (marker.getTitle() != null) {
-                Cell cell = btsManager.gsmCells.get(Integer.parseInt(marker.getTitle()));
-                mapBottomController.onCellMarkerClick(cell);
+                //use zindex of maker to distingish net type
+                switch (marker.getZIndex()){
+                    case 2:
+                        cell = BasestationManager.gsmCells.get(Integer.parseInt(marker.getTitle()));
+                        mapBottomController.onCellMarkerClick(cell);
+                        break;
+                    case 4:
+                         cell = BasestationManager.lteCells.get(Integer.parseInt(marker.getTitle()));
+                        mapBottomController.onCellMarkerClick(cell);
+                        break;
+                    case 5:
+                        cell = BasestationManager.gsmCells.get(Integer.parseInt(marker.getTitle()));
+                        mapBottomController.onBasestationMarkerClick(cell);
+                        break;
+                    case 6:
+                        cell = BasestationManager.lteCells.get(Integer.parseInt(marker.getTitle()));
+                        mapBottomController.onBasestationMarkerClick(cell);
+                        break;
+                }
+
+
             }
             return false;
         }
@@ -78,7 +97,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
         }
     };
     private MyLocationConfiguration.LocationMode mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
-    private MapFragment mMap;
+    private MapManager mMapManager;
     private BaiduMap mBaiduMap;
     BaiduMap.OnMarkerClickListener onRulerModeMarkerClickListener = new BaiduMap.OnMarkerClickListener() {
         @Override
@@ -115,10 +134,17 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     private OnClickListener onCancelRulerClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            rulerTool.clearAllPoints();
+            RulerTool.clearAllPoints();
             defaultMode();
         }
     };
+
+    private OnClickListener onFunctionBtnClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        }
+    };
+
     private OnClickListener onCancelCompassClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -129,19 +155,19 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     private OnClickListener onZoomInClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            mMap.zoomIn();
+            mMapManager.zoomIn();
         }
     };
     private OnClickListener onZoomOutClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            mMap.zoomOut();
+            mMapManager.zoomOut();
         }
     };
     private OnClickListener toggleLocateModeClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            mMap.toggleLocatingMode(mCurrentMode);
+            mMapManager.toggleLocatingMode(mCurrentMode);
             switch (mCurrentMode) {
                 case NORMAL:
                     mCurrentMode = MyLocationConfiguration.LocationMode.COMPASS;
@@ -197,7 +223,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     public void OnCellClick(SearchResultEvents.OnCellClick event) {
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(event.cellLatLng);
         if (event.cellIndex != -1) {
-            mapBottomController.onCellMarkerClick(btsManager.gsmCells.get(event.cellIndex));
+            mapBottomController.onCellMarkerClick(BasestationManager.gsmCells.get(event.cellIndex));
         }
         mBaiduMap.animateMapStatus(u);
     }
@@ -228,7 +254,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
 
     void defaultMode() {
         function_btn.setImageResource(R.drawable.toolbar_tool);
-        function_btn.setOnClickListener(onCancelRulerClickListener);
+        function_btn.setOnClickListener(onFunctionBtnClickListener);
         searchHint.setText("查基站、找地点、搜线路");
         searchHint.setOnClickListener(onSearchViewClickListener);
         mBaiduMap.removeMarkerClickListener(onRulerModeMarkerClickListener);
@@ -259,8 +285,8 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
         drawer_icon.setOnClickListener(onDrawerIconClickListener);
     }
 
-    public void setController(MapFragment map, BaiduMap baiduMap) {
-        mMap = map;
+    public void setController(BaiduMap baiduMap) {
+        mMapManager = MapManager.getInstance();
         mBaiduMap = baiduMap;
         mapBottomController.setBaiduMap(baiduMap);
         mapBottomController.registerOnCellInfoPagerListener(this);
@@ -268,7 +294,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     }
 
     public void onRulerModeMapClick(LatLng latLng) {
-        searchHint.setText(rulerTool.addRulerPoint(mBaiduMap, latLng));
+        searchHint.setText(RulerTool.addRulerPoint(mBaiduMap, latLng));
     }
 
     void showMapModeDialog() {
@@ -286,7 +312,7 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
 
     @Override
     public void setMapMode(int positon) {
-        mMap.changeMode(positon);
+        mMapManager.changeMode(positon);
     }
 
     @Override
@@ -294,12 +320,12 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
         mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(pointLatLng));
         MapStatusUpdate u = MapStatusUpdateFactory.zoomTo(18);
         mBaiduMap.animateMapStatus(u);
-        gpsPointMarkerTool.addMarker(mBaiduMap, pointName, pointLatLng);
+        GpsPointMarkerTool.addMarker(mBaiduMap, pointName, pointLatLng);
     }
 
     @Override
     public void clearAllGpsPoint() {
-        gpsPointMarkerTool.clearAllMarkers();
+        GpsPointMarkerTool.clearAllMarkers();
     }
 
     @Override

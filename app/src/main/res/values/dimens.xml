@@ -14,8 +14,14 @@
 
     <dimen name="mapview_layout_margin_left">7dp</dimen>
     <dimen name="mapview_layout_margin_right">7dp</dimen>
+    <dimen name="mapview_vp_margin_left">12dp</dimen>
+    <dimen name="mapview_vp_margin_right">12dp</dimen>
+
     <dimen name="mapview_layout_margin_top">76dp</dimen>
     <dimen name="mapview_layout_margin_bottom">7dp</dimen>
+
+    <dimen name="cellinfo_margin_left">7dp</dimen>
+    <dimen name="cellinfo_margin_right">7dp</dimen>
 
 
     <dimen name="text_size_large">18sp</dimen>
@@ -45,516 +51,564 @@
     <dimen name="drawer_common_name_margin_left">16dip</dimen>
     <dimen name="drawer_common_tools_margin_left">40dip</dimen>
 
-        <!-- Default screen margins, per the Android Design guidelines. -->
-        //statusbar_mz_height + actionbar_single_line_height 的高度。
-        <dimen name="application_title_height">73dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    //statusbar_mz_height + actionbar_single_line_height 的高度。
+    <dimen name="application_title_height">73dp</dimen>
 
-        <!--    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <!--    <dimen name="activity_horizontal_margin">16dp</dimen>
             <dimen name="activity_vertical_margin">16dp</dimen>-->
-        <dimen name="drawer_header_height">180dp</dimen>
-        <dimen name="drawer_list_padding">8dp</dimen>
-        <dimen name="drawer_person_marginLeft">20dp</dimen>
-        <dimen name="drawer_person_marginTop">40dp</dimen>
-        <dimen name="drawer_person_name_marginTop">10dp</dimen>
-        <dimen name="drawer_person_email_marginTop">8dp</dimen>
-        <dimen name="drawer_list_marginTop">12dp</dimen>
-        <dimen name="drawer_settings_marginLeft">180dp</dimen>
-        <dimen name="drawer_settings_marginTop">14dp</dimen>
-        <dimen name="drawer_person_image_width">30dp</dimen>
-        <dimen name="drawer_person_image_height">30dp</dimen>
-        <dimen name="arrow_view_width">90dp</dimen>
-        <dimen name="arrow_view_height">90dp</dimen>
-        <dimen name="arrow_view_margin_bottom">20dp</dimen>
-        <dimen name="arrow_view_padding_left">20dp</dimen>
-        <dimen name="marker_info_layout_height">80dp</dimen>
-        <dimen name="marker_info_detail_paddingTop">10dp</dimen>
-        <dimen name="marker_info_guide_time_paddingTop">4dp</dimen>
-        <dimen name="local_marker_walktime_text_paddingLeft">3dp</dimen>
-        <dimen name="marker_info_guide_time_paddingLeft">13dp</dimen>
-        <dimen name="maker_info_disclosure_top">10dp</dimen>
-        <dimen name="marker_info_divide_top">28dp</dimen>
-        <dimen name="marker_info_divide_bottom">5dp</dimen>
-        <dimen name="marker_info_navigation_layout_width">96dp</dimen>
-        <dimen name="marker_info_guide_padding">2dp</dimen>
-        <dimen name="station_info_marginLeft">10dp</dimen>
-        <dimen name="station_info_name_marginTop">5dp</dimen>
-        <dimen name="station_info_name_size">12dp</dimen>
-        <dimen name="station_info_remine_marginTop">20dp</dimen>
-        <dimen name="station_info_remine_size">8dp</dimen>
+    <dimen name="drawer_header_height">180dp</dimen>
+    <dimen name="drawer_list_padding">8dp</dimen>
+    <dimen name="drawer_person_marginLeft">20dp</dimen>
+    <dimen name="drawer_person_marginTop">40dp</dimen>
+    <dimen name="drawer_person_name_marginTop">10dp</dimen>
+    <dimen name="drawer_person_email_marginTop">8dp</dimen>
+    <dimen name="drawer_list_marginTop">12dp</dimen>
+    <dimen name="drawer_settings_marginLeft">180dp</dimen>
+    <dimen name="drawer_settings_marginTop">14dp</dimen>
+    <dimen name="drawer_person_image_width">30dp</dimen>
+    <dimen name="drawer_person_image_height">30dp</dimen>
+    <dimen name="arrow_view_width">90dp</dimen>
+    <dimen name="arrow_view_height">90dp</dimen>
+    <dimen name="arrow_view_margin_bottom">20dp</dimen>
+    <dimen name="arrow_view_padding_left">20dp</dimen>
+    <dimen name="marker_info_layout_height">80dp</dimen>
+    <dimen name="marker_info_detail_paddingTop">10dp</dimen>
+    <dimen name="marker_info_guide_time_paddingTop">4dp</dimen>
+    <dimen name="local_marker_walktime_text_paddingLeft">3dp</dimen>
+    <dimen name="marker_info_guide_time_paddingLeft">13dp</dimen>
+    <dimen name="maker_info_disclosure_top">10dp</dimen>
+    <dimen name="marker_info_divide_top">28dp</dimen>
+    <dimen name="marker_info_divide_bottom">5dp</dimen>
+    <dimen name="marker_info_navigation_layout_width">96dp</dimen>
+    <dimen name="marker_info_guide_padding">2dp</dimen>
+    <dimen name="station_info_marginLeft">10dp</dimen>
+    <dimen name="station_info_name_marginTop">5dp</dimen>
+    <dimen name="station_info_name_size">12dp</dimen>
+    <dimen name="station_info_remine_marginTop">20dp</dimen>
+    <dimen name="station_info_remine_size">8dp</dimen>
 
-        <!-- 地图主界面MapViewFragment -->
-        <dimen name="mapview_toolbar_hight_with_view">76dp</dimen>
-        <dimen name="mapview_toolbar_hight">73dp</dimen>
-        <dimen name="mapview_toolbar_padding_top">25dp</dimen>
+    <!-- 地图主界面MapViewFragment -->
+    <dimen name="mapview_toolbar_hight_with_view">76dp</dimen>
+    <dimen name="mapview_toolbar_hight">73dp</dimen>
+    <dimen name="mapview_toolbar_padding_top">25dp</dimen>
 
-        <dimen name="mapview_icon_margin_top">9dp</dimen>
-        <dimen name="mapview_icon_margin_bottom">5dp</dimen>
-        <dimen name="mapview_icon_shadow_padding">3dp</dimen>
-        <dimen name="mapview_toast_layout_margin_top">5dp</dimen>
-        <dimen name="mapview_toast_container_padding">10dp</dimen>
-        <dimen name="mapview_toast_parent_padding">14dp</dimen>
-        <dimen name="map_traffic_radar_text_padding_top">26dp</dimen>
-        <dimen name="map_traffic_radar_text_size">10dp</dimen>
-        <dimen name="mapscaleview_margin_left">6dp</dimen>
-        <dimen name="mapscaleview_padding_bottom">8dp</dimen>
-        <dimen name="map_bottom_detail_two_line_height">63dp</dimen>
-        <dimen name="map_bottom_detail_one_line_height">58dp</dimen>
-        <dimen name="map_bottom_act_layout_height">42.33dp</dimen>
-        <dimen name="map_bottom_separate_line_padding">12dp</dimen>
-        <dimen name="map_bottom_detail_padding_top">5dp</dimen>
-        <dimen name="map_bottom_detail_padding_right">12dp</dimen>
-        <dimen name="map_bottom_distance_padding_right">11dp</dimen>
-        <dimen name="map_bottom_act_layout_margin_left">21dp</dimen>
-        <dimen name="map_bottom_act_layout_margin_right">21dp</dimen>
-        <dimen name="map_bottom_margin_left">21dp</dimen>
-        <dimen name="map_bottom_margin_right">22dp</dimen>
-        <dimen name="map_bottom_act_icon_padding">5dp</dimen>
-        <dimen name="map_bottom_act_view_padding">25dp</dimen>
-        <dimen name="map_bottom_act_view_padding_left">44.7dp</dimen>
-        <dimen name="map_bottom_act_view_width_left">119.7dp</dimen>
-        <dimen name="map_bottom_act_view_width_middle">100dp</dimen>
-        <dimen name="map_bottom_page_margin">-1dp</dimen>
+    <dimen name="mapview_icon_margin_top">9dp</dimen>
+    <dimen name="mapview_icon_margin_bottom">5dp</dimen>
+    <dimen name="mapview_icon_shadow_padding">3dp</dimen>
+    <dimen name="mapview_toast_layout_margin_top">5dp</dimen>
+    <dimen name="mapview_toast_container_padding">10dp</dimen>
+    <dimen name="mapview_toast_parent_padding">14dp</dimen>
+    <dimen name="map_traffic_radar_text_padding_top">26dp</dimen>
+    <dimen name="map_traffic_radar_text_size">10dp</dimen>
+    <dimen name="mapscaleview_margin_left">6dp</dimen>
+    <dimen name="mapscaleview_padding_bottom">8dp</dimen>
+    <dimen name="map_bottom_detail_two_line_height">63dp</dimen>
+    <dimen name="map_bottom_detail_one_line_height">58dp</dimen>
+    <dimen name="map_bottom_act_layout_height">42.33dp</dimen>
+    <dimen name="map_bottom_separate_line_padding">12dp</dimen>
+    <dimen name="map_bottom_detail_padding_top">5dp</dimen>
+    <dimen name="map_bottom_detail_padding_right">12dp</dimen>
+    <dimen name="map_bottom_distance_padding_right">11dp</dimen>
+    <dimen name="map_bottom_act_layout_margin_left">21dp</dimen>
+    <dimen name="map_bottom_act_layout_margin_right">21dp</dimen>
+    <dimen name="map_bottom_margin_left">10dp</dimen>
+    <dimen name="map_bottom_margin_right">10dp</dimen>
+    <dimen name="map_bottom_act_icon_padding">5dp</dimen>
+    <dimen name="map_bottom_act_view_padding">25dp</dimen>
+    <dimen name="map_bottom_act_view_padding_left">44.7dp</dimen>
+    <dimen name="map_bottom_act_view_width_left">119.7dp</dimen>
+    <dimen name="map_bottom_act_view_width_middle">100dp</dimen>
+    <dimen name="map_bottom_page_margin">-1dp</dimen>
 
-        <!-- 校准指南针 -->
-        <dimen name="map_calibration_layout_padding_top">34dp</dimen>
-        <dimen name="map_calibration_layout_padding_bottom">134dp</dimen>
-        <dimen name="map_calibration_message_padding_top">12dp</dimen>
-        <dimen name="map_calibration_message_padding_bottom">37dp</dimen>
-        <dimen name="map_calibration_btn_margin_bottom">30dp</dimen>
-        <dimen name="map_calibration_btn_width">240dp</dimen>
-        <dimen name="map_calibration_btn_height">38dp</dimen>
-        <dimen name="map_calibration_guide_margin_top">103dp</dimen>
+    <!-- 校准指南针 -->
+    <dimen name="map_calibration_layout_padding_top">34dp</dimen>
+    <dimen name="map_calibration_layout_padding_bottom">134dp</dimen>
+    <dimen name="map_calibration_message_padding_top">12dp</dimen>
+    <dimen name="map_calibration_message_padding_bottom">37dp</dimen>
+    <dimen name="map_calibration_btn_margin_bottom">30dp</dimen>
+    <dimen name="map_calibration_btn_width">240dp</dimen>
+    <dimen name="map_calibration_btn_height">38dp</dimen>
+    <dimen name="map_calibration_guide_margin_top">103dp</dimen>
 
-        <dimen name="ar_detail_title_marginLeft">8dp</dimen>
-        <dimen name="ar_detail_checkbox_marginRight">20dp</dimen>
-        <dimen name="ar_grou_detail_icon_size">30dp</dimen>
-        <dimen name="ar_group_detail_marginTop">12dp</dimen>
-        <dimen name="ar_group_detail_marginBottom">12dp</dimen>
-        <dimen name="ar_group_poi_item_height">135dp</dimen>
-        <dimen name="ar_group_poi_item_icon_size">60dp</dimen>
-        <dimen name="ar_group_poi_item_text_size">12sp</dimen>
-        <dimen name="ar_group_poi_item_text_marginTop">8dp</dimen>
-        <dimen name="ar_group_poi_item_paddingTopOrBottom">34dp</dimen>
-        <dimen name="ar_group_poi_item_spacing">2px</dimen>
-        <dimen name="ar_group_item_delete_width">18dp</dimen>
-        <dimen name="ar_group_item_delete_height">18dp</dimen>
-        <dimen name="ar_group_item_delete_margin_right">12dp</dimen>
-        <dimen name="ar_group_item_delete_margin_top">12dp</dimen>
-        <dimen name="ar_group_finish_height">52dp</dimen>
-        <dimen name="ar_photoshow_marginRight">20dp</dimen>
-        <dimen name="ar_photoshow_marginBottom">83dp</dimen>
-        <dimen name="ar_list_item_text_size">16sp</dimen>
-        <dimen name="ar_compass_marginTop">21dp</dimen>
-        <dimen name="ar_compass_marginRight">12dp</dimen>
-        <dimen name="ar_compass_radius">62dp</dimen>
-        <dimen name="ar_compass_line_stroke_width">3px</dimen>
-        <dimen name="ar_compass_point_radius">1dp</dimen>
-        <dimen name="ar_compass_center_point_radius">2dp</dimen>
-        <dimen name="ar_compass_circle_inner_stroke_width">2px</dimen>
-        <dimen name="ar_compass_active_marker_outer_stroke_width">3px</dimen>
-        <dimen name="ar_compass_active_marker_inner_radius">2dp</dimen>
-        <dimen name="ar_marker_detail_layout_paddingLeft">18dp</dimen>
-        <dimen name="ar_marker_info_divider_height">47dp</dimen>
-        <dimen name="ar_box_name_text_size">14dp</dimen>
-        <dimen name="ar_box_name_text_bounds">16dp</dimen>
-        <dimen name="ar_box_distance_text_bounds">14dp</dimen>
-        <dimen name="ar_box_distance_text_size">12dp</dimen>
-        <dimen name="ar_box_margin_top">1dp</dimen>
-        <dimen name="ar_box_padding_left">6dp</dimen>
-        <dimen name="ar_box_padding_bottom">4dp</dimen>
-        <dimen name="ar_box_padding_right">6dp</dimen>
-        <dimen name="ar_box_padding_top">4dp</dimen>
-        <dimen name="ar_pic_view_pager_divider_width">12dp</dimen>
-        <dimen name="ar_pic_view_pager_item_width">60dp</dimen>
-        <dimen name="ar_pic_view_pager_item_height">80dp</dimen>
-        <dimen name="ar_pic_view_pager_container_height">104dp</dimen>
-        <dimen name="ar_pic_view_pager_padding_top_bottom">12dp</dimen>
-        <dimen name="ar_pic_view_pager_margin_top">12dp</dimen>
-        <dimen name="ar_pic_view_pager_margin_bottom">12dp</dimen>
-        <dimen name="ar_pic_view_pager_padding_left">12dp</dimen>
-        <dimen name="ar_pic_view_pager_padding_Right">12dp</dimen>
-        <dimen name="ar_nav_exit_text_size">18sp</dimen>
-        <dimen name="ar_bar_nav_margin_left">11dp</dimen>
-        <dimen name="ar_bar_title_margin_left">10dp</dimen>
-        <dimen name="ar_bar_distance_margin_left">2dp</dimen>
-        <dimen name="ar_poi_result_img_margin_left">11dp</dimen>
-        <dimen name="ar_arc_radius">50dp</dimen>
-        <dimen name="ar_arc_distance_text_size">28dp</dimen>
-        <dimen name="ar_arc_per_text_size">12dp</dimen>
-        <dimen name="ar_arc_distance_margin_top">8dp</dimen>
-        <dimen name="ar_nav_line_gradient_width">4dp</dimen>
-        <dimen name="ar_nav_distance_paddingTop">7dp</dimen>
-        <dimen name="ar_nav_nav_paddingTop">6dp</dimen>
-        <dimen name="ar_nav_all_paddingTop">8dp</dimen>
-        <dimen name="ar_nav_all_paddingBottom">8dp</dimen>
-        <dimen name="ar_nav_all_paddingLeft">13dp</dimen>
-        <dimen name="ar_nav_all_paddingRight">13dp</dimen>
-        <dimen name="ar_pic_circle_indic_radius">3dp</dimen>
+    <dimen name="ar_detail_title_marginLeft">8dp</dimen>
+    <dimen name="ar_detail_checkbox_marginRight">20dp</dimen>
+    <dimen name="ar_grou_detail_icon_size">30dp</dimen>
+    <dimen name="ar_group_detail_marginTop">12dp</dimen>
+    <dimen name="ar_group_detail_marginBottom">12dp</dimen>
+    <dimen name="ar_group_poi_item_height">135dp</dimen>
+    <dimen name="ar_group_poi_item_icon_size">60dp</dimen>
+    <dimen name="ar_group_poi_item_text_size">12sp</dimen>
+    <dimen name="ar_group_poi_item_text_marginTop">8dp</dimen>
+    <dimen name="ar_group_poi_item_paddingTopOrBottom">34dp</dimen>
+    <dimen name="ar_group_poi_item_spacing">2px</dimen>
+    <dimen name="ar_group_item_delete_width">18dp</dimen>
+    <dimen name="ar_group_item_delete_height">18dp</dimen>
+    <dimen name="ar_group_item_delete_margin_right">12dp</dimen>
+    <dimen name="ar_group_item_delete_margin_top">12dp</dimen>
+    <dimen name="ar_group_finish_height">52dp</dimen>
+    <dimen name="ar_photoshow_marginRight">20dp</dimen>
+    <dimen name="ar_photoshow_marginBottom">83dp</dimen>
+    <dimen name="ar_list_item_text_size">16sp</dimen>
+    <dimen name="ar_compass_marginTop">21dp</dimen>
+    <dimen name="ar_compass_marginRight">12dp</dimen>
+    <dimen name="ar_compass_radius">62dp</dimen>
+    <dimen name="ar_compass_line_stroke_width">3px</dimen>
+    <dimen name="ar_compass_point_radius">1dp</dimen>
+    <dimen name="ar_compass_center_point_radius">2dp</dimen>
+    <dimen name="ar_compass_circle_inner_stroke_width">2px</dimen>
+    <dimen name="ar_compass_active_marker_outer_stroke_width">3px</dimen>
+    <dimen name="ar_compass_active_marker_inner_radius">2dp</dimen>
+    <dimen name="ar_marker_detail_layout_paddingLeft">18dp</dimen>
+    <dimen name="ar_marker_info_divider_height">47dp</dimen>
+    <dimen name="ar_box_name_text_size">14dp</dimen>
+    <dimen name="ar_box_name_text_bounds">16dp</dimen>
+    <dimen name="ar_box_distance_text_bounds">14dp</dimen>
+    <dimen name="ar_box_distance_text_size">12dp</dimen>
+    <dimen name="ar_box_margin_top">1dp</dimen>
+    <dimen name="ar_box_padding_left">6dp</dimen>
+    <dimen name="ar_box_padding_bottom">4dp</dimen>
+    <dimen name="ar_box_padding_right">6dp</dimen>
+    <dimen name="ar_box_padding_top">4dp</dimen>
+    <dimen name="ar_pic_view_pager_divider_width">12dp</dimen>
+    <dimen name="ar_pic_view_pager_item_width">60dp</dimen>
+    <dimen name="ar_pic_view_pager_item_height">80dp</dimen>
+    <dimen name="ar_pic_view_pager_container_height">104dp</dimen>
+    <dimen name="ar_pic_view_pager_padding_top_bottom">12dp</dimen>
+    <dimen name="ar_pic_view_pager_margin_top">12dp</dimen>
+    <dimen name="ar_pic_view_pager_margin_bottom">12dp</dimen>
+    <dimen name="ar_pic_view_pager_padding_left">12dp</dimen>
+    <dimen name="ar_pic_view_pager_padding_Right">12dp</dimen>
+    <dimen name="ar_nav_exit_text_size">18sp</dimen>
+    <dimen name="ar_bar_nav_margin_left">11dp</dimen>
+    <dimen name="ar_bar_title_margin_left">10dp</dimen>
+    <dimen name="ar_bar_distance_margin_left">2dp</dimen>
+    <dimen name="ar_poi_result_img_margin_left">11dp</dimen>
+    <dimen name="ar_arc_radius">50dp</dimen>
+    <dimen name="ar_arc_distance_text_size">28dp</dimen>
+    <dimen name="ar_arc_per_text_size">12dp</dimen>
+    <dimen name="ar_arc_distance_margin_top">8dp</dimen>
+    <dimen name="ar_nav_line_gradient_width">4dp</dimen>
+    <dimen name="ar_nav_distance_paddingTop">7dp</dimen>
+    <dimen name="ar_nav_nav_paddingTop">6dp</dimen>
+    <dimen name="ar_nav_all_paddingTop">8dp</dimen>
+    <dimen name="ar_nav_all_paddingBottom">8dp</dimen>
+    <dimen name="ar_nav_all_paddingLeft">13dp</dimen>
+    <dimen name="ar_nav_all_paddingRight">13dp</dimen>
+    <dimen name="ar_pic_circle_indic_radius">3dp</dimen>
 
-        <dimen name="bus_station_name_size">20dp</dimen>
-        <dimen name="bus_station_on_marginRight">20dp</dimen>
-        <dimen name="bus_station_info_height">100dp</dimen>
-        <dimen name="bus_station_item_width">150dp</dimen>
-        <dimen name="bus_real_remind_item_marginLeft">120dp</dimen>
-        <dimen name="bus_station_off_text_size">12dp</dimen>
-        <dimen name="remind_select_station_marginTop">180dp</dimen>
-        <dimen name="bus_route_item_marginLeft">20dp</dimen>
-        <dimen name="bus_route_item_marginTop">20dp</dimen>
+    <dimen name="bus_station_name_size">20dp</dimen>
+    <dimen name="bus_station_on_marginRight">20dp</dimen>
+    <dimen name="bus_station_info_height">100dp</dimen>
+    <dimen name="bus_station_item_width">150dp</dimen>
+    <dimen name="bus_real_remind_item_marginLeft">120dp</dimen>
+    <dimen name="bus_station_off_text_size">12dp</dimen>
+    <dimen name="remind_select_station_marginTop">180dp</dimen>
+    <dimen name="bus_route_item_marginLeft">20dp</dimen>
+    <dimen name="bus_route_item_marginTop">20dp</dimen>
 
-        <dimen name="horizontal_separate_line_height">2px</dimen>
-        <dimen name="vertical_separate_line_width">2px</dimen>
-        <dimen name="vertical_separate_line_height">18dp</dimen>
-        <dimen name="horizontal_divider_line_height">12dp</dimen>
-        <dimen name="category_indicator_line_width">2dp</dimen>
-        <dimen name="category_indicator_line_height">15dp</dimen>
-
-
-        <dimen name="search_map_select_point_padding">10dp</dimen>
-        <dimen name="clear_all_history_height">64dp</dimen>
-        <dimen name="clear_all_history_padding_top">16dp</dimen>
-        <dimen name="clear_all_history_padding_bottom">26dp</dimen>
-
-        <dimen name="around_search_hot_grid_height">175dp</dimen>
-        <dimen name="around_search_hot_grid_margin_left_right">8dp</dimen>
-        <dimen name="around_search_hot_grid_margin_top_bottom">21dp</dimen>
-        <dimen name="around_search_hot_grid_vertical_spacing">8dp</dimen>
-
-        <dimen name="around_search_type_indicator_height">35dp</dimen>
-        <dimen name="around_search_type_indicator_pic_width">2dp</dimen>
-        <dimen name="around_search_type_indicator_pic_height">15dp</dimen>
-        <dimen name="around_search_type_indicator_pic_margin_left">24dp</dimen>
-        <dimen name="around_search_type_indicator_pic_margin_right">5dp</dimen>
-        <dimen name="around_search_type_indicator_text_size">14sp</dimen>
-        <dimen name="around_search_type_indicator_separator_height">1px</dimen>
-
-        <dimen name="around_search_listdivider_height">30dp</dimen>
-        <dimen name="around_search_grid_text_size">14sp</dimen>
-        <dimen name="around_search_marginLeft">10dp</dimen>
-        <dimen name="around_search_marginRight">10dp</dimen>
-        <dimen name="around_search_grid_marginTop_title">5dp</dimen>
-
-        <dimen name="around_search_hot_grid_item_paddingTop">10dp</dimen>
-        <dimen name="around_search_hot_grid_item_pic_height">42dp</dimen>
-        <dimen name="around_search_hot_grid_item_text_marginTop">5dp</dimen>
-        <dimen name="around_search_normal_grid_item_image_padding">5dp</dimen>
-        <dimen name="around_search_normal_grid_item_width">90dp</dimen>
-        <dimen name="around_search_normal_grid_item_height">58dp</dimen>
-        <dimen name="around_search_normal_grid_spacing">1px</dimen>
-
-        <dimen name="address_select_point_height">55dp</dimen>
-        <dimen name="address_select_point_width">180dp</dimen>
-
-        <dimen name="common_address_item_height">63dp</dimen>
-        <dimen name="common_address_title_address_width">216dp</dimen>
-        <dimen name="common_address_left_pic_margin_left">18dp</dimen>
-        <dimen name="common_address_left_pic_size">24dp</dimen>
-        <dimen name="common_address_text_margin_left_right">16dp</dimen>
-        <dimen name="common_address_address_margin_right">16dp</dimen>
-        <dimen name="common_address_title_text_size">16sp</dimen>
-        <dimen name="common_address_address_text_size">14sp</dimen>
-
-        <dimen name="common_address_edit_padding_left">18dp</dimen>
-        <dimen name="common_address_edit_padding_right">24dp</dimen>
-        <dimen name="common_address_edit_margin_right">6dp</dimen>
-        <dimen name="common_address_edit_text_size">14dp</dimen>
-        <dimen name="common_address_edit_width">70dp</dimen>
-        <dimen name="common_address_horizontal_separator_left_right_margin">12dp</dimen>
-        <dimen name="common_address_vertical_separator_height">32dp</dimen>
+    <dimen name="horizontal_separate_line_height">2px</dimen>
+    <dimen name="vertical_separate_line_width">2px</dimen>
+    <dimen name="vertical_separate_line_height">18dp</dimen>
+    <dimen name="horizontal_divider_line_height">12dp</dimen>
+    <dimen name="category_indicator_line_width">2dp</dimen>
+    <dimen name="category_indicator_line_height">15dp</dimen>
 
 
-        <dimen name="search_result_list_distance_width">71dp</dimen>
-        <dimen name="search_result_list_address_margin_left_right">12dp</dimen>
-        <dimen name="search_result_list_title_address_width">229dp</dimen>
-        <dimen name="search_result_list_title_text_size">16sp</dimen>
-        <dimen name="search_result_list_address_text_size">14sp</dimen>
-        <dimen name="search_result_list_title_address_margin">4sp</dimen>
+    <dimen name="search_map_select_point_padding">10dp</dimen>
+    <dimen name="clear_all_history_height">64dp</dimen>
+    <dimen name="clear_all_history_padding_top">16dp</dimen>
+    <dimen name="clear_all_history_padding_bottom">26dp</dimen>
 
-        <dimen name="search_result_list_text_extra_margin">10dp</dimen>
-        <dimen name="search_result_list_distance_text_size">16sp</dimen>
-        <dimen name="search_result_list_unit_text_size">12sp</dimen>
-        <dimen name="search_result_list_unit_padding_bottom">1dp</dimen>
-        <dimen name="search_result_list_margin">12dp</dimen>
-        <dimen name="search_result_list_divider_height">12dp</dimen>
-        <dimen name="search_result_list_bg_bar_height">111sp</dimen>
+    <dimen name="around_search_hot_grid_height">175dp</dimen>
+    <dimen name="around_search_hot_grid_margin_left_right">8dp</dimen>
+    <dimen name="around_search_hot_grid_margin_top_bottom">21dp</dimen>
+    <dimen name="around_search_hot_grid_vertical_spacing">8dp</dimen>
 
+    <dimen name="around_search_type_indicator_height">35dp</dimen>
+    <dimen name="around_search_type_indicator_pic_width">2dp</dimen>
+    <dimen name="around_search_type_indicator_pic_height">15dp</dimen>
+    <dimen name="around_search_type_indicator_pic_margin_left">24dp</dimen>
+    <dimen name="around_search_type_indicator_pic_margin_right">5dp</dimen>
+    <dimen name="around_search_type_indicator_text_size">14sp</dimen>
+    <dimen name="around_search_type_indicator_separator_height">1px</dimen>
 
-        <dimen name="search_result_list_extra_height">42sp</dimen>
-        <dimen name="search_result_list_extra_left_right_margin">54dp</dimen>
-        <dimen name="search_result_list_extra_button_width">156dp</dimen>
-        <dimen name="search_result_list_extra_image_text_margin">5dp</dimen>
+    <dimen name="around_search_listdivider_height">30dp</dimen>
+    <dimen name="around_search_grid_text_size">14sp</dimen>
+    <dimen name="around_search_marginLeft">10dp</dimen>
+    <dimen name="around_search_marginRight">10dp</dimen>
+    <dimen name="around_search_grid_marginTop_title">5dp</dimen>
 
+    <dimen name="around_search_hot_grid_item_paddingTop">10dp</dimen>
+    <dimen name="around_search_hot_grid_item_pic_height">42dp</dimen>
+    <dimen name="around_search_hot_grid_item_text_marginTop">5dp</dimen>
+    <dimen name="around_search_normal_grid_item_image_padding">5dp</dimen>
+    <dimen name="around_search_normal_grid_item_width">90dp</dimen>
+    <dimen name="around_search_normal_grid_item_height">58dp</dimen>
+    <dimen name="around_search_normal_grid_spacing">1px</dimen>
 
-        <!-- loading view -->
-        <dimen name="search_result_list_loadingview_height">17dip</dimen>
-        <dimen name="search_result_list_loadingview_radius">7dip</dimen>
-        <dimen name="search_result_list_loadingview_ring_width">1.5dip</dimen>
-        <dimen name="search_result_list_loadingview_text_size">16sp</dimen>
+    <dimen name="address_select_point_height">55dp</dimen>
+    <dimen name="address_select_point_width">180dp</dimen>
 
-        <dimen name="filter_spinner_height">40dp</dimen>
-        <dimen name="filter_spinner_text_image_margin">10dp</dimen>
+    <dimen name="common_address_item_height">63dp</dimen>
+    <dimen name="common_address_title_address_width">216dp</dimen>
+    <dimen name="common_address_left_pic_margin_left">18dp</dimen>
+    <dimen name="common_address_left_pic_size">24dp</dimen>
+    <dimen name="common_address_text_margin_left_right">16dp</dimen>
+    <dimen name="common_address_address_margin_right">16dp</dimen>
+    <dimen name="common_address_title_text_size">16sp</dimen>
+    <dimen name="common_address_address_text_size">14sp</dimen>
 
-
-        <dimen name="subway_city_list_divider_height">0.5dp</dimen>
-        <dimen name="nav_action_bottom_height">30dp</dimen>
-        <dimen name="nav_search_input_height">32dp</dimen>
-        <dimen name="nav_search_input_inner_padding">10dp</dimen>
-        <dimen name="nav_search_input_top_bottom_margin">13dp</dimen>
-        <dimen name="nav_search_input_left_right_margin">24dp</dimen>
-        <dimen name="nav_search_divier_width">10dp</dimen>
-        <dimen name="navi_history_text_size">15sp</dimen>
-        <dimen name="navi_history_address_text_size">10sp</dimen>
-
-        <!--before-->
-        <dimen name="abc_action_bar_default_height_material">56.0dip</dimen>
-        <dimen name="abc_action_bar_default_padding_material">4.0dip</dimen>
-        <dimen name="abc_action_bar_icon_vertical_padding_material">16.0dip</dimen>
-        <dimen name="abc_action_bar_progress_bar_size">40.0dip</dimen>
-        <dimen name="abc_action_bar_stacked_max_height">48.0dip</dimen>
-        <dimen name="abc_action_bar_stacked_tab_max_width">180.0dip</dimen>
-        <dimen name="abc_action_bar_subtitle_bottom_margin_material">5.0dip</dimen>
-        <dimen name="abc_action_bar_subtitle_top_margin_material">-3.0dip</dimen>
-        <dimen name="abc_action_button_min_height_material">48.0dip</dimen>
-        <dimen name="abc_action_button_min_width_material">48.0dip</dimen>
-        <dimen name="abc_action_button_min_width_overflow_material">36.0dip</dimen>
-        <dimen name="abc_config_prefDialogWidth">320.0dip</dimen>
-        <dimen name="abc_control_inset_material">4.0dip</dimen>
-        <dimen name="abc_control_padding_material">4.0dip</dimen>
-        <dimen name="abc_dropdownitem_icon_width">32.0dip</dimen>
-        <dimen name="abc_dropdownitem_text_padding_left">8.0dip</dimen>
-        <dimen name="abc_dropdownitem_text_padding_right">8.0dip</dimen>
-        <dimen name="abc_panel_menu_list_width">296.0dip</dimen>
-        <dimen name="abc_search_view_preferred_width">320.0dip</dimen>
-        <dimen name="abc_search_view_text_min_width">160.0dip</dimen>
-        <dimen name="abc_text_size_body_1_material">16.0sp</dimen>
-        <dimen name="abc_text_size_body_2_material">16.0sp</dimen>
-        <dimen name="abc_text_size_button_material">14.0sp</dimen>
-        <dimen name="abc_text_size_caption_material">12.0sp</dimen>
-        <dimen name="abc_text_size_display_1_material">34.0sp</dimen>
-        <dimen name="abc_text_size_display_2_material">45.0sp</dimen>
-        <dimen name="abc_text_size_display_3_material">56.0sp</dimen>
-        <dimen name="abc_text_size_display_4_material">112.0sp</dimen>
-        <dimen name="abc_text_size_headline_material">24.0sp</dimen>
-        <dimen name="abc_text_size_large_material">22.0sp</dimen>
-        <dimen name="abc_text_size_medium_material">18.0sp</dimen>
-        <dimen name="abc_text_size_menu_material">16.0sp</dimen>
-        <dimen name="abc_text_size_small_material">14.0sp</dimen>
-        <dimen name="abc_text_size_subhead_material">16.0sp</dimen>
-        <dimen name="abc_text_size_subtitle_material_toolbar">16.0dip</dimen>
-        <dimen name="abc_text_size_title_material">20.0sp</dimen>
-        <dimen name="abc_text_size_title_material_toolbar">20.0dip</dimen>
-        <dimen name="bottom_ellipsis_height">4.0dip</dimen>
-        <dimen name="bottom_text_size">12.0sp</dimen>
-        <dimen name="button_height_clear_history">44.0dip</dimen>
-        <dimen name="cardview_compat_inset_shadow">1.0dip</dimen>
-        <dimen name="cardview_default_elevation">2.0dip</dimen>
-        <dimen name="cardview_default_radius">2.0dip</dimen>
-        <dimen name="cpb_default_stroke_width">4.0dip</dimen>
-        <dimen name="default_padding_bottom">8.0dip</dimen>
-        <dimen name="default_padding_top">8.0dip</dimen>
-        <dimen name="dgv_delete_area_height">44.0dip</dimen>
-        <dimen name="dgv_delete_area_text_size">20.0sp</dimen>
-        <item type="dimen" name="dialog_fixed_height_major">79.99999%</item>
-        <item type="dimen" name="dialog_fixed_height_minor">100.0%</item>
-        <dimen name="dialog_fixed_width_major">320.0dip</dimen>
-        <dimen name="dialog_fixed_width_minor">320.0dip</dimen>
-        <item type="dimen" name="disabled_alpha_material_dark">0.3</item>
-        <item type="dimen" name="disabled_alpha_material_light">0.26</item>
-        <dimen name="fab_actions_spacing">16.0dip</dimen>
-        <dimen name="fab_icon_size">24.0dip</dimen>
-        <dimen name="fab_labels_margin">8.0dip</dimen>
-        <dimen name="fab_plus_icon_size">14.0dip</dimen>
-        <dimen name="fab_plus_icon_stroke">2.0dip</dimen>
-        <dimen name="fab_shadow_offset">3.0dip</dimen>
-        <dimen name="fab_shadow_radius">9.0dip</dimen>
-        <dimen name="fab_size_mini">40.0dip</dimen>
-        <dimen name="fab_size_normal">56.0dip</dimen>
-        <dimen name="fab_stroke_width">1.0dip</dimen>
-        <dimen name="floating_label_text_size">12.0sp</dimen>
-        <dimen name="header_footer_left_right_padding">24.0dip</dimen>
-        <dimen name="header_footer_top_bottom_padding">12.0dip</dimen>
-        <dimen name="indicator_corner_radius">12.0dip</dimen>
-        <dimen name="indicator_internal_padding">4.0dip</dimen>
-        <dimen name="indicator_right_padding">10.0dip</dimen>
-        <dimen name="inner_components_spacing">8.0dip</dimen>
-        <dimen name="inner_padding_left">0.0dip</dimen>
-        <dimen name="inner_padding_right">0.0dip</dimen>
-        <dimen name="keyline_1">16.0dip</dimen>
-        <dimen name="keyline_1_minus_15dp">15.0dip</dimen>
-        <dimen name="keyline_1_minus_5dp">5.0dip</dimen>
-        <dimen name="keyline_1_minus_8dp">8.0dip</dimen>
-        <dimen name="keyline_2">72.0dip</dimen>
-        <dimen name="keyline_2_minus_56dp">56.0dip</dimen>
-        <dimen name="keyline_2_minus_60dp">60.0dip</dimen>
-        <dimen name="linearlayout_item_height_1">30.0dip</dimen>
-        <dimen name="linearlayout_item_height_2">200.0dip</dimen>
-        <dimen name="listview_item_space_height">10.0dip</dimen>
-        <dimen name="listview_item_vertical_margin">10.0dip</dimen>
-        <dimen name="navigation_drawer_chosen_account_height">140.0dip</dimen>
-        <dimen name="navigation_drawer_profile_image_size">40.0dip</dimen>
-        <dimen name="spb_default_stroke_separator_length">4.0dip</dimen>
-        <dimen name="spb_default_stroke_width">4.0dip</dimen>
-        <dimen name="speaker_image_size">40.0dip</dimen>
-        <dimen name="text_guide_detail">20.0sp</dimen>
-        <dimen name="text_guide_title">35.0sp</dimen>
-        <dimen name="umeng_fb_item_content_size">14.0sp</dimen>
-        <dimen name="umeng_fb_item_height">48.0dip</dimen>
-        <dimen name="umeng_fb_item_line_height">0.8000001dip</dimen>
-        <dimen name="umeng_fb_item_time_size">12.0sp</dimen>
-        <dimen name="umeng_fb_record_btn_text_size">20.0sp</dimen>
-        <dimen name="umeng_fb_spinner_padding_left">12.0dip</dimen>
-
-        <!--步行地图界面-->
-        <dimen name="navigation_walk_layout_padding_top">5dp</dimen>
-        <dimen name="navigation_walk_layout_padding_left">10dp</dimen>
-        <dimen name="navigation_walk_layout_padding_right">10dp</dimen>
-        <dimen name="navigation_walk_layout_padding_bottom">10dp</dimen>
-        <dimen name="navigation_walk_detail_layout_padding_left">12dp</dimen>
-        <dimen name="navigation_walk_detail_layout_padding_right">12dp</dimen>
-        <dimen name="navigation_walk_detail_text_margin_left">9dp</dimen>
-        <dimen name="navigation_walk_detail_text_time_margin_left">18dp</dimen>
-        <dimen name="navigation_walk_detail_text_size">16sp</dimen>
-        <dimen name="navigation_walk_detail_ico_layout_padding_right">10dp</dimen>
-        <dimen name="navigation_walk_detail_right_text_size">14sp</dimen>
-        <dimen name="navigation_walk_detail_ico_width">15dp</dimen>
-        <dimen name="navigation_walk_detail_ico_height">15dp</dimen>
-
-        <dimen name="navigation_walk_follow_me">43dp</dimen>
+    <dimen name="common_address_edit_padding_left">18dp</dimen>
+    <dimen name="common_address_edit_padding_right">24dp</dimen>
+    <dimen name="common_address_edit_margin_right">6dp</dimen>
+    <dimen name="common_address_edit_text_size">14dp</dimen>
+    <dimen name="common_address_edit_width">70dp</dimen>
+    <dimen name="common_address_horizontal_separator_left_right_margin">12dp</dimen>
+    <dimen name="common_address_vertical_separator_height">32dp</dimen>
 
 
+    <dimen name="search_result_list_distance_width">71dp</dimen>
+    <dimen name="search_result_list_address_margin_left_right">12dp</dimen>
+    <dimen name="search_result_list_title_address_width">229dp</dimen>
+    <dimen name="search_result_list_title_text_size">16sp</dimen>
+    <dimen name="search_result_list_address_text_size">14sp</dimen>
+    <dimen name="search_result_list_title_address_margin">4sp</dimen>
 
-        <!-- 设置页面 -->
-        <dimen name="setting_list_item_text_margin_top">11dip</dimen>
-        <dimen name="setting_list_item_text_margin_bottom">11dip</dimen>
-        <dimen name="setting_switch_btn_width">48dip</dimen>
-        <dimen name="setting_switch_btn_height">24dip</dimen>
-        <dimen name="setting_next_btn_width">18dip</dimen>
-        <dimen name="setting_next_btn_height">18dip</dimen>
-        <dimen name="setting_next_btn_margin_right">24dip</dimen>
-
-        <!-- 切换城市页面 -->
-        <dimen name="switch_city_searchview_height">58dip</dimen>
-        <dimen name="switch_city_item_link_width">6dip</dimen>
-        <dimen name="switch_city_item_link_height">6dip</dimen>
-        <dimen name="switch_city_item_link_margin_top">26dip</dimen>
-        <dimen name="switch_city_item_link_margin_left">7dip</dimen>
-        <dimen name="switch_city_item_cur_city_margin_left">7dip</dimen>
-        <dimen name="switch_city_fastscroll_letter_text_size">12sp</dimen>
-        <dimen name="switch_city_fastscroll_letter_overlay_text_size">35sp</dimen>
-        <dimen name="switch_city_fastscroll_letter_overlay_layout_width">57dp</dimen>
-        <dimen name="fastscroll_letter_overlay_text_size">32.5sp</dimen>
-        <dimen name="fastscroll_letter_overlay_two_text_size">12sp</dimen>
-        <dimen name="fastscroll_letter_overlay_three_text_size">12sp</dimen>
-        <dimen name="fastscroll_letter_text_size">16sp</dimen>
-        <dimen name="fastscroll_letter_overlay_layout_width">59dip</dimen>
-        <dimen name="fastscroll_letter_overlay_layout_margin_right">70dip</dimen>
-        <dimen name="fastscroll_letter_layout_margin_top">46dip</dimen>
-        <dimen name="fastscroll_letter_layout_margin_right">0dip</dimen>
-        <dimen name="fastscroll_letter_layout_margin_bottom">104dip</dimen>
-        <dimen name="fastscroll_letter_layout_wdith">16dip</dimen>
-        <dimen name="fastscroll_letter_layout_char_margin">4dip</dimen>
+    <dimen name="search_result_list_text_extra_margin">10dp</dimen>
+    <dimen name="search_result_list_distance_text_size">16sp</dimen>
+    <dimen name="search_result_list_unit_text_size">12sp</dimen>
+    <dimen name="search_result_list_unit_padding_bottom">1dp</dimen>
+    <dimen name="search_result_list_margin">12dp</dimen>
+    <dimen name="search_result_list_divider_height">12dp</dimen>
+    <dimen name="search_result_list_bg_bar_height">111sp</dimen>
 
 
-        <!-- POI详情页 -->
-        <dimen name="poi_detail_height">111dp</dimen>
-        <dimen name="poi_detail_margin_left">12dp</dimen>
-        <dimen name="poi_detail_margin_right">12dp</dimen>
-        <dimen name="poi_detail_name_margin_left">24dp</dimen>
-        <dimen name="poi_detail_name_margin_top">11dp</dimen>
-        <dimen name="poi_detail_name_width">243dip</dimen>
-        <dimen name="poi_detail_line_margin_top">11dip</dimen>
-        <dimen name="poi_detail_address_width">312dip</dimen>
-        <dimen name="poi_detail_address_margin_left">24dp</dimen>
-        <dimen name="poi_detail_distance_width">71dip</dimen>
-        <dimen name="poi_detail_distance_margin_top">12dip</dimen>
-        <dimen name="poi_detail_distance_margin_right">24dip</dimen>
-        <dimen name="poi_detail_horizontal_height">18dip</dimen>
-        <dimen name="poi_detail_horizontal_width">2px</dimen>
-        <dimen name="poi_detail_btn_layout_height">42dp</dimen>
-        <dimen name="poi_detail_btn_margin_hor_line">48dp</dimen>
-        <dimen name="poi_detail_btn_margin_icon">5dp</dimen>
-        <dimen name="poi_detail_icon_width">18dp</dimen>
-        <dimen name="poi_detail_icon_height">18dp</dimen>
-        <dimen name="poi_detail_list_margin_top">12dp</dimen>
-        <dimen name="poi_detail_bus_list_head_height">38dp</dimen>
-        <dimen name="poi_detail_bus_list_head_line_width">2dp</dimen>
-        <dimen name="poi_detail_bus_list_head_line_height">15dp</dimen>
-        <dimen name="poi_detail_bus_list_head_line_margin_left">24dp</dimen>
-        <dimen name="poi_detail_bus_list_head_title_margin_left">5dp</dimen>
-        <dimen name="poi_detail_bus_list_item_height">63dp</dimen>
-        <dimen name="poi_detail_bus_list_item_icon_height">15dp</dimen>
-        <dimen name="poi_detail_bus_list_item_icon_width">15dp</dimen>
-        <dimen name="poi_detail_bus_list_item_icon_margin_top">12dp</dimen>
-        <dimen name="poi_detail_bus_list_item_title_margin_left">4dp</dimen>
-        <dimen name="poi_detail_bus_list_item_title_margin_top">11dp</dimen>
-        <dimen name="poi_detail_bus_list_item_route_margin_top">5dp</dimen>
-        <dimen name="poi_detail_bus_list_item_route_icon_width">11dp</dimen>
-        <dimen name="poi_detail_bus_list_item_route_icon_height">11dp</dimen>
-        <dimen name="poi_detail_bus_list_item_route_icon_margin_left">4dp</dimen>
-        <dimen name="poi_detail_bus_list_item_route_icon_margin_right">4dp</dimen>
-        <dimen name="poi_detail_bus_list_item_route_icon_margin_top">6dp</dimen>
+    <dimen name="search_result_list_extra_height">42sp</dimen>
+    <dimen name="search_result_list_extra_left_right_margin">54dp</dimen>
+    <dimen name="search_result_list_extra_button_width">156dp</dimen>
+    <dimen name="search_result_list_extra_image_text_margin">5dp</dimen>
 
 
-        <!-- 公交POI详情页面 -->
-        <dimen name="bus_detail_height">63dp</dimen>
-        <dimen name="bus_detail_route_icon_width">11dp</dimen>
-        <dimen name="bus_detail_route_icon_height">11dp</dimen>
-        <dimen name="bus_detail_route_icon_margin_left">3dp</dimen>
-        <dimen name="bus_detail_route_icon_margin_right">3dp</dimen>
-        <dimen name="bus_detail_route_icon_margin_top">15dp</dimen>
-        <dimen name="bus_detail_station_icon_width">13dp</dimen>
-        <dimen name="bus_detail_station_icon_height">13dp</dimen>
-        <dimen name="bus_detail_station_time_margin_top">8dp</dimen>
-        <dimen name="bus_detail_station_icon_margin_time">4dp</dimen>
-        <dimen name="bus_detail_station_time_margin_icon">15dp</dimen>
-        <dimen name="bus_detail_list_margin_top">12dp</dimen>
-        <dimen name="bus_detail_list_item_height">58dp</dimen>
-        <dimen name="bus_detail_list_item_icon_width">18dp</dimen>
-        <dimen name="bus_detail_list_item_icon_margin_left">21dp</dimen>
-        <dimen name="bus_detail_list_item_title_margin_icon">21dp</dimen>
+    <!-- loading view -->
+    <dimen name="search_result_list_loadingview_height">17dip</dimen>
+    <dimen name="search_result_list_loadingview_radius">7dip</dimen>
+    <dimen name="search_result_list_loadingview_ring_width">1.5dip</dimen>
+    <dimen name="search_result_list_loadingview_text_size">16sp</dimen>
+
+    <dimen name="filter_spinner_height">40dp</dimen>
+    <dimen name="filter_spinner_text_image_margin">10dp</dimen>
 
 
-        <!-- 离线地图下载管理页面 -->
-        <dimen name="offline_map_download_list_item_height">63dp</dimen>
-        <dimen name="offline_map_download_list_item_title_width">230dp</dimen>
-        <dimen name="offline_map_download_list_item_title_margin_top">11dp</dimen>
-        <dimen name="offline_map_download_list_item_progress_width">230dp</dimen>
-        <dimen name="offline_map_download_list_item_progress_height">3dp</dimen>
-        <dimen name="offline_map_download_list_item_progress_margin_top">3dp</dimen>
-        <dimen name="offline_map_download_list_item_btn_width">58dp</dimen>
-        <dimen name="offline_map_download_list_item_btn_height">24dp</dimen>
+    <dimen name="subway_city_list_divider_height">0.5dp</dimen>
+    <dimen name="nav_action_bottom_height">30dp</dimen>
+    <dimen name="nav_search_input_height">32dp</dimen>
+    <dimen name="nav_search_input_inner_padding">10dp</dimen>
+    <dimen name="nav_search_input_top_bottom_margin">13dp</dimen>
+    <dimen name="nav_search_input_left_right_margin">24dp</dimen>
+    <dimen name="nav_search_divier_width">10dp</dimen>
+    <dimen name="navi_history_text_size">15sp</dimen>
+    <dimen name="navi_history_address_text_size">10sp</dimen>
 
-        <dimen name="offline_map_download_list_item_btn_touch_margin_right">10dp</dimen>
-        <dimen name="offline_map_download_list_item_btn_touch_width">78dp</dimen>
-        <dimen name="offline_map_download_list_item_btn_touch_height">55dp</dimen>
+    <!--before-->
+    <dimen name="abc_action_bar_default_height_material">56.0dip</dimen>
+    <dimen name="abc_action_bar_default_padding_material">4.0dip</dimen>
+    <dimen name="abc_action_bar_icon_vertical_padding_material">16.0dip</dimen>
+    <dimen name="abc_action_bar_progress_bar_size">40.0dip</dimen>
+    <dimen name="abc_action_bar_stacked_max_height">48.0dip</dimen>
+    <dimen name="abc_action_bar_stacked_tab_max_width">180.0dip</dimen>
+    <dimen name="abc_action_bar_subtitle_bottom_margin_material">5.0dip</dimen>
+    <dimen name="abc_action_bar_subtitle_top_margin_material">-3.0dip</dimen>
+    <dimen name="abc_action_button_min_height_material">48.0dip</dimen>
+    <dimen name="abc_action_button_min_width_material">48.0dip</dimen>
+    <dimen name="abc_action_button_min_width_overflow_material">36.0dip</dimen>
+    <dimen name="abc_config_prefDialogWidth">320.0dip</dimen>
+    <dimen name="abc_control_inset_material">4.0dip</dimen>
+    <dimen name="abc_control_padding_material">4.0dip</dimen>
+    <dimen name="abc_dropdownitem_icon_width">32.0dip</dimen>
+    <dimen name="abc_dropdownitem_text_padding_left">8.0dip</dimen>
+    <dimen name="abc_dropdownitem_text_padding_right">8.0dip</dimen>
+    <dimen name="abc_panel_menu_list_width">296.0dip</dimen>
+    <dimen name="abc_search_view_preferred_width">320.0dip</dimen>
+    <dimen name="abc_search_view_text_min_width">160.0dip</dimen>
+    <dimen name="abc_text_size_body_1_material">16.0sp</dimen>
+    <dimen name="abc_text_size_body_2_material">16.0sp</dimen>
+    <dimen name="abc_text_size_button_material">14.0sp</dimen>
+    <dimen name="abc_text_size_caption_material">12.0sp</dimen>
+    <dimen name="abc_text_size_display_1_material">34.0sp</dimen>
+    <dimen name="abc_text_size_display_2_material">45.0sp</dimen>
+    <dimen name="abc_text_size_display_3_material">56.0sp</dimen>
+    <dimen name="abc_text_size_display_4_material">112.0sp</dimen>
+    <dimen name="abc_text_size_headline_material">24.0sp</dimen>
+    <dimen name="abc_text_size_large_material">22.0sp</dimen>
+    <dimen name="abc_text_size_medium_material">18.0sp</dimen>
+    <dimen name="abc_text_size_menu_material">16.0sp</dimen>
+    <dimen name="abc_text_size_small_material">14.0sp</dimen>
+    <dimen name="abc_text_size_subhead_material">16.0sp</dimen>
+    <dimen name="abc_text_size_subtitle_material_toolbar">16.0dip</dimen>
+    <dimen name="abc_text_size_title_material">20.0sp</dimen>
+    <dimen name="abc_text_size_title_material_toolbar">20.0dip</dimen>
+    <dimen name="bottom_ellipsis_height">4.0dip</dimen>
+    <dimen name="bottom_text_size">12.0sp</dimen>
+    <dimen name="button_height_clear_history">44.0dip</dimen>
+    <dimen name="cardview_compat_inset_shadow">1.0dip</dimen>
+    <dimen name="cardview_default_elevation">2.0dip</dimen>
+    <dimen name="cardview_default_radius">2.0dip</dimen>
+    <dimen name="cpb_default_stroke_width">4.0dip</dimen>
+    <dimen name="default_padding_bottom">8.0dip</dimen>
+    <dimen name="default_padding_top">8.0dip</dimen>
+    <dimen name="dgv_delete_area_height">44.0dip</dimen>
+    <dimen name="dgv_delete_area_text_size">20.0sp</dimen>
+    <item name="dialog_fixed_height_major" type="dimen">79.99999%</item>
+    <item name="dialog_fixed_height_minor" type="dimen">100.0%</item>
+    <dimen name="dialog_fixed_width_major">320.0dip</dimen>
+    <dimen name="dialog_fixed_width_minor">320.0dip</dimen>
+    <item name="disabled_alpha_material_dark" type="dimen">0.3</item>
+    <item name="disabled_alpha_material_light" type="dimen">0.26</item>
+    <dimen name="fab_actions_spacing">16.0dip</dimen>
+    <dimen name="fab_icon_size">24.0dip</dimen>
+    <dimen name="fab_labels_margin">8.0dip</dimen>
+    <dimen name="fab_plus_icon_size">14.0dip</dimen>
+    <dimen name="fab_plus_icon_stroke">2.0dip</dimen>
+    <dimen name="fab_shadow_offset">3.0dip</dimen>
+    <dimen name="fab_shadow_radius">9.0dip</dimen>
+    <dimen name="fab_size_mini">40.0dip</dimen>
+    <dimen name="fab_size_normal">56.0dip</dimen>
+    <dimen name="fab_stroke_width">1.0dip</dimen>
+    <dimen name="floating_label_text_size">12.0sp</dimen>
+    <dimen name="header_footer_left_right_padding">24.0dip</dimen>
+    <dimen name="header_footer_top_bottom_padding">12.0dip</dimen>
+    <dimen name="indicator_corner_radius">12.0dip</dimen>
+    <dimen name="indicator_internal_padding">4.0dip</dimen>
+    <dimen name="indicator_right_padding">10.0dip</dimen>
+    <dimen name="inner_components_spacing">8.0dip</dimen>
+    <dimen name="inner_padding_left">0.0dip</dimen>
+    <dimen name="inner_padding_right">0.0dip</dimen>
+    <dimen name="keyline_1">16.0dip</dimen>
+    <dimen name="keyline_1_minus_15dp">15.0dip</dimen>
+    <dimen name="keyline_1_minus_5dp">5.0dip</dimen>
+    <dimen name="keyline_1_minus_8dp">8.0dip</dimen>
+    <dimen name="keyline_2">72.0dip</dimen>
+    <dimen name="keyline_2_minus_56dp">56.0dip</dimen>
+    <dimen name="keyline_2_minus_60dp">60.0dip</dimen>
+    <dimen name="linearlayout_item_height_1">30.0dip</dimen>
+    <dimen name="linearlayout_item_height_2">200.0dip</dimen>
+    <dimen name="listview_item_space_height">10.0dip</dimen>
+    <dimen name="listview_item_vertical_margin">10.0dip</dimen>
+    <dimen name="navigation_drawer_chosen_account_height">140.0dip</dimen>
+    <dimen name="navigation_drawer_profile_image_size">40.0dip</dimen>
+    <dimen name="spb_default_stroke_separator_length">4.0dip</dimen>
+    <dimen name="spb_default_stroke_width">4.0dip</dimen>
+    <dimen name="speaker_image_size">40.0dip</dimen>
+    <dimen name="text_guide_detail">20.0sp</dimen>
+    <dimen name="text_guide_title">35.0sp</dimen>
+    <dimen name="umeng_fb_item_content_size">14.0sp</dimen>
+    <dimen name="umeng_fb_item_height">48.0dip</dimen>
+    <dimen name="umeng_fb_item_line_height">0.8000001dip</dimen>
+    <dimen name="umeng_fb_item_time_size">12.0sp</dimen>
+    <dimen name="umeng_fb_record_btn_text_size">20.0sp</dimen>
+    <dimen name="umeng_fb_spinner_padding_left">12.0dip</dimen>
 
-        <dimen name="offline_map_download_list_item_btn_margin_right">12dp</dimen>
-        <dimen name="offline_map_download_list_item_status_margin_top">5dp</dimen>
-        <dimen name="offline_map_download_list_item_status_margin_size">9dp</dimen>
-        <dimen name="offline_map_download_recommend_header_height">40dp</dimen>
+    <!--步行地图界面-->
+    <dimen name="navigation_walk_layout_padding_top">5dp</dimen>
+    <dimen name="navigation_walk_layout_padding_left">10dp</dimen>
+    <dimen name="navigation_walk_layout_padding_right">10dp</dimen>
+    <dimen name="navigation_walk_layout_padding_bottom">10dp</dimen>
+    <dimen name="navigation_walk_detail_layout_padding_left">12dp</dimen>
+    <dimen name="navigation_walk_detail_layout_padding_right">12dp</dimen>
+    <dimen name="navigation_walk_detail_text_margin_left">9dp</dimen>
+    <dimen name="navigation_walk_detail_text_time_margin_left">18dp</dimen>
+    <dimen name="navigation_walk_detail_text_size">16sp</dimen>
+    <dimen name="navigation_walk_detail_ico_layout_padding_right">10dp</dimen>
+    <dimen name="navigation_walk_detail_right_text_size">14sp</dimen>
+    <dimen name="navigation_walk_detail_ico_width">15dp</dimen>
+    <dimen name="navigation_walk_detail_ico_height">15dp</dimen>
 
-        <!-- 离线地图城市列表页面 -->
-        <dimen name="offline_map_city_header_title_height">30dp</dimen>
-        <dimen name="offline_map_city_header_title_padding_left">16dp</dimen>
-        <dimen name="offline_map_city_header_tail_height">12dp</dimen>
-
-        <dimen name="offline_map_city_item_height">58dp</dimen>
-        <dimen name="offline_map_city_item_title_margin_left">25dp</dimen>
-        <dimen name="offline_map_city_item_title_width">230dp</dimen>
-        <dimen name="offline_map_city_item_size_margin_left">9dp</dimen>
-
-        <dimen name="offline_map_city_item_ctrl_width">58dp</dimen>
-        <dimen name="offline_map_city_item_ctrl_height">24dp</dimen>
+    <dimen name="navigation_walk_follow_me">43dp</dimen>
 
 
-        <dimen name="offline_map_city_item_ctrl_touch_width">78dp</dimen>
-        <dimen name="offline_map_city_item_ctrl_touch_height">55dp</dimen>
-        <dimen name="offline_map_city_item_ctrl_touch_margin_right">10dp</dimen>
-        <dimen name="offline_map_city_item_ctrl_margin_right">12dp</dimen>
-        <dimen name="offline_map_city_item_crtl_text_margin_right">22dp</dimen>
+    <!-- 设置页面 -->
+    <dimen name="setting_list_item_text_margin_top">11dip</dimen>
+    <dimen name="setting_list_item_text_margin_bottom">11dip</dimen>
+    <dimen name="setting_switch_btn_width">48dip</dimen>
+    <dimen name="setting_switch_btn_height">24dip</dimen>
+    <dimen name="setting_next_btn_width">18dip</dimen>
+    <dimen name="setting_next_btn_height">18dip</dimen>
+    <dimen name="setting_next_btn_margin_right">24dip</dimen>
 
-        <!-- 离线地图页面,TabView的离左边的距离.不同机型需要适配此值 -->
-        <dimen name="offline_map_tab_margin_left">120dp</dimen>
+    <!-- 切换城市页面 -->
+    <dimen name="switch_city_searchview_height">58dip</dimen>
+    <dimen name="switch_city_item_link_width">6dip</dimen>
+    <dimen name="switch_city_item_link_height">6dip</dimen>
+    <dimen name="switch_city_item_link_margin_top">26dip</dimen>
+    <dimen name="switch_city_item_link_margin_left">7dip</dimen>
+    <dimen name="switch_city_item_cur_city_margin_left">7dip</dimen>
+    <dimen name="switch_city_fastscroll_letter_text_size">12sp</dimen>
+    <dimen name="switch_city_fastscroll_letter_overlay_text_size">35sp</dimen>
+    <dimen name="switch_city_fastscroll_letter_overlay_layout_width">57dp</dimen>
+    <dimen name="fastscroll_letter_overlay_text_size">32.5sp</dimen>
+    <dimen name="fastscroll_letter_overlay_two_text_size">12sp</dimen>
+    <dimen name="fastscroll_letter_overlay_three_text_size">12sp</dimen>
+    <dimen name="fastscroll_letter_text_size">16sp</dimen>
+    <dimen name="fastscroll_letter_overlay_layout_width">59dip</dimen>
+    <dimen name="fastscroll_letter_overlay_layout_margin_right">70dip</dimen>
+    <dimen name="fastscroll_letter_layout_margin_top">46dip</dimen>
+    <dimen name="fastscroll_letter_layout_margin_right">0dip</dimen>
+    <dimen name="fastscroll_letter_layout_margin_bottom">104dip</dimen>
+    <dimen name="fastscroll_letter_layout_wdith">16dip</dimen>
+    <dimen name="fastscroll_letter_layout_char_margin">4dip</dimen>
+
+
+    <!-- POI详情页 -->
+    <dimen name="poi_detail_height">111dp</dimen>
+    <dimen name="poi_detail_margin_left">12dp</dimen>
+    <dimen name="poi_detail_margin_right">12dp</dimen>
+    <dimen name="poi_detail_name_margin_left">24dp</dimen>
+    <dimen name="poi_detail_name_margin_top">11dp</dimen>
+    <dimen name="poi_detail_name_width">243dip</dimen>
+    <dimen name="poi_detail_line_margin_top">11dip</dimen>
+    <dimen name="poi_detail_address_width">312dip</dimen>
+    <dimen name="poi_detail_address_margin_left">24dp</dimen>
+    <dimen name="poi_detail_distance_width">71dip</dimen>
+    <dimen name="poi_detail_distance_margin_top">12dip</dimen>
+    <dimen name="poi_detail_distance_margin_right">24dip</dimen>
+    <dimen name="poi_detail_horizontal_height">18dip</dimen>
+    <dimen name="poi_detail_horizontal_width">2px</dimen>
+    <dimen name="poi_detail_btn_layout_height">42dp</dimen>
+    <dimen name="poi_detail_btn_margin_hor_line">48dp</dimen>
+    <dimen name="poi_detail_btn_margin_icon">5dp</dimen>
+    <dimen name="poi_detail_icon_width">18dp</dimen>
+    <dimen name="poi_detail_icon_height">18dp</dimen>
+    <dimen name="poi_detail_list_margin_top">12dp</dimen>
+    <dimen name="poi_detail_bus_list_head_height">38dp</dimen>
+    <dimen name="poi_detail_bus_list_head_line_width">2dp</dimen>
+    <dimen name="poi_detail_bus_list_head_line_height">15dp</dimen>
+    <dimen name="poi_detail_bus_list_head_line_margin_left">24dp</dimen>
+    <dimen name="poi_detail_bus_list_head_title_margin_left">5dp</dimen>
+    <dimen name="poi_detail_bus_list_item_height">63dp</dimen>
+    <dimen name="poi_detail_bus_list_item_icon_height">15dp</dimen>
+    <dimen name="poi_detail_bus_list_item_icon_width">15dp</dimen>
+    <dimen name="poi_detail_bus_list_item_icon_margin_top">12dp</dimen>
+    <dimen name="poi_detail_bus_list_item_title_margin_left">4dp</dimen>
+    <dimen name="poi_detail_bus_list_item_title_margin_top">11dp</dimen>
+    <dimen name="poi_detail_bus_list_item_route_margin_top">5dp</dimen>
+    <dimen name="poi_detail_bus_list_item_route_icon_width">11dp</dimen>
+    <dimen name="poi_detail_bus_list_item_route_icon_height">11dp</dimen>
+    <dimen name="poi_detail_bus_list_item_route_icon_margin_left">4dp</dimen>
+    <dimen name="poi_detail_bus_list_item_route_icon_margin_right">4dp</dimen>
+    <dimen name="poi_detail_bus_list_item_route_icon_margin_top">6dp</dimen>
+
+
+    <!-- 公交POI详情页面 -->
+    <dimen name="bus_detail_height">63dp</dimen>
+    <dimen name="bus_detail_route_icon_width">11dp</dimen>
+    <dimen name="bus_detail_route_icon_height">11dp</dimen>
+    <dimen name="bus_detail_route_icon_margin_left">3dp</dimen>
+    <dimen name="bus_detail_route_icon_margin_right">3dp</dimen>
+    <dimen name="bus_detail_route_icon_margin_top">15dp</dimen>
+    <dimen name="bus_detail_station_icon_width">13dp</dimen>
+    <dimen name="bus_detail_station_icon_height">13dp</dimen>
+    <dimen name="bus_detail_station_time_margin_top">8dp</dimen>
+    <dimen name="bus_detail_station_icon_margin_time">4dp</dimen>
+    <dimen name="bus_detail_station_time_margin_icon">15dp</dimen>
+    <dimen name="bus_detail_list_margin_top">12dp</dimen>
+    <dimen name="bus_detail_list_item_height">58dp</dimen>
+    <dimen name="bus_detail_list_item_icon_width">18dp</dimen>
+    <dimen name="bus_detail_list_item_icon_margin_left">21dp</dimen>
+    <dimen name="bus_detail_list_item_title_margin_icon">21dp</dimen>
+
+
+    <!-- 离线地图下载管理页面 -->
+    <dimen name="offline_map_download_list_item_height">63dp</dimen>
+    <dimen name="offline_map_download_list_item_title_width">230dp</dimen>
+    <dimen name="offline_map_download_list_item_title_margin_top">11dp</dimen>
+    <dimen name="offline_map_download_list_item_progress_width">230dp</dimen>
+    <dimen name="offline_map_download_list_item_progress_height">3dp</dimen>
+    <dimen name="offline_map_download_list_item_progress_margin_top">3dp</dimen>
+    <dimen name="offline_map_download_list_item_btn_width">58dp</dimen>
+    <dimen name="offline_map_download_list_item_btn_height">24dp</dimen>
+
+    <dimen name="offline_map_download_list_item_btn_touch_margin_right">10dp</dimen>
+    <dimen name="offline_map_download_list_item_btn_touch_width">78dp</dimen>
+    <dimen name="offline_map_download_list_item_btn_touch_height">55dp</dimen>
+
+    <dimen name="offline_map_download_list_item_btn_margin_right">12dp</dimen>
+    <dimen name="offline_map_download_list_item_status_margin_top">5dp</dimen>
+    <dimen name="offline_map_download_list_item_status_margin_size">9dp</dimen>
+    <dimen name="offline_map_download_recommend_header_height">40dp</dimen>
+
+    <!-- 离线地图城市列表页面 -->
+    <dimen name="offline_map_city_header_title_height">30dp</dimen>
+    <dimen name="offline_map_city_header_title_padding_left">16dp</dimen>
+    <dimen name="offline_map_city_header_tail_height">12dp</dimen>
+
+    <dimen name="offline_map_city_item_height">58dp</dimen>
+    <dimen name="offline_map_city_item_title_margin_left">25dp</dimen>
+    <dimen name="offline_map_city_item_title_width">230dp</dimen>
+    <dimen name="offline_map_city_item_size_margin_left">9dp</dimen>
+
+    <dimen name="offline_map_city_item_ctrl_width">58dp</dimen>
+    <dimen name="offline_map_city_item_ctrl_height">24dp</dimen>
+
+
+    <dimen name="offline_map_city_item_ctrl_touch_width">78dp</dimen>
+    <dimen name="offline_map_city_item_ctrl_touch_height">55dp</dimen>
+    <dimen name="offline_map_city_item_ctrl_touch_margin_right">10dp</dimen>
+    <dimen name="offline_map_city_item_ctrl_margin_right">12dp</dimen>
+    <dimen name="offline_map_city_item_crtl_text_margin_right">22dp</dimen>
+
+    <!-- 离线地图页面,TabView的离左边的距离.不同机型需要适配此值 -->
+    <dimen name="offline_map_tab_margin_left">120dp</dimen>
 
     <!-- compass-->
     <dimen name="compass_content_margin_top">142dp</dimen>
+
+    <dimen name="location_point_width">18dp</dimen>
+    <dimen name="location_point_height">18dp</dimen>
+    <dimen name="location_exchange_height">57dp</dimen>
+    <dimen name="location_exchange_width">57dp</dimen>
+    <dimen name="location_exchange_padding">15dp</dimen>
+
+    <dimen name="connection_img_space">4dp</dimen>
+    <dimen name="connection_img_width">3dp</dimen>
+    <dimen name="connection_img_height">3dp</dimen>
+
+    <dimen name="route_history_img_layout_height">63dp</dimen>
+    <dimen name="route_history_img_layout_width">35dp</dimen>
+
+    <dimen name="route_map_locate_width">56dp</dimen>
+    <dimen name="route_map_locate_height">56dp</dimen>
+    <dimen name="route_map_locate_margin_bottom">70dp</dimen>
+    <dimen name="route_map_locate2_margin_bottom">120dp</dimen>
+    <dimen name="route_map_locate_margin_left">6dp</dimen>
+
+    <dimen name="route_map_share_width">100dp</dimen>
+    <dimen name="route_map_share_height">32dp</dimen>
+    <dimen name="route_map_share_margin_bottom">70dp</dimen>
+    <dimen name="route_map_share_margin_left">6dp</dimen>
+    <dimen name="route_map_share_text_margin_right">14dp</dimen>
+    <dimen name="route_map_share_text_margin_top">14dp</dimen>
+
+    <dimen name="route_map_scroll_view_height">400dp</dimen>
+    <dimen name="route_map_top_view_height">72dp</dimen>
+    <dimen name="route_map_navigation_text_size">18sp</dimen>
+    <dimen name="route_map_navigation_devider_height">2px</dimen>
+    <dimen name="location_main_selector_point_text_size">12sp</dimen>
+
+    <dimen name="search_history_image_width">18dp</dimen>
+    <dimen name="search_history_image_height">18dp</dimen>
+    <dimen name="search_history_delete_image_width">29dp</dimen>
+    <dimen name="search_history_item_paddingLeft">22dp</dimen>
+    <dimen name="search_history_delete_marginLeft">12dp</dimen>
+    <dimen name="search_history_delete_marginRight">24dp</dimen>
+    <dimen name="search_history_separator_padding">12dp</dimen>
+
+    <dimen name="search_history_text_margin_right">10dp</dimen>
+    <dimen name="search_history_image_text_margin">10dp</dimen>
+
+    <dimen name="search_history_text_margin_top">10dp</dimen>
+    <dimen name="search_history_text_margin_bottom">10dp</dimen>
+    <dimen name="search_history_title_address_margin">5dp</dimen>
+    <dimen name="search_history_title_text_size">16sp</dimen>
+    <dimen name="search_history_address_text_size">14sp</dimen>
 </resources>

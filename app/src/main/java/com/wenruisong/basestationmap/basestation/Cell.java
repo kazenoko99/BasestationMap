@@ -7,7 +7,7 @@ import com.baidu.mapapi.model.LatLng;
 /**
  * Created by wen on 2016/1/16.
  */
-public abstract class Cell {
+public class Cell {
     public int index;
     public String bsName;
     public  int cellid;

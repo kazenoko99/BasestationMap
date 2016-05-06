@@ -47,7 +47,7 @@ public class Settings {
     }
 
     public interface ScreenOnListener {
-        public void onKeepScreenChange(boolean keepSreenOn);
+        void onKeepScreenChange(boolean keepSreenOn);
     }
 
     public boolean isShowZoomButton() {
@@ -65,7 +65,7 @@ public class Settings {
     }
 
     public interface ZoomSettingListener {
-        public void onZoomSettingChange(boolean showZoomButton);
+        void onZoomSettingChange(boolean showZoomButton);
     }
 
     public boolean isNeverShowGpsDialog() {
@@ -107,18 +107,18 @@ public class Settings {
     }
 
     public interface CenterIndicSettingListener {
-        public void onCenterIndicSettingChange(boolean showCenterIndic);
+        void onCenterIndicSettingChange(boolean showCenterIndic);
     }
 
     public static boolean isDatabaseReady(String str) {
         SharedPreferences sharedPreferences = SharedPrefer.getInstance().open().read();
-        return sharedPreferences.getBoolean(str, false);
+        return sharedPreferences.getBoolean(str+"isDatabaseReady", false);
     }
 
     public static void setDatabaseReady(String str,boolean isReady) {
 
         SharedPreferences.Editor editor = SharedPrefer.getInstance().open().edit();
-        editor.putBoolean(str, isReady);
+        editor.putBoolean(str+"isDatabaseReady", isReady);
         editor.apply();
     }
 
@@ -135,12 +135,13 @@ public class Settings {
     }
 
     public static boolean isTableExsit(String str) {
+        str = str + "isTableExsit";
         SharedPreferences sharedPreferences = SharedPrefer.getInstance().open().read();
         return sharedPreferences.getBoolean(str, false);
     }
 
     public static void setTableExsit(String str,boolean isReady) {
-
+        str = str + "isTableExsit";
         SharedPreferences.Editor editor = SharedPrefer.getInstance().open().edit();
         editor.putBoolean(str, isReady);
         editor.apply();

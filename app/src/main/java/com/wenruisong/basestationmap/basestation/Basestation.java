@@ -17,7 +17,8 @@ public class Basestation {
     public String address;
     public int type;
 
-    public int cellIndex;
+    public int basestationIndex;
     public boolean isNameShow =false;
+    public boolean isMakerShow =false;
 
 }

@@ -1,66 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="3dp"
-        android:id="@+id/cell_icon"
-        android:layout_alignTop="@+id/cell_name"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/map_poi"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/cell_icon"
-        android:id="@+id/cell_name"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        android:text="地方名称这个东西一个不会太差"
-        style="@style/TextNormal"/>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    android:clickable="false"
+    app:cardElevation="1dp"
+    app:cardPreventCornerOverlap="false">
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="100dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/cell_name"
-        android:id="@+id/cell_tyoe"
-        android:layout_alignParentRight="true"
-        android:text="GSM小区"
-        android:layout_marginRight="20dp"
-        style="@style/TextMedium"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_toRightOf="@+id/cell_icon"
-        android:id="@+id/cell_address"
-        android:layout_below="@id/cell_name"
-        android:text="地方名称这个东西一个不会太差"
-        android:maxLines="2"
-        style="@style/TextMedium"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cell_go_there"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        android:layout_alignLeft="@+id/cell_name"
-        android:text="去这里"
-        android:textColor="@color/blue"
-        android:layout_below="@+id/cell_address"
-        android:drawableLeft="@drawable/map_icon_route_light"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_name"
+            android:padding="4dp"
+            android:layout_marginLeft="6dp"
+            android:text="地方名称这个东西一个不会太差"
+            android:textColor="#333333"
+            android:textSize="18sp"
+          />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cell_distance"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        android:layout_marginRight="20dp"
-        android:text="13.2公里"
-        android:layout_below="@+id/cell_address"/>
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_distance"
+            android:layout_alignBaseline="@+id/cell_name"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="3dp"
+            android:text="13.2公里"
+            />
+
+        <View
+            android:layout_below="@+id/cell_name"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="1px"
+            android:id="@+id/divider"
+            android:background="@color/blue"/>
+
+        <TextView
+            android:id="@+id/cellNettype"
+            android:text="制式:"
+            android:layout_below="@+id/cell_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_alignBaseline="@+id/cell_address"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/cell_nettype"
+            android:text="GSM"
+            android:layout_toRightOf="@+id/cellNettype"
+            android:layout_alignBaseline="@+id/cell_address"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cellType"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignBaseline="@+id/cell_go_there"
+            android:layout_below="@+id/cell_nettype"
+            android:text="类型:"
+            android:textSize="12sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_type"
+            android:textColor="#333333"
+            android:layout_alignBaseline="@+id/cell_go_there"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/cell_nettype"
+            android:layout_toRightOf="@+id/cellType"
+            android:text="室分"
+            style="@style/TextMedium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/cell_go_there"
+            android:layout_marginRight="10dp"
+            android:id="@+id/cell_address"
+            android:text="地方名称这个东西一个不会太差"
+            android:maxLines="2"
+            style="@style/TextMedium"/>
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_go_there"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@+id/go_navi"
+            android:gravity="center"
+            android:text="线路"
+            android:textColor="@color/white"
+            android:padding="3dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/round_corner_button_blue"/>
+
+        <TextView
+            android:id="@+id/go_navi"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="导航"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:padding="3dp"
+            android:background="@drawable/round_corner_button_blue"
+            android:layout_alignParentBottom="true"/>
+           </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

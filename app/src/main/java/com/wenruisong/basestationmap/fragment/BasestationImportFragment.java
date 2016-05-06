@@ -48,7 +48,7 @@ public class BasestationImportFragment extends BackPressHandledFragment implemen
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_basestationimport, container, false);
+        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_basestation_import, container, false);
         importedcellListView = (ListView) viewGroup.findViewById(R.id.cell_list);
         getImportCSV = (TextView) viewGroup.findViewById(R.id.importbtn);
         startImport = (TextView) viewGroup.findViewById(R.id.start_import);
