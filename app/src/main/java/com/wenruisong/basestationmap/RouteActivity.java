@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -30,15 +32,20 @@ import com.baidu.mapapi.search.route.TransitRoutePlanOption;
 import com.baidu.mapapi.search.route.TransitRouteResult;
 import com.baidu.mapapi.search.route.WalkingRoutePlanOption;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
+import com.wenruisong.basestationmap.adapter.SearchHistoryAdapter;
+import com.wenruisong.basestationmap.database.SearchHistorySqliteHelper;
 import com.wenruisong.basestationmap.helper.LocationHelper;
 import com.wenruisong.basestationmap.map.overlay.DrivingRouteOverlay;
 import com.wenruisong.basestationmap.map.overlay.OverlayManager;
 import com.wenruisong.basestationmap.map.overlay.TransitRouteOverlay;
 import com.wenruisong.basestationmap.map.overlay.WalkingRouteOverlay;
+import com.wenruisong.basestationmap.model.RouteHistoryItem;
 import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.view.LocationSeletorLayout;
 
-public class RouteActivity extends AppCompatActivity implements View.OnClickListener, OnGetRoutePlanResultListener {
+import java.util.ArrayList;
+
+public class RouteActivity extends AppCompatActivity implements View.OnClickListener, OnGetRoutePlanResultListener,SearchHistoryAdapter.RemoveItemClickListener {
     private ImageView btn_back;
     private static RouteType routeType;
     private BaiduMap mBaidumap;
@@ -53,6 +60,15 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
     RoutePlanSearch mSearch = null;    // 搜索模块，也可去掉地图模块独立使用
 
+    @Override
+    public void removeItem(int position) {
+        if(routeHistory!=null && routeHistory.size()!=0){
+            searchHistorySqliteHelper.delRouteResult(((RouteHistoryItem)routeHistory.get(position)).id);
+            routeHistory.remove(position);
+            mSearchHistoryAdapter.notifyDataSetChanged();
+
+        }
+    }
 
 
     public enum RouteType {WALK,BUS,DRIVE}
@@ -69,6 +85,10 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     private FrameLayout mExchangeImg;
     private MapView mMapView;
     private String mCityCode;
+    private RecyclerView mSearchRecyclerView;
+    private SearchHistorySqliteHelper searchHistorySqliteHelper;
+    private SearchHistoryAdapter mSearchHistoryAdapter;
+    private ArrayList routeHistory;
 
     public void setEndPoint(String end, boolean isCurrent) {
         if(mEndPoint != null)
@@ -161,6 +181,13 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         });
         btn_back = (ImageView) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
+
+        searchHistorySqliteHelper = new SearchHistorySqliteHelper(this);
+        routeHistory = searchHistorySqliteHelper.queryRouteResult();
+        mSearchRecyclerView = (RecyclerView)findViewById(R.id.search_history);
+        mSearchHistoryAdapter = new SearchHistoryAdapter(this,this);
+        mSearchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mSearchRecyclerView.setAdapter(mSearchHistoryAdapter);
     }
 
 
@@ -183,8 +210,10 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             }
             break;
             case R.id.btnFloatingAction :
-                if(mStartLatLng!=null&mStartLatLng!=null)
-                getRoute();
+                if(mStartLatLng!=null&mStartLatLng!=null) {
+                    mSearchRecyclerView.setVisibility(View.GONE);
+                    getRoute();
+                }
                 break;
             case R.id.btn_back:
                 finish();

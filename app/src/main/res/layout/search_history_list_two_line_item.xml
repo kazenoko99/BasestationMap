@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mz_item_background"
+        android:minHeight="@dimen/history_item_height">
+
+        <ImageView
+            android:id="@+id/type"
+            android:layout_width="@dimen/search_history_image_width"
+            android:layout_height="@dimen/search_history_image_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/search_history_item_paddingLeft"
+            android:src="@drawable/clock" />
+
+        <FrameLayout
+            android:id="@+id/delete"
+            android:layout_width="@dimen/search_history_delete_image_width"
+            android:layout_height="@dimen/search_history_delete_image_width"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/search_history_delete_marginLeft"
+            android:layout_marginRight="@dimen/search_history_delete_marginRight">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@drawable/delete_item_selector"
+                android:scaleType="center" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/search_history_text_margin_bottom"
+            android:layout_marginTop="@dimen/search_history_text_margin_top"
+            android:layout_toLeftOf="@+id/delete"
+            android:layout_toRightOf="@+id/type"
+            android:paddingLeft="@dimen/search_history_image_text_margin">
+
+            <TextView
+                android:id="@+id/keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/search_history_title_text_size" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/keyword"
+                android:layout_below="@id/keyword"
+                android:layout_marginTop="@dimen/search_history_title_address_margin"
+                android:singleLine="true"
+                android:textColor="@color/address_color"
+                android:textSize="@dimen/search_history_address_text_size" />
+
+        </RelativeLayout>
+
+        <View
+            style="@style/separatorHorizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/search_history_separator_padding"
+            android:layout_marginRight="@dimen/search_history_separator_padding" />
+
+    </RelativeLayout>
+
+</FrameLayout>

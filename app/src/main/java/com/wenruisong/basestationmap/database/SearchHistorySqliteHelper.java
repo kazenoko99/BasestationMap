@@ -18,13 +18,13 @@ import java.util.ArrayList;
 public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "SearchResult.db";
     private static final String SEARCH_TABLE_NAME = "SearchTable";
-    private static final String ROUTE_TABLE_NAME = "SearchTable";
+    private static final String ROUTE_TABLE_NAME = "RouteTable";
     private static final String CREATE_SEARCH_TABLE= " create table "
-            + " SearchResult(_id integer primary key autoincrement, keyword text,"
+            + " SearchTable(_id integer primary key autoincrement, keyword text,"
             + " searchtype text，address text,time text, lat double, lng double,)";
 
     private static final String CREATE_ROUTE_TABLE= " create table "
-            + " SearchResult(_id integer primary key autoincrement, startname text,"
+            + " RouteTable(_id integer primary key autoincrement, startname text,"
             + " endname text, startlat double, startlng double,endlat double,endlng double,time text)";
 
     private SQLiteDatabase db;
@@ -72,11 +72,11 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<SearchHistoryItem> querySearchResult(String taskId)
+    public ArrayList<SearchHistoryItem> querySearchResult()
     {
         SQLiteDatabase db = getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("select * from "+SEARCH_TABLE_NAME+" where myinfojobid = '" + taskId + "';", null);
+        Cursor cursor = db.rawQuery("select * from "+SEARCH_TABLE_NAME+ ";", null);
         ArrayList<SearchHistoryItem> searchHistoryItems = new ArrayList<>();
         cursor.moveToFirst();
         if(cursor.getCount()>0) {
@@ -97,11 +97,11 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<RouteHistoryItem> queryRouteResult(String taskId)
+    public ArrayList<RouteHistoryItem> queryRouteResult()
     {
         SQLiteDatabase db = getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("select * from "+SEARCH_TABLE_NAME+" where myinfojobid = '" + taskId + "';", null);
+        Cursor cursor = db.rawQuery("select * from "+ ROUTE_TABLE_NAME +";", null);
         ArrayList<RouteHistoryItem> routeHistoryItems = new ArrayList<>();
         cursor.moveToFirst();
         if(cursor.getCount()>0) {

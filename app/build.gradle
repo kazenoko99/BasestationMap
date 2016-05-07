@@ -24,6 +24,15 @@ android {
         release.setRoot('build-types/release')
     }
 
+    signingConfigs {
+        debug {
+            keyAlias 'AndroidDebugKey'
+            keyPassword 'android'
+            storeFile file('keystore/debug.keystore')
+            storePassword 'android'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
