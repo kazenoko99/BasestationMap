@@ -611,4 +611,11 @@
     <dimen name="search_history_title_address_margin">5dp</dimen>
     <dimen name="search_history_title_text_size">16sp</dimen>
     <dimen name="search_history_address_text_size">14sp</dimen>
+
+
+
+
+    <dimen name="history_item_height">63dp</dimen>
+    <dimen name="search_history_padding_left_right">12dp</dimen>
+
 </resources>
