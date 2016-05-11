@@ -1,6 +1,7 @@
 package com.wenruisong.basestationmap.utils;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ZoomControls;
 
 import com.baidu.mapapi.map.MapView;
@@ -21,5 +22,11 @@ public class MapViewUtils {
             }
         }
         zoom.setVisibility(View.GONE);
+    }
+    public static void hideLogo(MapView mapView) {
+        View child = mapView.getChildAt(1);
+        if (child != null && (child instanceof ImageView || child instanceof ZoomControls)) {
+            child.setVisibility(View.INVISIBLE);
+        }
     }
 }

@@ -4,8 +4,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.baidu.mapapi.model.LatLng;
@@ -46,7 +48,12 @@ public class GpsPointDialog extends Dialog {
             // instantiate the dialog with the custom Theme
             final GpsPointDialog dialog = new GpsPointDialog(context);
             View layout = inflater.inflate(R.layout.map_gps_point_dialog, null);
-            dialog.setContentView(layout);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
+
+            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(layout, params);
             // set the dialog title
             gpsPointName = (EditText) dialog.findViewById(R.id.gps_point_name);
             gpsPointLat = (EditText) dialog.findViewById(R.id.gps_point_lat);

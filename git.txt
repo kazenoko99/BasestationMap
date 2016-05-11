@@ -1,0 +1,1 @@
+git push git@github.com:kazenoko99/basestationmap.git

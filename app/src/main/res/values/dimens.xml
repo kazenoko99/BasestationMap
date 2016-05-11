@@ -611,7 +611,9 @@
     <dimen name="search_history_title_address_margin">5dp</dimen>
     <dimen name="search_history_title_text_size">16sp</dimen>
     <dimen name="search_history_address_text_size">14sp</dimen>
-
+    <dimen name="search_history_tag">12sp</dimen>
+    <dimen name="route_history_text_size">15sp</dimen>
+    <dimen name="route_history_text_margin">7dp</dimen>
 
 
 

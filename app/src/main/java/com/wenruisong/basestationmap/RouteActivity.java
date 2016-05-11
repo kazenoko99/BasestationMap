@@ -18,7 +18,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.RouteLine;
 import com.baidu.mapapi.search.core.SearchResult;
@@ -32,9 +31,10 @@ import com.baidu.mapapi.search.route.TransitRoutePlanOption;
 import com.baidu.mapapi.search.route.TransitRouteResult;
 import com.baidu.mapapi.search.route.WalkingRoutePlanOption;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
-import com.wenruisong.basestationmap.adapter.SearchHistoryAdapter;
+import com.wenruisong.basestationmap.adapter.RouteHistoryAdapter;
 import com.wenruisong.basestationmap.database.SearchHistorySqliteHelper;
 import com.wenruisong.basestationmap.helper.LocationHelper;
+import com.wenruisong.basestationmap.map.CustomizedMapView;
 import com.wenruisong.basestationmap.map.overlay.DrivingRouteOverlay;
 import com.wenruisong.basestationmap.map.overlay.OverlayManager;
 import com.wenruisong.basestationmap.map.overlay.TransitRouteOverlay;
@@ -45,7 +45,7 @@ import com.wenruisong.basestationmap.view.LocationSeletorLayout;
 
 import java.util.ArrayList;
 
-public class RouteActivity extends AppCompatActivity implements View.OnClickListener, OnGetRoutePlanResultListener,SearchHistoryAdapter.RemoveItemClickListener {
+public class RouteActivity extends AppCompatActivity implements View.OnClickListener, OnGetRoutePlanResultListener,RouteHistoryAdapter.RemoveItemClickListener {
     private ImageView btn_back;
     private static RouteType routeType;
     private BaiduMap mBaidumap;
@@ -65,7 +65,7 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
         if(routeHistory!=null && routeHistory.size()!=0){
             searchHistorySqliteHelper.delRouteResult(((RouteHistoryItem)routeHistory.get(position)).id);
             routeHistory.remove(position);
-            mSearchHistoryAdapter.notifyDataSetChanged();
+            mRouteHistoryAdapter.notifyDataSetChanged();
 
         }
     }
@@ -81,13 +81,13 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
     private LatLng mEndLatLng;
     private FloatingActionButton mFab;
     private RadioGroup mRadioGroup;
-    private TextView searchTextView;
+    private TextView mHistoryTextView;
     private FrameLayout mExchangeImg;
-    private MapView mMapView;
+    private CustomizedMapView mMapView;
     private String mCityCode;
     private RecyclerView mSearchRecyclerView;
     private SearchHistorySqliteHelper searchHistorySqliteHelper;
-    private SearchHistoryAdapter mSearchHistoryAdapter;
+    private RouteHistoryAdapter mRouteHistoryAdapter;
     private ArrayList routeHistory;
 
     public void setEndPoint(String end, boolean isCurrent) {
@@ -109,7 +109,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
         mLocationSeletorLayout = (LocationSeletorLayout) findViewById(R.id.location_layout);
         mExchangeImg = (FrameLayout) findViewById(R.id.route_exchange);
-        mMapView = (MapView) findViewById(R.id.route_map);
+        mMapView = (CustomizedMapView) findViewById(R.id.route_map);
+        mMapView.setVisibility(View.GONE);
         mBaidumap = mMapView.getMap();
         mFab = (FloatingActionButton)findViewById(R.id.btnFloatingAction);
         mFab.setOnClickListener(this);
@@ -123,8 +124,8 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
                 getRoute();
             }
         });
-        searchTextView = (TextView) findViewById(R.id.btn_goSearch);
-        searchTextView.setOnClickListener(this);
+        mHistoryTextView = (TextView) findViewById(R.id.btn_history);
+        mHistoryTextView.setOnClickListener(this);
 
         Bundle bundle = getIntent().getBundleExtra(Constants.ROUTE_BUNDLE);
         if(bundle!=null) {
@@ -184,10 +185,14 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
 
         searchHistorySqliteHelper = new SearchHistorySqliteHelper(this);
         routeHistory = searchHistorySqliteHelper.queryRouteResult();
+        if(routeHistory == null){
+            routeHistory = new ArrayList();
+        }
         mSearchRecyclerView = (RecyclerView)findViewById(R.id.search_history);
-        mSearchHistoryAdapter = new SearchHistoryAdapter(this,this);
+        mRouteHistoryAdapter = new RouteHistoryAdapter(this,this);
+        mRouteHistoryAdapter.setDates(routeHistory);
         mSearchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mSearchRecyclerView.setAdapter(mSearchHistoryAdapter);
+        mSearchRecyclerView.setAdapter(mRouteHistoryAdapter);
     }
 
 
@@ -212,12 +217,32 @@ public class RouteActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnFloatingAction :
                 if(mStartLatLng!=null&mStartLatLng!=null) {
                     mSearchRecyclerView.setVisibility(View.GONE);
+                    RouteHistoryItem routeHistoryItem = new RouteHistoryItem();
+                    routeHistoryItem.mStartName = mStartPoint.getText().toString();
+                    routeHistoryItem.mEndName = mEndPoint.getText().toString();
+                    routeHistoryItem.time =Long.toString(System.currentTimeMillis());
+                    routeHistoryItem.mStartLatLng = mStartLatLng;
+                    routeHistoryItem.mEndLatLng = mEndLatLng;
+                    searchHistorySqliteHelper.insertRouteResult(routeHistoryItem);
+                    routeHistory.add(0,routeHistoryItem);
+                    mRouteHistoryAdapter.notifyDataSetChanged();
                     getRoute();
+                    mHistoryTextView.setVisibility(View.VISIBLE);
+                    mSearchRecyclerView.setVisibility(View.GONE);
+                    mMapView.setVisibility(View.VISIBLE);
+                } else if (mStartLatLng==null) {
+                    Toast.makeText(RouteActivity.this,"请设置起点位置",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RouteActivity.this,"请设置终点位置",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btn_back:
                 finish();
                 break;
+            case R.id.btn_history:
+                mHistoryTextView.setVisibility(View.GONE);
+                mMapView.setVisibility(View.GONE);
+                mSearchRecyclerView.setVisibility(View.VISIBLE);
 
             default:
                 break;

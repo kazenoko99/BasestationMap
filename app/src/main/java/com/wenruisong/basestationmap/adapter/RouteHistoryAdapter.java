@@ -9,14 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wenruisong.basestationmap.R;
-import com.wenruisong.basestationmap.model.SearchHistoryItem;
+import com.wenruisong.basestationmap.model.RouteHistoryItem;
 
 import java.util.ArrayList;
 
 /**
  * Created by wen on 2016/1/16.
  */
-public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RouteHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private RemoveItemClickListener mListener;
 
@@ -28,7 +28,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.View
     protected ArrayList mDataList;
     protected LayoutInflater mInflater;    // 视图容器
 
-    public SearchHistoryAdapter(Context context, RemoveItemClickListener listener) {
+    public RouteHistoryAdapter(Context context, RemoveItemClickListener listener) {
           mListener = listener;
         mContext = context;
         mInflater = LayoutInflater.from(context); // 创建视图容器并设置上下文
@@ -41,23 +41,25 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View root = null;
-        ViewHolder holder = null;
         if (viewType == 0) {
+            RouteHistoryViewHolder holder = null;
             root = mInflater.inflate(R.layout.clear_history_item, parent, false);
-            holder = new ViewHolder(root);
+            holder = new RouteHistoryViewHolder(root);
             holder.typeImage = null;
             holder.deleteButton = null;
-            holder.title = (TextView) root.findViewById(R.id.clearhistory);
+            holder.startName = (TextView) root.findViewById(R.id.clearhistory);
+            return holder;
         } else if (viewType == 1) {
-            root = mInflater.inflate(R.layout.search_history_list_two_line_item, parent, false);
-            holder = new ViewHolder(root);
+            root = mInflater.inflate(R.layout.item_route_history, parent, false);
+            RouteHistoryViewHolder holder = new RouteHistoryViewHolder(root);
             holder.typeImage = (ImageView) root.findViewById(R.id.type);
-            holder.title = (TextView) root.findViewById(R.id.keyword);
-            holder.address = (TextView) root.findViewById(R.id.address);
+            holder.startName = (TextView) root.findViewById(R.id.startName);
+            holder.endName = (TextView) root.findViewById(R.id.endName);
             holder.deleteButton = (ViewGroup) root.findViewById(R.id.delete);
+            return holder;
         }
 
-        return holder;
+      return null;
     }
 
     @Override
@@ -68,13 +70,14 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.View
             return;
         }
 
-        ViewHolder viewHolder = (ViewHolder) holder;
+        RouteHistoryViewHolder viewHolder = (RouteHistoryViewHolder) holder;
         Object item = mDataList.get(position);
-            if(((SearchHistoryItem)mDataList.get(position)).address!=null) {
-                viewHolder.address.setVisibility(View.VISIBLE);
-                viewHolder.address.setText(((SearchHistoryItem) mDataList.get(position)).address);
-            }
-            viewHolder.title.setText(((SearchHistoryItem)mDataList.get(position)).keyword);
+
+            viewHolder.startName.setText(((RouteHistoryItem) item).mStartName);
+
+        viewHolder.endName.setText(((RouteHistoryItem)item).mEndName);
+
+
             viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -92,16 +95,20 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    //定义ViewHolder，包括两个控件
-    private class ViewHolder extends RecyclerView.ViewHolder {
 
+    public class RouteHistoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView typeImage;
-        public TextView title;
-        public TextView address;
+        public TextView startName;
+        public TextView endName;
         public ViewGroup deleteButton;
 
-        public ViewHolder(View root) {
+        public RouteHistoryViewHolder(View root) {
             super(root);
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 
