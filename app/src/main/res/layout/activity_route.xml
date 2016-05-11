@@ -25,47 +25,50 @@
 
         <RadioGroup
             android:id="@+id/route_rg"
-            android:layout_width="200dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/route_drive"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@drawable/selector_route_drive"
-                android:buttonTint="@color/light_white"/>
+                android:padding="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_route_drive"/>
 
             <RadioButton
                 android:id="@+id/route_bus"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@drawable/selector_route_bus"
-                android:buttonTint="@color/light_white"/>
+                android:padding="15dp"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_route_bus"/>
 
             <RadioButton
                 android:id="@+id/route_walk"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@drawable/selector_route_walk"
-
-                android:buttonTint="@color/light_white"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_route_walk"/>
         </RadioGroup>
 
         <TextView
-            android:id="@+id/btn_goSearch"
-            android:layout_width="60dp"
+            android:id="@+id/btn_history"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="搜索"
-            android:textColor="@color/light_white"
-            android:textSize="18sp"/>
+            android:text="历史记录"
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:textSize="14sp"/>
 
     </RelativeLayout>
 
@@ -167,12 +170,13 @@
 
     <FrameLayout
         android:layout_below="@+id/route_layout"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-           <com.baidu.mapapi.map.MapView
-               android:id="@+id/route_map"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"/>
+        <com.wenruisong.basestationmap.map.CustomizedMapView
+            android:id="@+id/route_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/search_history"
             android:layout_width="match_parent"

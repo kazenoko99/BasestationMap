@@ -4,12 +4,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
-import com.baidu.lbsapi.panoramaview.PanoramaView;
-import com.baidu.mapapi.model.LatLng;
 import com.wenruisong.basestationmap.R;
 
 /**
@@ -48,13 +47,13 @@ public class MapModeDialog extends Dialog {
             // instantiate the dialog with the custom Theme
             final MapModeDialog dialog = new MapModeDialog(context);
             View layout = inflater.inflate( R.layout.map_mode_dialog, null );
-            dialog.setContentView(layout);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
+
+            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(layout, params);
             // set the dialog title
-            final LatLng GEO_PINGXIANG = new LatLng(27.64096, 113.8677);
-
-            PanoramaView panoramaView2 = (PanoramaView)dialog.findViewById(R.id.panorama);
-            panoramaView2.setPanorama(GEO_PINGXIANG.longitude,GEO_PINGXIANG.latitude);
-
             radioGroup =(RadioGroup) dialog.findViewById(R.id.map_style_radios);
             mapNormalRadio = (RadioButton) dialog.findViewById(R.id.map_style_normal);
             map3dRadio = (RadioButton) dialog.findViewById(R.id.map_style_3d);

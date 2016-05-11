@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.baidu.mapapi.map.MapView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+        android:layout_marginRight="@dimen/mapview_layout_margin_right"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/map_zoom_in_out_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="left|bottom"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/map_zoom_bg">
+            <ImageView
+                android:id="@+id/map_zoom_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/map_zoom_in" />
+
+            <ImageView
+                android:id="@+id/map_zoom_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/map_zoom_out" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/map_locate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map_location_follow"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="12dp"/>
+    </FrameLayout>
+
+</FrameLayout>

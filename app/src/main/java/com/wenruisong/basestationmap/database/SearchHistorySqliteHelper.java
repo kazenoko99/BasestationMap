@@ -21,7 +21,7 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
     private static final String ROUTE_TABLE_NAME = "RouteTable";
     private static final String CREATE_SEARCH_TABLE= " create table "
             + " SearchTable(_id integer primary key autoincrement, keyword text,"
-            + " searchtype text，address text,time text, lat double, lng double,)";
+            + " searchtype text，address text,time text, lat double, lng double)";
 
     private static final String CREATE_ROUTE_TABLE= " create table "
             + " RouteTable(_id integer primary key autoincrement, startname text,"
@@ -57,11 +57,25 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void insertRouteResult(ContentValues values)
+    public void insertRouteResult(RouteHistoryItem routeHistoryItem)
     {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+ROUTE_TABLE_NAME+ " where startname = '"
+                + routeHistoryItem.mStartName + "'and endname = '"+ routeHistoryItem.mStartName+"';", null);
+       if(cursor.getCount()>0){
+           return;
+       }
+
         try
         {
-            SQLiteDatabase db = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("startname",routeHistoryItem.mStartName);
+            values.put("endname",  routeHistoryItem.mEndName);
+            values.put("startlat", routeHistoryItem.mStartLatLng.latitude );
+            values.put("startlng", routeHistoryItem.mStartLatLng.longitude );
+            values.put("endlat",   routeHistoryItem.mEndLatLng.latitude);
+            values.put("endlng",   routeHistoryItem.mEndLatLng.longitude );
+            values.put("time",     routeHistoryItem.time );
             db.insert(ROUTE_TABLE_NAME, null, values);
             db.close();
         }
@@ -81,6 +95,7 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
         if(cursor.getCount()>0) {
             for(int i=0; i<cursor.getCount();i++) {
+
                 SearchHistoryItem searchHistoryItem = new SearchHistoryItem();
                 searchHistoryItem.keyword = cursor.getString(cursor.getColumnIndex("keyword"));
                 searchHistoryItem.searchtype = cursor.getString(cursor.getColumnIndex("searchtype"));
@@ -107,15 +122,16 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0) {
             for(int i=0; i<cursor.getCount();i++) {
                 RouteHistoryItem routeHistoryItem = new RouteHistoryItem();
-                routeHistoryItem.mStartName = cursor.getString(cursor.getColumnIndex("keyword"));
-                routeHistoryItem.mEndName = cursor.getString(cursor.getColumnIndex("searchtype"));
+                routeHistoryItem.mStartName = cursor.getString(cursor.getColumnIndex("startname"));
+                routeHistoryItem.mEndName = cursor.getString(cursor.getColumnIndex("endname"));
                 routeHistoryItem.id = cursor.getString(cursor.getColumnIndex("_id"));
-                double lat = cursor.getDouble(cursor.getColumnIndex("startlat"));
-                double lng = cursor.getDouble(cursor.getColumnIndex("startlng"));
-                routeHistoryItem.mStartLatLng = new LatLng(lat,lng);
-                  lat = cursor.getDouble(cursor.getColumnIndex("endlat"));
-                  lng = cursor.getDouble(cursor.getColumnIndex("endlng"));
-                routeHistoryItem.mEndLatLng = new LatLng(lat,lng);
+                routeHistoryItem.time  = cursor.getString(cursor.getColumnIndex("time"));
+                double startLat = cursor.getDouble(cursor.getColumnIndex("startlat"));
+                double startLng = cursor.getDouble(cursor.getColumnIndex("startlng"));
+                double endLat = cursor.getDouble(cursor.getColumnIndex("endlat"));
+                double endLng = cursor.getDouble(cursor.getColumnIndex("endlng"));
+                routeHistoryItem.mStartLatLng = new LatLng(startLat,startLng);
+                routeHistoryItem.mEndLatLng = new LatLng(endLat,endLng);
                 routeHistoryItems.add(routeHistoryItem);
             }
 
