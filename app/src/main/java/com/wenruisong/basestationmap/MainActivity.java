@@ -36,7 +36,7 @@ public class MainActivity extends MapCoreActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-
+    //hehehehe
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private DrawerLayout dl_navigator;
     private Context mContext;
