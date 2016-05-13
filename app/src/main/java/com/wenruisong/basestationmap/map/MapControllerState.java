@@ -5,6 +5,6 @@ package com.wenruisong.basestationmap.map;
  */
 
     public interface MapControllerState{
-        public void OnCellClicked();
+        void OnCellClicked();
     }
 

@@ -2,16 +2,19 @@ package com.wenruisong.basestationmap;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.support.v4.widget.DrawerLayout;
 import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -19,6 +22,8 @@ import com.umeng.analytics.MobclickAgent;
 import com.wenruisong.basestationmap.fragment.BaseFragment;
 import com.wenruisong.basestationmap.fragment.NavigationDrawerFragment;
 import com.wenruisong.basestationmap.listener.IMapCommon;
+import com.wenruisong.basestationmap.model.PhoneState;
+import com.wenruisong.basestationmap.service.SingalAnalyzeService;
 import com.wenruisong.basestationmap.utils.CompatUtils;
 import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.DeviceUtils;
@@ -27,7 +32,7 @@ import java.lang.reflect.Field;
 
 public class MainActivity extends MapCoreActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, IMapCommon.Global,
-        IMapCommon.NavOnClickProvider, IMapCommon.BarChangeListener {
+        IMapCommon.NavOnClickProvider {
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -35,6 +40,7 @@ public class MainActivity extends MapCoreActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private DrawerLayout dl_navigator;
     private Context mContext;
+
     private final String mPageName = "MainActivity";
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -48,6 +54,7 @@ public class MainActivity extends MapCoreActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
+
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,dl_navigator);
@@ -57,6 +64,9 @@ public class MainActivity extends MapCoreActivity
         // SDK在统计Fragment时，需要关闭Activity自带的页面统计，
         // 然后在每个页面中重新集成页面统计的代码(包括调用了 onResume 和 onPause 的Activity)。
         MobclickAgent.openActivityDurationTrack(false);
+
+        Intent bindIntent = new Intent(this, SingalAnalyzeService.class);
+        bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -71,6 +81,12 @@ public class MainActivity extends MapCoreActivity
         super.onPause();
         MobclickAgent.onPageEnd(mPageName);
         MobclickAgent.onPause(mContext);
+    }
+
+    @Override
+    protected void onDestroy() {
+        this .unbindService(serviceConnection);
+        super.onDestroy();
     }
 
     @Override
@@ -145,10 +161,6 @@ public class MainActivity extends MapCoreActivity
         }
     }
 
-    @Override
-    public void onBarChanged(Fragment fragment) {
-
-    }
 
     @Override
     public void openOrCloseDrawers() {
@@ -179,4 +191,26 @@ public class MainActivity extends MapCoreActivity
     public void updateNavOnClickListener(IMapCommon.NavOnClickListener listener) {
 
     }
+
+
+    private SingalAnalyzeService mSingalAnalyzeService;
+
+    public PhoneState getPhoneState(){
+        if(mSingalAnalyzeService!=null)
+        return mSingalAnalyzeService.getPhoneState();
+        else return null;
+    }
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mSingalAnalyzeService = ((SingalAnalyzeService.PhoneStateBinder)service).getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mSingalAnalyzeService = null ;
+        }
+
+    };
 }

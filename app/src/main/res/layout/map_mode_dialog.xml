@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
-    android:layout_height="match_parent">
-  <RadioGroup
+    android:layout_height="wrap_content">
+
+    <RadioGroup
+        android:layout_below="@+id/panorama"
       android:id="@+id/map_style_radios"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -13,34 +15,38 @@
 
       <RadioButton
           android:id="@+id/map_style_normal"
-          android:drawableTop="@drawable/main_map_mode_plain_normal"
+          android:drawableTop="@drawable/selector_mode_normal"
           android:layout_width="0dp"
           android:layout_weight="1"
           android:layout_height="wrap_content"
           android:padding="3dp"
           android:gravity="center|bottom"
           android:text="普通视图"
+          android:checked="true"
+          android:textColor="@drawable/selector_map_mode_color"
           android:button="@null">
       </RadioButton>
       <RadioButton
           android:id="@+id/map_style_satelite"
           android:padding="3dp"
-          android:drawableTop="@drawable/main_map_mode_satellite_normal"
+          android:drawableTop="@drawable/selector_mode_satellite"
           android:layout_width="0dp"
           android:layout_weight="1"
           android:layout_height="wrap_content"
           android:gravity="center|bottom"
           android:text="卫星视图"
+          android:textColor="@drawable/selector_map_mode_color"
           android:button="@null"/>
       <RadioButton
           android:id="@+id/map_style_3d"
-          android:drawableTop="@drawable/main_map_mode_3d_normal"
+          android:drawableTop="@drawable/selector_mode_3d"
           android:layout_width="0dp"
           android:layout_weight="1"
           android:layout_height="wrap_content"
           android:padding="3dp"
           android:gravity="center|bottom"
           android:text="3D视图"
+          android:textColor="@drawable/selector_map_mode_color"
           android:textAlignment="center"
           android:button="@null"/>
   </RadioGroup>

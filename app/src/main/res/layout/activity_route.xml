@@ -1,58 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/common_search_bar"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+<RelativeLayout android:id="@+id/common_search_bar"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                xmlns:custom="http://schemas.android.com/tools">
+
     <RelativeLayout
+        android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:gravity="center_vertical"
         android:background="@color/blue"
+        android:gravity="center_vertical"
         >
+
         <ImageView
             android:id="@+id/btn_back"
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/mz_titlebar_ic_back"
             android:layout_centerVertical="true"
+            android:src="@drawable/mz_titlebar_ic_back"
             />
-        <TextView
-            android:id="@+id/btn_goSearch"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="搜索"
-            android:textSize="18sp"
-            android:textColor="@color/light_white"
-            android:gravity="center"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_layout"
+
+        <RadioGroup
+            android:id="@+id/route_rg"
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:tabIndicatorHeight="4dp"
-            android:layout_marginLeft="50dp"
-            app:tabIndicatorColor="@color/half_white"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/half_white"
             android:layout_centerInParent="true"
-            />
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/route_drive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_route_drive"/>
+
+            <RadioButton
+                android:id="@+id/route_bus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_route_bus"/>
+
+            <RadioButton
+                android:id="@+id/route_walk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_gravity="center"
+                android:button="@drawable/selector_route_walk"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/btn_history"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="历史记录"
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:textSize="14sp"/>
+
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/route_layout"
+        android:layout_below="@id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.wenruisong.basestationmap.view.LocationSeletorLayout
+            xmlns:route="http://schemas.android.com/apk/res/com.wenruisong.basestationmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/location_layout"
+            android:paddingLeft="60dp"
+            android:paddingRight="10dp"
+            android:fitsSystemWindows="true"
+            android:orientation="horizontal"
+            route:startId="@+id/searchStartPoint"
+            route:endId="@+id/searchEndPoint"
+            route:startImg="@drawable/point_start"
+            route:startImgWidth="@dimen/location_point_width"
+            route:startImgHeight="@dimen/location_point_height"
+            route:endImg="@drawable/point_target"
+            route:endImgWidth="@dimen/location_point_width"
+            route:endImgHeight="@dimen/location_point_height"
+            route:pointTextSize="@dimen/location_main_selector_point_text_size"
+            route:pointTextColor="@color/black"
+            route:connectionLineImg="@drawable/route_walkpoint"
+            route:connectionLineImgSpace="@dimen/connection_img_space"
+            android:background="@color/white">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/searchStartPoint"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:hint="@string/input_start_point"
+                    android:maxLines="2"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/half_black"/>
+
+                <View style="@style/separatorHorizontal"/>
+
+                <TextView
+                    android:id="@+id/searchEndPoint"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:hint="@string/input_end_point"
+                    android:maxLines="2"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/half_black"/>
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:id="@+id/route_exchange"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/point_exchange"/>
+            </FrameLayout>
+        </com.wenruisong.basestationmap.view.LocationSeletorLayout>
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnFloatingAction"
+        android:layout_below="@+id/top_layout"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_anchor="@id/location_layout"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_forward"
+        app:backgroundTint="@color/fab"
+        app:rippleColor="@color/fab_highlight"
+        android:layerType="hardware"
+        android:layout_gravity="bottom|right" />
+
     <FrameLayout
+        android:layout_below="@+id/route_layout"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <FrameLayout
-            android:id="@+id/route_setting_fragment"
+        <com.wenruisong.basestationmap.map.CustomizedMapView
+            android:id="@+id/route_map"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </FrameLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_route"
+            android:layout_height="match_parent"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_history"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v4.view.ViewPager>
+            android:layout_height="match_parent"/>
     </FrameLayout>
-</LinearLayout>
+</RelativeLayout>

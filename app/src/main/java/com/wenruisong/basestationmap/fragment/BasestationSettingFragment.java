@@ -102,7 +102,10 @@ public class BasestationSettingFragment extends BackPressHandledFragment {
            }
              CsvToSqliteHelper dbhelp=new CsvToSqliteHelper(getActivity(),Constants.DBNAME,cellType,f.toString(),1);
              SQLiteDatabase mydb= dbhelp.getReadableDatabase();
-             CsvToSqliteHelper.createGsmTable(mydb);
+
+           // CsvToSqliteHelper.createGsmTable(mydb);
+            CsvToSqliteHelper.createCellTable(mydb, f.toString(), cellType);
+
         }
     }
 
@@ -115,7 +118,7 @@ public class BasestationSettingFragment extends BackPressHandledFragment {
 
     private View initView(LayoutInflater inflater) {
         Logs.d("OfflineMapModule", "OfflineMapFragment initView");
-        View root = inflater.inflate(R.layout.fragment_basestationsetting, null);
+        View root = inflater.inflate(R.layout.fragment_basestation_setting, null);
         mViewPager = (ViewPager) root.findViewById(R.id.vp_container);
         View drawerIcon = root.findViewById(R.id.drawer_icon);
         drawerIcon.setOnClickListener(new View.OnClickListener() {

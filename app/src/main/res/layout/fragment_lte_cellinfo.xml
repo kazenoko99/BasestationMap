@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+    android:layout_marginRight="@dimen/mapview_layout_margin_right"
+    android:background="@drawable/map_blank"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:id="@+id/btsname"
+        style="@style/TextMedium"
+        android:textColor="@color/gray"
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
+        android:text="基站名："
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bts_name"
+        android:layout_marginTop="3dp"
+        style="@style/TextNormal"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@+id/btsname"
+        android:text="市政府街道站"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bts_name"
+        android:id="@+id/btsid"
+        android:text="ENB："
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
+        style="@style/TextMedium"
+        android:textColor="@color/gray"
+        />
+    <TextView
+        android:id="@+id/cell_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100米"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/btsid"/>
+    <TextView
+        android:id="@+id/celldistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="距您 "
+        android:textColor="@color/red"
+        android:layout_toLeftOf="@id/cell_distance"
+        android:layout_alignBottom="@id/btsid"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bts_id"
+        android:text="1234"
+        style="@style/TextMedium"
+        android:layout_toRightOf="@+id/btsid"
+        android:layout_below="@id/bts_name"
+
+        />
+    <View
+        android:layout_below="@id/bts_id"
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
+        android:layout_marginRight="@dimen/cellinfo_margin_right"
+        android:id="@+id/map_bottom_separator_line1"
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/cell_detail"
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
+        android:layout_marginRight="@dimen/cellinfo_margin_right"
+        android:layout_below="@id/map_bottom_separator_line1"
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/cellname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小区名："
+            />
+        <TextView
+            android:id="@+id/cell_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市政府1"
+            android:layout_toRightOf="@+id/cellname"
+            />
+
+        <TextView
+            android:id="@+id/cellid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小区号："
+            android:layout_below="@id/cellname"
+            />
+
+        <TextView
+            android:id="@+id/cell_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="603103"
+            android:layout_below="@id/cellname"
+            android:layout_toRightOf="@+id/cellid"
+            />
+
+        <TextView
+            android:layout_below="@+id/cell_id"
+            android:id="@+id/cellangel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="方位角："
+            />
+
+        <TextView
+            android:layout_below="@+id/cell_id"
+            android:id="@+id/cell_angel"
+            android:layout_toRightOf="@+id/cellangel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80"
+            />
+
+        <TextView
+            android:layout_below="@+id/cellangel"
+            android:id="@+id/cell_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下倾角："
+
+            />
+
+        <TextView
+            android:layout_below="@+id/cellangel"
+            android:id="@+id/cell_fy"
+            android:layout_toRightOf="@+id/cell_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80"
+            />
+
+        <TextView
+            android:layout_below="@+id/cell_down"
+            android:id="@+id/celllat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="经度："
+            />
+
+        <TextView
+            android:layout_below="@+id/cell_down"
+            android:id="@+id/cell_lat"
+            android:layout_toRightOf="@+id/celllat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="113.233222332"
+            android:maxLength="9"
+            />
+
+        <TextView
+            android:layout_below="@+id/celllat"
+            android:id="@+id/celllng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="纬度："
+            />
+
+        <TextView
+            android:layout_below="@+id/celllat"
+            android:id="@+id/cell_lng"
+            android:layout_toRightOf="@+id/celllng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="27.9921223232323"
+            android:maxLength="9"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cellpci"
+            android:layout_toLeftOf="@+id/cell_pci"
+            android:text="PCI:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_pci"
+            android:text="2334"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/celltac"
+            android:layout_toLeftOf="@+id/cell_tac"
+            android:layout_below="@+id/cellpci"
+            android:text="TAC:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_tac"
+            android:layout_below="@+id/cellpci"
+            android:text="2334"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cellhigth"
+            android:layout_toLeftOf="@+id/cell_higth"
+            android:layout_below="@+id/celltac"
+            android:text="小区高度:"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_higth"
+            android:layout_below="@+id/cell_tac"
+            android:text="10米"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cellisshifen"
+            android:layout_toLeftOf="@+id/cell_isshifen"
+            android:layout_below="@+id/cell_higth"
+            android:text="是否室分:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_isshifen"
+            android:layout_below="@+id/cell_higth"
+            android:text="是"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <View
+        android:layout_below="@id/cell_detail"
+        android:id="@+id/map_bottom_separator_line2"
+        style="@style/separatorHorizontal"
+        android:layout_marginStart="@dimen/map_bottom_separate_line_padding"
+        android:layout_marginEnd="@dimen/map_bottom_separate_line_padding"
+        />
+    <TextView
+        android:layout_above="@+id/map_bottom_separator_line2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextSmall"
+        android:text="左右滑动切换小区"
+        android:layout_marginBottom="2dp"
+        android:layout_alignParentRight="true"/>
+
+    <LinearLayout
+        android:layout_below="@+id/map_bottom_separator_line2"
+        android:id="@+id/map_bottom_act_layout"
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/map_bottom_act_layout_height"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/map_bottom_panorama"
+            android:layout_width="@dimen/map_bottom_act_view_width_left"
+            android:layout_height="match_parent"
+            android:drawablePadding="@dimen/map_bottom_act_icon_padding"
+            android:paddingStart="@dimen/map_bottom_act_view_padding_left"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/panorama"
+            android:text="@string/map_bottom_panorama"
+            android:background="@drawable/map_bottom_view_bg" />
+
+        <TextView
+            android:id="@+id/map_bottom_route"
+            android:layout_width="@dimen/map_bottom_act_view_width_middle"
+            android:layout_height="match_parent"
+            android:drawablePadding="@dimen/map_bottom_act_icon_padding"
+            android:paddingStart="@dimen/map_bottom_act_view_padding"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/map_icon_route_light"
+            android:text="@string/map_bottom_route"
+            android:lines="1"
+            android:background="@drawable/map_bottom_view_bg"
+            />
+
+        <TextView
+            android:id="@+id/map_bottom_navi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawablePadding="@dimen/map_bottom_act_icon_padding"
+            android:paddingStart="@dimen/map_bottom_act_view_padding"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/map_icon_nav"
+            android:text="@string/map_bottom_nav"
+            android:background="@drawable/map_bottom_view_bg"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
+

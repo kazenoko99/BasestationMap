@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="5dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_launcher"/>
+
+    <RelativeLayout
+        android:id="@+id/lte_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/icon">
+
+        <TextView
+            android:id="@+id/lte_CellName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/lteCellName"
+            android:textSize="12sp"
+            android:text="LTE小区:"/>
+
+        <TextView
+            android:id="@+id/lteCellName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lte_CellName"
+            android:text="LTE小区名称"
+            android:textSize="15sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/lte_CellName">
+
+
+        <TextView
+            android:id="@+id/lte_enb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/lteCellName"
+            android:textSize="12sp"
+            android:text="ENB:"/>
+
+        <TextView
+            android:id="@+id/lteENB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lte_CellName"
+            android:text="542323"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/lte_rsrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/lteCellName"
+            android:layout_marginLeft="8dp"
+            android:textSize="12sp"
+            android:text="RSRP:"/>
+
+        <TextView
+            android:id="@+id/lteRSRP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lte_CellName"
+            android:text="-76dbm"/>
+
+            <TextView
+                android:id="@+id/lte_pci"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="12sp"
+                android:text="PCI:"/>
+
+            <TextView
+                android:id="@+id/ltePCI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="341"/>
+
+            <TextView
+                android:id="@+id/lte_sinr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="12sp"
+                android:text="SINR:"/>
+
+            <TextView
+                android:id="@+id/lteSINR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-14"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_below="@+id/lte_info"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_toRightOf="@+id/icon"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"/>
+    <RelativeLayout
+        android:id="@+id/gsm_info"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lte_info"
+        android:layout_toRightOf="@+id/icon">
+
+        <TextView
+            android:id="@+id/gsm_CellName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/gsmCellName"
+            android:textSize="12sp"
+            android:text="GSM小区:"/>
+
+        <TextView
+            android:id="@+id/gsmCellName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/gsm_CellName"
+            android:text="GSM小区名称"
+            android:textSize="15sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/gsm_CellName">
+
+
+            <TextView
+                android:id="@+id/gsm_lac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/lteCellName"
+                android:textSize="12sp"
+                android:text="LAC:"/>
+
+            <TextView
+                android:id="@+id/gsmLac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/lte_CellName"
+                android:text="542323"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/gsm_Cid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="12sp"
+                android:text="CID:"/>
+
+            <TextView
+                android:id="@+id/gsmCid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-76dbm"/>
+
+            <TextView
+                android:id="@+id/gsm_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="12sp"
+                android:text="Sign:"/>
+
+            <TextView
+                android:id="@+id/gsmSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-65dbm"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="退出"/>
+    <Button
+        android:id="@+id/go_map"
+        android:layout_below="@+id/quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="查看地图"/>
+</RelativeLayout>

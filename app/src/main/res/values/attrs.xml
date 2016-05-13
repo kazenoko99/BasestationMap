@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="PersonalCenterCategory">
+        <attr name="name" format="reference" />
+        <!--<attr name="icon" format="reference"/>-->
+        <attr name="locationX" format="integer" />
+        <attr name="locationY" format="integer" />
+        <attr name="action">
+            <enum name="COUPON" value="0" />
+            <enum name="ORDER" value="1" />
+            <enum name="WELFARE" value="2" />
+            <enum name="FAVORITE" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MapSlideView">
+        <attr name="slideviewMinHeight" format="dimension" />
+        <attr name="slideviewMaxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="BusDetailLayout">
+        <attr name="startPoint" format="reference" />
+        <attr name="startPointWidth" format="dimension" />
+        <attr name="startPointHeight" format="dimension" />
+        <attr name="endPoint" format="reference" />
+        <attr name="endPointWidth" format="dimension" />
+        <attr name="endPointHeight" format="dimension" />
+
+        <attr name="dashedLineImg" format="reference" />
+        <attr name="dashedLineImgSpace" format="dimension"/>
+
+        <attr name="walkImg" format="reference" />
+        <attr name="walkImgWidth" format="dimension" />
+        <attr name="walkImgHeight" format="dimension" />
+
+        <attr name="busImg" format="reference" />
+        <attr name="busImgWidth" format="dimension" />
+        <attr name="busImgHeight" format="dimension" />
+
+        <attr name="busEndPoint" format="reference" />
+        <attr name="busSmallPoint" format="reference" />
+
+
+        <attr name="busLineColor" format="color" />
+        <attr name="busLineWidth" format="dimension" />
+
+
+        <!--公交车详情的布局id-->
+        <attr name="busPassStationLayoutId" format="integer" />
+        <!--公交车上车开始的点-->
+        <attr name="busStartBusPoint" format="integer" />
+        <!--公交车上车结束的点-->
+        <attr name="busEndBusPoint" format="integer" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="RouteMainLayout">
+        <attr name="startImg" format="reference" />
+        <attr name="startImgHeight" format="reference" />
+        <attr name="startImgWidth" format="reference" />
+        <attr name="endImg" format="reference" />
+        <attr name="endImgHeight" format="reference" />
+        <attr name="endImgWidth" format="reference" />
+        <attr name="startId" format="integer" />
+        <attr name="endId" format="integer" />
+        <attr name="pointTextSize" format="dimension" />
+        <attr name="pointTextColor" format="color" />
+        <attr name="connectionLineImg" format="reference" />
+        <attr name="connectionLineImgSpace" format="dimension"/>
+    </declare-styleable>
+</resources>

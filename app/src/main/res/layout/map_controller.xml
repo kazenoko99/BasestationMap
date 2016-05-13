@@ -26,6 +26,7 @@
         android:layout_marginBottom="12dp" />
 
     <LinearLayout
+        android:id="@+id/bottom_control"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/mapview_icon_margin_bottom"
@@ -82,8 +83,8 @@
         android:id="@+id/map_bottom_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/mapview_layout_margin_left"
-        android:layout_marginRight="@dimen/mapview_layout_margin_right"
+        android:layout_marginLeft="@dimen/mapview_vp_margin_right"
+        android:layout_marginRight="@dimen/mapview_vp_margin_right"
         android:clipChildren="false" />
     </LinearLayout>
     <com.wenruisong.basestationmap.view.CompassView

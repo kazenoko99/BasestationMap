@@ -14,6 +14,7 @@
         android:id="@+id/btsname"
         style="@style/TextMedium"
         android:textColor="@color/gray"
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
         android:text="基站名："
         />
     <TextView
@@ -32,6 +33,7 @@
         android:layout_below="@id/bts_name"
         android:id="@+id/btsid"
         android:text="基站号："
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
         style="@style/TextMedium"
         android:textColor="@color/gray"
         />
@@ -63,6 +65,8 @@
         />
     <View
         android:layout_below="@id/bts_id"
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
+        android:layout_marginRight="@dimen/cellinfo_margin_right"
         android:id="@+id/map_bottom_separator_line1"
         android:layout_marginTop="3dp"
         android:layout_width="match_parent"
@@ -73,6 +77,8 @@
 
     <RelativeLayout
         android:id="@+id/cell_detail"
+        android:layout_marginLeft="@dimen/cellinfo_margin_left"
+        android:layout_marginRight="@dimen/cellinfo_margin_right"
         android:layout_below="@id/map_bottom_separator_line1"
         android:layout_marginTop="3dp"
         android:layout_width="match_parent"
@@ -267,14 +273,14 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/map_bottom_basestation"
+            android:id="@+id/map_bottom_panorama"
             android:layout_width="@dimen/map_bottom_act_view_width_left"
             android:layout_height="match_parent"
             android:drawablePadding="@dimen/map_bottom_act_icon_padding"
             android:paddingStart="@dimen/map_bottom_act_view_padding_left"
             android:gravity="center_vertical"
-            android:drawableLeft="@drawable/map_icon_nearby"
-            android:text="@string/map_bottom_basestation"
+            android:drawableLeft="@drawable/panorama"
+            android:text="@string/map_bottom_panorama"
             android:background="@drawable/map_bottom_view_bg" />
 
         <TextView

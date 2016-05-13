@@ -2,12 +2,12 @@ package com.wenruisong.basestationmap.common;
 
 
 public class BackInterruptFlag {
-    public  static interface Flag{
-        public static final int FLAG_METRO_INTERRUPT = 0x0010;
-        public static final int FLAG_KEYWORD_SEARCH_INTERRUPT = 0x0020;
-        public static final int FLAG_AR_NAV_INTERRUPT = 0x0030;
-        public static final int FLAG_BUS_DETAIL_INTERRUPT = 0x0040;
-        public static final int FLAG_AR_NAV_GROUP_INTERRUPT = 0x0050;
+    public interface Flag{
+        int FLAG_METRO_INTERRUPT = 0x0010;
+        int FLAG_KEYWORD_SEARCH_INTERRUPT = 0x0020;
+        int FLAG_AR_NAV_INTERRUPT = 0x0030;
+        int FLAG_BUS_DETAIL_INTERRUPT = 0x0040;
+        int FLAG_AR_NAV_GROUP_INTERRUPT = 0x0050;
     }
 
     private int mFlag;

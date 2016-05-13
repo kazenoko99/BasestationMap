@@ -17,7 +17,10 @@ public class Constants {
     public static final String ACTION_AR_NAV_GROUP = "com.wenruisong.basestaionmap.argroup";
     public static final String ACTION_BUS_DETAIL = "com.wenruisong.basestaionmap.bus_detail";
     public static final String ACTION_MAP_VIEW = "com.wenruisong.basestaionmap.mapView";
+    public static final String ACTION_MAP_SEARCH_A_ADDRESS = "com.wenruisong.basestaionmap.search_a_address";
+    public static final String ACTION_MAP_EDIT_A_ADDRESS = "com.wenruisong.basestaionmap.edit_a_address";
 
+    public static final String ACTIVITY_PASS_SEARCH_CITY = "activity_pass_search_city";
     /**
      * **********************用于sharePrefrence*********************
      */
@@ -33,8 +36,8 @@ public class Constants {
     public static final String TRAFFIC_ENABLED = "traffic_enabled";
 
     public static final String DBNAME= "basestation_db";
-    public static final String GSMDBNAME= "gsm_cells";
-    public static final String LTEDBNAME= "LTE_cells";
+    public static final String GSMTABLENAME= "gsm_cells";
+    public static final String LTETABLENAME= "lte_cells";
 
     public static final String GSM_DB_READY = "gsm_db_ready";
     public static final String LTE_DB_READY = "lte_db_ready";
@@ -60,7 +63,42 @@ public class Constants {
     public static final String LTE_ENB= "ENB";
     public static final String LTE_EARFCN= "EARFCN";
 
+    //"create table gsm_cells(CID integer 0,NAME VARCHAR2(30),BS VARCHAR2(30)2,LAC integer,BCCH integer4,LAT double,LON double6,
+    // AZIMUTH integer,TOTAL_DOWNTILT integer8,DOWNTILT integer,HEIGHT integer10,TYPE integer,BAIDULAT double12,
+    // BAIDULON double,ADDRESS VARCHAR2(100))14;BSID integer15 ,INDEX Integer16";
+    public static final String CREATE_DB_GSM = "create table gsm_cells(CID integer,NAME VARCHAR2(30),BS VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double,ADDRESS VARCHAR2(100),BSID integer,CELLINDEX integer);";
+    //CI	NAME	TAC	PCI	ENB	EARFCN	LAT	LON	AZIMUTH	TOTAL_DOWNTILT	DOWNTILT	HEIGHT	TYPE
+    public static final String CREATE_DB_LTE= "create table lte_cells(CI integer,NAME VARCHAR2(30),BS VARCHAR2(30),TAC integer,PCI integer,ENB integer,EARFCN integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double,ADDRESS VARCHAR2(100),CELLINDEX integer);";
+    public static final String DROP_DB_GSM = "drop table gsm_cells;";
+    public static final String DROP_DB_LTE= "drop table lte_cells;";
+
+    /**
+     * **********************用于route*********************
+     */
 
 
+    public static final String LOCATION_CITY = "CITY";
+    public static final String ROUTE_BUNDLE = "ROUTE";
+    public static final String ROUTE_FROM_NAME = "FROM_NAME";
+    public static final String ROUTE_FROM_LAT = "FROM_LAT";
+    public static final String ROUTE_FROM_LNG= "FROM_LNG";
+
+    public static final String ROUTE_TARGET_NAME = "TARGET_NAME";
+    public static final String ROUTE_TARGET_LAT = "TARGET_LAT";
+    public static final String ROUTE_TARGET_LNG= "TARGET_LNG";
+
+
+    /**
+     * **********************用于search********************
+     */
+
+
+    public static final String SEARCH_TYPE_CELL = "CELL";
+    public static final String SEARCH_TYPE_POI = "POI";
+    public static final String SEARCH_TYPE_BASESTATION = "BASESTATION";
+
+    public static final int GSM = 2;
+    public static final int LTE = 4;
+    public static final int TYPE_UNKNOWN = 99;
 
 }
