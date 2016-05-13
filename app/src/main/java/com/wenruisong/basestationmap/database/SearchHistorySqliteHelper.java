@@ -20,8 +20,8 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
     private static final String SEARCH_TABLE_NAME = "SearchTable";
     private static final String ROUTE_TABLE_NAME = "RouteTable";
     private static final String CREATE_SEARCH_TABLE= " create table "
-            + " SearchTable(_id integer primary key autoincrement, keyword text,"
-            + " searchtype text，address text,time text, lat double, lng double)";
+            + " SearchTable(_id integer primary key autoincrement, keyword text,cellindex integer,nettype text,"
+            + " searchtype text, address VARCHAR2(50),time text, lat double, lng double)";
 
     private static final String CREATE_ROUTE_TABLE= " create table "
             + " RouteTable(_id integer primary key autoincrement, startname text,"
@@ -43,11 +43,26 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insertSearchResult(ContentValues values)
+    public void insertSearchResult(SearchHistoryItem searchHistoryItem)
     {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+SEARCH_TABLE_NAME+ " where keyword = '"
+                + searchHistoryItem.keyword + "';", null);
+        if(cursor.getCount()>0){
+            return;
+        }
+
         try
         {
-            SQLiteDatabase db = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("keyword",searchHistoryItem.keyword);
+            values.put("address",  searchHistoryItem.address);
+            values.put("lat", searchHistoryItem.latLng.latitude );
+            values.put("lng", searchHistoryItem.latLng.longitude );
+            values.put("nettype", searchHistoryItem.nettype);
+            values.put("cellindex", searchHistoryItem.cellindex );
+            values.put("searchtype", searchHistoryItem.searchtype );
+            values.put("time",     searchHistoryItem.time );
             db.insert(SEARCH_TABLE_NAME, null, values);
             db.close();
         }
@@ -55,6 +70,7 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
         {
             e.printStackTrace();
         }
+
     }
 
     public void insertRouteResult(RouteHistoryItem routeHistoryItem)
@@ -104,7 +120,10 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
                 double lat = cursor.getDouble(cursor.getColumnIndex("lat"));
                 double lng = cursor.getDouble(cursor.getColumnIndex("lng"));
                 searchHistoryItem.latLng = new LatLng(lat,lng);
+                searchHistoryItem.cellindex = cursor.getInt(cursor.getColumnIndex("cellindex"));
+                searchHistoryItem.nettype  = cursor.getInt(cursor.getColumnIndex("nettype"));
                 searchHistoryItems.add(searchHistoryItem);
+                cursor.moveToNext();
             }
             return searchHistoryItems;
         }
@@ -133,6 +152,7 @@ public class SearchHistorySqliteHelper extends SQLiteOpenHelper {
                 routeHistoryItem.mStartLatLng = new LatLng(startLat,startLng);
                 routeHistoryItem.mEndLatLng = new LatLng(endLat,endLng);
                 routeHistoryItems.add(routeHistoryItem);
+                cursor.moveToNext();
             }
 
             return routeHistoryItems;

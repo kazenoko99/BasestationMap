@@ -23,11 +23,13 @@ import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.SearchActivity;
 import com.wenruisong.basestationmap.basestation.BasestationManager;
 import com.wenruisong.basestationmap.basestation.Cell;
+import com.wenruisong.basestationmap.basestation.Marker.MarkerManager;
 import com.wenruisong.basestationmap.eventbus.MapToolsEvents;
 import com.wenruisong.basestationmap.eventbus.SearchResultEvents;
 import com.wenruisong.basestationmap.helper.DirectionHelper;
 import com.wenruisong.basestationmap.tools.GpsPointMarkerTool;
 import com.wenruisong.basestationmap.tools.RulerTool;
+import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.view.CompassView;
 import com.wenruisong.basestationmap.view.GpsPointDialog;
 import com.wenruisong.basestationmap.view.MapModeDialog;
@@ -222,9 +224,30 @@ public class MapController extends FrameLayout implements MapModeDialog.OnMapMod
     @Subscribe
     public void OnCellClick(SearchResultEvents.OnCellClick event) {
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(event.cellLatLng);
-        if (event.cellIndex != -1) {
-            mapBottomController.onCellMarkerClick(BasestationManager.gsmCells.get(event.cellIndex));
+        switch (event.netTypeFlag) {
+            case Constants.GSM:
+                MarkerManager.getInstance().setMarkerType(MarkerManager.MarkerType.GSM);
+                if (event.cellIndex != -1) {
+                    mapBottomController.onCellMarkerClick(BasestationManager.gsmCells.get(event.cellIndex));
+                }
+                break;
+
+            case Constants.LTE:
+                MarkerManager.getInstance().setMarkerType(MarkerManager.MarkerType.LTE);
+                if (event.cellIndex != -1) {
+                    mapBottomController.onCellMarkerClick(BasestationManager.lteCells.get(event.cellIndex));
+                }
+                break;
         }
+
+
+        mBaiduMap.animateMapStatus(u);
+    }
+
+    @Subscribe
+    public void OnPoiClick(SearchResultEvents.OnPoiClick event) {
+        MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(event.position);
+        //// TODO: 2016/5/13  
         mBaiduMap.animateMapStatus(u);
     }
 

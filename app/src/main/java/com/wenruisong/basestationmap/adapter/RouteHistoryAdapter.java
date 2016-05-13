@@ -72,12 +72,8 @@ public class RouteHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         RouteHistoryViewHolder viewHolder = (RouteHistoryViewHolder) holder;
         Object item = mDataList.get(position);
-
             viewHolder.startName.setText(((RouteHistoryItem) item).mStartName);
-
         viewHolder.endName.setText(((RouteHistoryItem)item).mEndName);
-
-
             viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
