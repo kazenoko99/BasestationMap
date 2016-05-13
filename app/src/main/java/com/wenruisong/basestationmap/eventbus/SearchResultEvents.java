@@ -20,17 +20,22 @@ public class SearchResultEvents {
     public static class OnCellClick {
         public LatLng cellLatLng;
         public int cellIndex;
-        public OnCellClick(LatLng cell,int index) {
+        public int netTypeFlag;
+        public OnCellClick(LatLng cell,int index, int netTypeFlag) {
             this.cellLatLng = cell;
             cellIndex = index;
+            this.netTypeFlag = netTypeFlag;
         }
     }
 
     public static class OnPoiClick {
-        public int type;
         public LatLng position;
-        public OnPoiClick(int index) {
-            type = index;
+        public String key;
+        public String address;
+        public OnPoiClick(LatLng latLng,String key,String address) {
+            position = latLng;
+            this.address = address;
+            this.key = key;
         }
     }
 }

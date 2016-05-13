@@ -18,17 +18,18 @@ import java.util.ArrayList;
  */
 public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private RemoveItemClickListener mListener;
+    private OnItemClickListener mListener;
 
-    public interface RemoveItemClickListener {
+    public interface OnItemClickListener {
         public void removeItem(int position);
+        void clickItem(int position);
     }
 
     protected Context mContext;
     protected ArrayList mDataList;
     protected LayoutInflater mInflater;    // 视图容器
 
-    public SearchHistoryAdapter(Context context, RemoveItemClickListener listener) {
+    public SearchHistoryAdapter(Context context, OnItemClickListener listener) {
           mListener = listener;
         mContext = context;
         mInflater = LayoutInflater.from(context); // 创建视图容器并设置上下文
@@ -81,6 +82,12 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.View
                     mListener.removeItem(position);
                 }
             });
+        viewHolder.root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.clickItem(position);
+            }
+        });
     }
 
     @Override
@@ -99,9 +106,10 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.View
         public TextView title;
         public TextView address;
         public ViewGroup deleteButton;
-
+        public View root;
         public ViewHolder(View root) {
             super(root);
+            this.root = root;
         }
     }
 

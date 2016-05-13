@@ -11,6 +11,8 @@ import com.baidu.location.BDLocation;
 import com.baidu.mapapi.model.LatLng;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.basestation.Cell;
+import com.wenruisong.basestationmap.basestation.GSMCell;
+import com.wenruisong.basestationmap.basestation.LTECell;
 import com.wenruisong.basestationmap.helper.LocationHelper;
 import com.wenruisong.basestationmap.utils.DistanceUtils;
 
@@ -64,7 +66,7 @@ public class SearchCellResultAdapter extends BaseAdapter {
         holder.cellAddress = (TextView) view.findViewById(R.id.cell_address);
         holder.cellGothere = (TextView) view.findViewById(R.id.cell_go_there);
         holder.cellDistance = (TextView) view.findViewById(R.id.cell_distance);
-
+        holder.cellNetType = (TextView)view.findViewById(R.id.cell_nettype);
         final Cell cell = mList.get(position);
         holder.cellName.setText(cell.cellName);
         if(cell.baiduLatLng!=null && locLatLng!=null)
@@ -75,6 +77,12 @@ public class SearchCellResultAdapter extends BaseAdapter {
             holder.cellAddress.setVisibility(View.VISIBLE);
             holder.cellAddress.setText(cell.address);
         }
+
+        if(cell instanceof LTECell){
+            holder.cellNetType.setText("LTE");
+        } else if( cell instanceof GSMCell){
+            holder.cellNetType.setText("GSM");
+        }
         return view;
     }
 
@@ -83,6 +91,8 @@ public class SearchCellResultAdapter extends BaseAdapter {
         TextView cellAddress;
         TextView cellDistance;
         TextView cellGothere;
+        TextView cellType;
+        TextView cellNetType;
     }
 }
 

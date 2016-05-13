@@ -2,6 +2,7 @@ package com.wenruisong.basestationmap;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,7 +14,9 @@ import com.wenruisong.basestationmap.utils.ResourcesUtil;
 public class BasestationMapApplication extends Application {
 	private static Context mContext;
 	public static boolean isFirstLoc = true;
+	public static boolean isPhonteStateNotificationShow = true;
 	private static BasestationMapApplication mInstance = null;
+	public static volatile Handler applicationHandler = null;
 	public BMapManager mBMapManager = null;
 	@Override
 	public void onCreate() {
@@ -23,6 +26,7 @@ public class BasestationMapApplication extends Application {
 		SDKInitializer.initialize(this);
 		ResourcesUtil.initContext(this);
 		mInstance = this;
+		applicationHandler = new Handler(mContext.getMainLooper());
 		initEngineManager(this);
 	}
 	public static Context getContext() {

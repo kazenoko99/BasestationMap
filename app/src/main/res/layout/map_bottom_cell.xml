@@ -150,4 +150,33 @@
         android:textSize="@dimen/text_size_small"
         android:maxLength="9"/>
 
+   <LinearLayout
+       android:layout_below="@+id/show_lte"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="TYPE:"/>
+      <TextView
+          android:id="@+id/net_type"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/black"
+          android:text="NONE"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="5dp"
+          android:text="RSRP:"/>
+      <TextView
+          android:id="@+id/lte_rsrp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/black"/>
+   </LinearLayout>
+
+
 </RelativeLayout>

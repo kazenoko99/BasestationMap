@@ -13,7 +13,10 @@ import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.adapter.SearchBsResultAdapter;
 import com.wenruisong.basestationmap.basestation.Basestation;
 import com.wenruisong.basestationmap.basestation.BasestationManager;
+import com.wenruisong.basestationmap.database.SearchHistorySqliteHelper;
 import com.wenruisong.basestationmap.eventbus.SearchResultEvents;
+import com.wenruisong.basestationmap.model.SearchHistoryItem;
+import com.wenruisong.basestationmap.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -68,7 +71,8 @@ public class SearchBasestationFragment extends BaseFragment{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Basestation bs = bsSearchResults.get(position);
-            SearchResultEvents.getBus().post(new SearchResultEvents.OnCellClick(bs.baiduLatLng,bs.basestationIndex));
+            saveSearchAction(bs);
+            SearchResultEvents.getBus().post(new SearchResultEvents.OnCellClick(bs.baiduLatLng,bs.basestationIndex,bs.getInstanceType()));
             getActivity().finish();
         }
     };
@@ -87,8 +91,20 @@ public class SearchBasestationFragment extends BaseFragment{
             getActivity().setResult(2,intent);
             getActivity().finish();
         }
-    };
+   };
 
+    private void saveSearchAction(Basestation bs){
+        SearchHistoryItem searchHistoryItem = new SearchHistoryItem();
+        searchHistoryItem.address = bs.address;
+        searchHistoryItem.keyword = bs.bsName+"(基站)";
+        searchHistoryItem.latLng = bs.baiduLatLng;
+        searchHistoryItem.searchtype = Constants.SEARCH_TYPE_BASESTATION;
+        searchHistoryItem.nettype =bs.getInstanceType();
+        searchHistoryItem.cellindex = bs.basestationIndex;
+        searchHistoryItem.time =Long.toString(System.currentTimeMillis());
+        SearchHistorySqliteHelper searchHistorySqliteHelper = new SearchHistorySqliteHelper(getActivity());
+        searchHistorySqliteHelper.insertSearchResult(searchHistoryItem);
+    }
 
     public void updateDatas(String query)
     {

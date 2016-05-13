@@ -94,7 +94,11 @@ public class Constants {
 
 
     public static final String SEARCH_TYPE_CELL = "CELL";
-    public static final String SEARCH_TYPE_PLACE = "PLACE";
+    public static final String SEARCH_TYPE_POI = "POI";
     public static final String SEARCH_TYPE_BASESTATION = "BASESTATION";
+
+    public static final int GSM = 2;
+    public static final int LTE = 4;
+    public static final int TYPE_UNKNOWN = 99;
 
 }

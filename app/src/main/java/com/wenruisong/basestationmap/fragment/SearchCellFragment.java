@@ -16,7 +16,10 @@ import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.adapter.SearchCellResultAdapter;
 import com.wenruisong.basestationmap.basestation.BasestationManager;
 import com.wenruisong.basestationmap.basestation.Cell;
+import com.wenruisong.basestationmap.database.SearchHistorySqliteHelper;
 import com.wenruisong.basestationmap.eventbus.SearchResultEvents;
+import com.wenruisong.basestationmap.model.SearchHistoryItem;
+import com.wenruisong.basestationmap.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -68,7 +71,8 @@ public class SearchCellFragment extends BaseFragment implements
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Cell cell = cellSearchResults.get(position);
-            SearchResultEvents.getBus().post(new SearchResultEvents.OnCellClick(cell.baiduLatLng,cell.index));
+            saveSearchAction(cell);
+            SearchResultEvents.getBus().post(new SearchResultEvents.OnCellClick(cell.baiduLatLng,cell.index,cell.getInstanceType()));
             getActivity().finish();
         }
     };
@@ -84,10 +88,25 @@ public class SearchCellFragment extends BaseFragment implements
             bundle.putDouble("LNG",cell.baiduLatLng.longitude);
             intent.putExtras(bundle);
 
+
             getActivity().setResult(2,intent);
             getActivity().finish();
         }
     };
+
+    private void saveSearchAction(Cell cell){
+        SearchHistoryItem searchHistoryItem = new SearchHistoryItem();
+        searchHistoryItem.address = cell.address;
+        searchHistoryItem.keyword = cell.cellName+"(小区)";
+        searchHistoryItem.latLng = cell.baiduLatLng;
+        searchHistoryItem.searchtype = Constants.SEARCH_TYPE_CELL;
+        searchHistoryItem.nettype = cell.getInstanceType();
+        searchHistoryItem.cellindex = cell.index;
+        searchHistoryItem.time =Long.toString(System.currentTimeMillis());
+        SearchHistorySqliteHelper searchHistorySqliteHelper = new SearchHistorySqliteHelper(getActivity());
+        searchHistorySqliteHelper.insertSearchResult(searchHistoryItem);
+
+    }
 
     public void updateDatas(String query)
     {

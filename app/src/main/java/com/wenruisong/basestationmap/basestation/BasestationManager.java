@@ -22,10 +22,10 @@ public class BasestationManager {
     public long numberOfLteCells;
     public static SQLiteDatabase basestationDB;
     public static ArrayList<GSMCell> gsmCells = new ArrayList<>();
-    public static ArrayList<Basestation> gsmBSs = new ArrayList<>();
+    public static ArrayList<GSMBasestation> gsmBSs = new ArrayList<>();
 
     public static ArrayList<LTECell> lteCells = new ArrayList<>();
-    public static ArrayList<Basestation> lteBSs = new ArrayList<>();
+    public static ArrayList<LTEBasestation> lteBSs = new ArrayList<>();
 
     private static BasestationManager instance;
 
@@ -72,7 +72,7 @@ public class BasestationManager {
         for (int i = 0; i < numberOfGsmCells; i++) {
             GSMCell gsmCell = db2GsmCell(cursor, i);
             gsmCells.add(gsmCell);
-            Basestation gsmBS = db2GsmBs(cursor, i);
+            GSMBasestation gsmBS = db2GsmBs(cursor, i);
             gsmBSs.add(gsmBS);
             cursor.moveToNext();
         }
@@ -90,7 +90,7 @@ public class BasestationManager {
         for (int i = 0; i < numberOfLteCells; i++) {
             LTECell lteCell = db2LteCell(cursor, i);
             lteCells.add(lteCell);
-            Basestation lteBS = db2LteBs(cursor, i);
+            LTEBasestation lteBS = db2LteBs(cursor, i);
             lteBSs.add(lteBS);
             cursor.moveToNext();
         }
@@ -176,32 +176,57 @@ public class BasestationManager {
 
 
     public static ArrayList<Cell> searchCellsByName(String cellName) {
-        String sqlString = new String("select * from gsm_cells where NAME like \"%" + cellName + "%\"");
+        String sqlString = new String("select * from lte_cells where NAME like \"%" + cellName + "%\"");
         Logs.d(Tag, sqlString);
         Cursor cursor = basestationDB.rawQuery(sqlString, null);
         ArrayList cells = new ArrayList();
         cursor.moveToFirst();
         int count = cursor.getCount();
-        Logs.d(Tag, "get search count" + count);
+        Logs.d(Tag, "get lte search count" + count);
+        for (int i = 0; i < count; i++) {
+            LTECell lteCell = db2LteCell(cursor, i);
+            cells.add(lteCell);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        sqlString = new String("select * from gsm_cells where NAME like \"%" + cellName + "%\"");
+        Logs.d(Tag, sqlString);
+        cursor = basestationDB.rawQuery(sqlString, null);
+        cursor.moveToFirst();
+        count = cursor.getCount();
+        Logs.d(Tag, "get gsm search count" + count);
         for (int i = 0; i < count; i++) {
             GSMCell gsmCell = db2GsmCell(cursor, i);
             cells.add(gsmCell);
             cursor.moveToNext();
         }
         cursor.close();
+
         return cells;
     }
 
     public static ArrayList<Basestation> searchBsByName(String bsName) {
-        String sqlString = new String("select * from gsm_cells where NAME like \"%" + bsName + "%\"" + " group by BS");
+
+        String sqlString = new String("select * from lte_cells where NAME like \"%" + bsName + "%\"" + " group by BS");
         Logs.d(Tag, sqlString);
         Cursor cursor = basestationDB.rawQuery(sqlString, null);
         ArrayList bses = new ArrayList();
         cursor.moveToFirst();
         int count = cursor.getCount();
-        Logs.d(Tag, "get search count" + count);
         for (int i = 0; i < count; i++) {
-            Basestation bs = db2GsmBs(cursor, i);
+            LTEBasestation bs = db2LteBs(cursor, i);
+            bses.add(bs);
+            cursor.moveToNext();
+        }
+
+         sqlString = new String("select * from gsm_cells where NAME like \"%" + bsName + "%\"" + " group by BS");
+        Logs.d(Tag, sqlString);
+         cursor = basestationDB.rawQuery(sqlString, null);
+        cursor.moveToFirst();
+         count = cursor.getCount();
+        for (int i = 0; i < count; i++) {
+            GSMBasestation bs = db2GsmBs(cursor, i);
             bses.add(bs);
             cursor.moveToNext();
         }
@@ -251,8 +276,8 @@ public class BasestationManager {
         return lteCell;
     }
 
-    public static Basestation db2LteBs(Cursor cursor, int index) {
-        Basestation bs = new Basestation();
+    public static LTEBasestation db2LteBs(Cursor cursor, int index) {
+        LTEBasestation bs = new LTEBasestation();
         bs.bsName = new String(cursor.getString(2));
         bs.basestationIndex = cursor.getInt(17);
         bs.latLng = new LatLng(cursor.getDouble(7), cursor.getDouble(8));
@@ -264,8 +289,8 @@ public class BasestationManager {
     }
 
 
-    public static Basestation db2GsmBs(Cursor cursor, int index) {
-        Basestation bs = new Basestation();
+    public static GSMBasestation db2GsmBs(Cursor cursor, int index) {
+        GSMBasestation bs = new GSMBasestation();
         bs.bsName = new String(cursor.getString(2));
         bs.basestationIndex = cursor.getInt(16);
         bs.latLng = new LatLng(cursor.getDouble(5), cursor.getDouble(6));
