@@ -7,6 +7,8 @@ import android.os.Parcelable;
  * Created by wen on 2016/5/12.
  */
 public class PhoneState implements Parcelable{
+    public String lteCellDistance = "";
+    public String gsmCellDistance;
     public String netType="";
     public String gsmCid="  N/A";
     public String gsmLac="  N/A";
@@ -20,6 +22,7 @@ public class PhoneState implements Parcelable{
     public String lteCI="N/A";
     public String lteRSRP="N/A";
     public String lteCellname="  N/A";
+
 
     public PhoneState(){
 

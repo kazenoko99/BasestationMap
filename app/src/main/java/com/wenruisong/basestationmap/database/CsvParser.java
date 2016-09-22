@@ -4,23 +4,16 @@ package com.wenruisong.basestationmap.database;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.utils.CoordinateConverter;
+import com.amap.api.maps.CoordinateConverter;
+import com.amap.api.maps.model.LatLng;
 import com.csvreader.CsvReader;
+import com.wenruisong.basestationmap.BasestationMapApplication;
 import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.Logs;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.Charset;
-
-import it.sauronsoftware.base64.Base64;
 
 /**
  * Created by wen on 2016/1/24.
@@ -34,6 +27,7 @@ public class CsvParser {
     private static String dot_ = ",'";
     private static String _dot_ = "','";
     private static String sqlend = ");";
+    private static  CoordinateConverter converter  = new CoordinateConverter(BasestationMapApplication.getContext());
     public static int csvGetRows(String path) {
         CsvReader r = null;
         int rows = 0;
@@ -57,7 +51,7 @@ public class CsvParser {
         return rows;
     }
 
-    public static void csvToDatebaseGSM(SQLiteDatabase db,CsvReader r,int index) {
+    public static void csvToDatebaseGSM(SQLiteDatabase db,String city,CsvReader r,int index) {
         StringBuilder sb = new StringBuilder();
         //读取表头
         try {
@@ -76,7 +70,7 @@ public class CsvParser {
                 String height = getString(r, Constants.HEIGHT);
                 String type = getString(r, Constants.TYPE);
              //   String baidu_latlng= g2bLatLngParser(lat, lon);
-            CoordinateConverter converter  = new CoordinateConverter();
+
             converter.from(CoordinateConverter.CoordType.GPS);
 // sourceLatLng待转换坐标
             converter.coord(new LatLng(Double.valueOf(lat),Double.valueOf(lon)));
@@ -84,7 +78,7 @@ public class CsvParser {
             //按列名读取这条记录的值
                 // INSERT INTO gsm_cells VALUES(60251,'台连室分','',27031,1,113.9498,27.1302,08,8,30,1);
             //CID	NAME BS	LAC	BCCH	LAT	LON	AZIMUTH	TOTAL_DOWNTILT	DOWNTILT	HEIGHT	TYPE
-            String getGSMCellSQL =  sb.append(inset).append(Constants.GSMTABLENAME).append(values).append(gsm_cid).append(dot_)
+            String getGSMCellSQL =  sb.append(inset).append(Constants.GSM_TABLE_NAME_).append(city).append(values).append(gsm_cid).append(dot_)
                     .append(name).append(_dot_).append(bs).append(_dot).append(gsm_lac).append(dot)
                     .append(gsm_bcch).append(dot).append(lat)
                     .append(dot).append(lon).append(dot).append(azimuth).append(dot).append(total_downtilt)
@@ -98,7 +92,7 @@ public class CsvParser {
         }
     }
 
-    public static void csvToDatebaseLTE(SQLiteDatabase db,CsvReader r,int index) {
+    public static void csvToDatebaseLTE(SQLiteDatabase db,String city,CsvReader r,int index) {
         StringBuilder sb = new StringBuilder();
         //读取表头
         try {
@@ -119,14 +113,13 @@ public class CsvParser {
             String height = getString(r, Constants.HEIGHT);
             String type = getString(r, Constants.TYPE);
             //   String baidu_latlng= g2bLatLngParser(lat, lon);
-            CoordinateConverter converter  = new CoordinateConverter();
             converter.from(CoordinateConverter.CoordType.GPS);
 // sourceLatLng待转换坐标
             converter.coord(new LatLng(Double.valueOf(lat),Double.valueOf(lon)));
             LatLng baiduLatLng = converter.convert();
             //按列名读取这条记录的值
             //(CI integer,NAME VARCHAR2(30),BS VARCHAR2(30),TAC integer,PCI integer,ENB integer,EARFCN integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double,ADDRESS VARCHAR2(100),CELLINDEX integer);";
-            String getLTECellSQL =  sb.append(inset).append(Constants.LTETABLENAME).append(values).append(lte_ci).append(dot_)
+            String getLTECellSQL =  sb.append(inset).append(Constants.LTE_TABLE_NAME_).append(city).append(values).append(lte_ci).append(dot_)
                     .append(name).append(_dot_).append(bs).append(_dot).append(lte_tac).append(dot)
                     .append(lte_pci).append(dot).append(lte_enb).append(dot).append(lte_earfcn).append(dot).append(lat)
                     .append(dot).append(lon).append(dot).append(azimuth).append(dot).append(total_downtilt)

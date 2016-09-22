@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:elevation="3dp"
+        android:paddingTop="25dp">
+    </android.support.v7.widget.Toolbar>
+
+    <com.wenruisong.basestationmap.view.CommonAddressView
+        android:id="@+id/common_address"
+        android:layout_below="@+id/toolbar"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+    </com.wenruisong.basestationmap.view.CommonAddressView>
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20dp"
+        android:background="@color/search_result_list_bg_color"
+        android:id="@+id/common_address_list"
+        android:layout_below="@+id/common_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnFloatingAction"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:layout_anchor="@id/location_layout"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        android:src="@drawable/ic_create"
+        app:backgroundTint="@color/blue"
+        app:rippleColor="@color/half_white"
+        android:layerType="hardware"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

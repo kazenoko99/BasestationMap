@@ -5,18 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/map_blank"
-    tools:ignore="NewApi">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:id="@+id/map_bottom_detail_layout"
+    tools:ignore="NewApi"
+    >
+    <include
+        android:id="@+id/map_bottom_cell"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/map_bottom_detail_two_line_height"
-        android:layout_marginLeft="@dimen/map_bottom_margin_left"
-        android:layout_marginRight="@dimen/map_bottom_margin_right"
-        android:gravity="center_vertical"/>
+        android:visibility="gone"
+        android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+        android:layout_marginRight="@dimen/mapview_layout_margin_right"
+        layout="@layout/map_bottom_cell"
+        />
+    <include
+        android:id="@+id/map_bottom_poi"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+        android:layout_marginRight="@dimen/mapview_layout_margin_right"
+        layout="@layout/map_bottom_poi"
+
+        />
+
 
 
     <LinearLayout
@@ -34,7 +44,7 @@
             android:drawablePadding="@dimen/map_bottom_act_icon_padding"
             android:paddingStart="@dimen/map_bottom_act_view_padding_left"
             android:gravity="center_vertical"
-            android:drawableLeft="@drawable/map_icon_nearby"
+            android:drawableLeft="@drawable/map_icon_basestation"
             android:text="@string/map_bottom_basestation"
             android:background="@drawable/map_bottom_view_bg" />
 
@@ -61,6 +71,7 @@
             android:gravity="center_vertical"
             android:drawableLeft="@drawable/map_icon_nav"
             android:text="@string/map_bottom_nav"
-            android:background="@drawable/map_bottom_view_bg" />
+            android:background="@drawable/map_bottom_view_bg"
+            />
     </LinearLayout>
 </LinearLayout>

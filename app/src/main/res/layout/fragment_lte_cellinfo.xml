@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/mapview_layout_margin_left"
-    android:layout_marginRight="@dimen/mapview_layout_margin_right"
-    android:background="@drawable/map_blank"
-    android:orientation="vertical">
+    android:background="@drawable/map_blank">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/map_bottom_vp_margin"
+        android:layout_marginRight="@dimen/map_bottom_vp_margin">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:id="@+id/btsname"
-        style="@style/TextMedium"
-        android:textColor="@color/gray"
+        style="@style/TextSmall"
+        android:layout_alignBaseline="@+id/bts_name"
         android:layout_marginLeft="@dimen/cellinfo_margin_left"
         android:text="基站名："
         />
@@ -31,47 +33,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bts_name"
-        android:id="@+id/btsid"
-        android:text="ENB："
+        android:id="@+id/address"
         android:layout_marginLeft="@dimen/cellinfo_margin_left"
-        style="@style/TextMedium"
-        android:textColor="@color/gray"
+        style="@style/TextSmall"
         />
     <TextView
         android:id="@+id/cell_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="100米"
-        android:layout_alignParentRight="true"
-        android:layout_alignBottom="@id/btsid"/>
-    <TextView
-        android:id="@+id/celldistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="距您 "
-        android:textColor="@color/red"
-        android:layout_toLeftOf="@id/cell_distance"
-        android:layout_alignBottom="@id/btsid"/>
+        android:textColor="@color/text_color_primary"
+        android:layout_alignBaseline="@+id/bts_name"
+        android:layout_marginRight="@dimen/map_bottom_vp_margin"
+        android:layout_alignParentRight="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bts_id"
-        android:text="1234"
-        style="@style/TextMedium"
-        android:layout_toRightOf="@+id/btsid"
-        android:layout_below="@id/bts_name"
 
-        />
+
     <View
-        android:layout_below="@id/bts_id"
+        android:layout_below="@id/address"
         android:layout_marginLeft="@dimen/cellinfo_margin_left"
         android:layout_marginRight="@dimen/cellinfo_margin_right"
         android:id="@+id/map_bottom_separator_line1"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/blue"
+        android:layout_height="1px"
+        android:background="@color/colorAccent"
         />
 
 
@@ -90,13 +77,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="小区名："
+            android:layout_marginTop="2dp"
+            style="@style/TextSmall"
             />
         <TextView
             android:id="@+id/cell_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="市政府1"
+            android:textColor="@color/text_color_primary"
             android:layout_toRightOf="@+id/cellname"
+            android:layout_alignBaseline="@+id/cellname"
             />
 
         <TextView
@@ -105,15 +96,18 @@
             android:layout_height="wrap_content"
             android:text="小区号："
             android:layout_below="@id/cellname"
+            android:layout_marginTop="2dp"
+            style="@style/TextSmall"
             />
 
         <TextView
             android:id="@+id/cell_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="603103"
+            android:textColor="@color/text_color_primary"
             android:layout_below="@id/cellname"
             android:layout_toRightOf="@+id/cellid"
+            android:layout_alignBaseline="@+id/cellid"
             />
 
         <TextView
@@ -122,6 +116,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="方位角："
+            android:layout_marginTop="2dp"
+            style="@style/TextSmall"
             />
 
         <TextView
@@ -130,137 +126,90 @@
             android:layout_toRightOf="@+id/cellangel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="80"
+            android:textColor="@color/text_color_primary"
+            android:layout_alignBaseline="@+id/cellangel"
             />
 
-        <TextView
-            android:layout_below="@+id/cellangel"
-            android:id="@+id/cell_down"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="下倾角："
-
-            />
-
-        <TextView
-            android:layout_below="@+id/cellangel"
-            android:id="@+id/cell_fy"
-            android:layout_toRightOf="@+id/cell_down"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="80"
-            />
-
-        <TextView
-            android:layout_below="@+id/cell_down"
-            android:id="@+id/celllat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="经度："
-            />
-
-        <TextView
-            android:layout_below="@+id/cell_down"
-            android:id="@+id/cell_lat"
-            android:layout_toRightOf="@+id/celllat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="113.233222332"
-            android:maxLength="9"
-            />
-
-        <TextView
-            android:layout_below="@+id/celllat"
-            android:id="@+id/celllng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="纬度："
-            />
-
-        <TextView
-            android:layout_below="@+id/celllat"
-            android:id="@+id/cell_lng"
-            android:layout_toRightOf="@+id/celllng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="27.9921223232323"
-            android:maxLength="9"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cellpci"
-            android:layout_toLeftOf="@+id/cell_pci"
-            android:text="PCI:"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cell_pci"
-            android:text="2334"
-            android:layout_alignParentRight="true"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/celltac"
-            android:layout_toLeftOf="@+id/cell_tac"
-            android:layout_below="@+id/cellpci"
-            android:text="TAC:"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cell_tac"
-            android:layout_below="@+id/cellpci"
-            android:text="2334"
-            android:layout_alignParentRight="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cellhigth"
-            android:layout_toLeftOf="@+id/cell_higth"
-            android:layout_below="@+id/celltac"
-            android:text="小区高度:"/>
+            android:layout_below="@+id/cellangel"
+            android:text="小区高度："
+            android:layout_marginTop="2dp"
+            style="@style/TextSmall"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cell_higth"
-            android:layout_below="@+id/cell_tac"
-            android:text="10米"
+            android:layout_below="@+id/cellangel"
+            android:layout_toRightOf="@+id/cellhigth"
+            android:textColor="@color/text_color_primary"
+            android:layout_alignBaseline="@+id/cellhigth"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cellNettype"
+            android:layout_toLeftOf="@+id/cell_nettype"
+            android:text="网络制式:"
+            android:layout_marginTop="2dp"
+            style="@style/TextSmall"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cell_nettype"
+            android:text="LTE"
+            android:layout_alignBaseline="@+id/cellNettype"
+            android:textColor="@color/text_color_primary"
             android:layout_alignParentRight="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cellisshifen"
-            android:layout_toLeftOf="@+id/cell_isshifen"
-            android:layout_below="@+id/cell_higth"
-            android:text="是否室分:"/>
+            android:layout_alignLeft="@+id/cellNettype"
+            android:layout_below="@+id/cell_nettype"
+            android:text="是否宏站:"
+            android:layout_marginTop="2dp"
+            style="@style/TextSmall"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cell_isshifen"
-            android:layout_below="@+id/cell_higth"
+            android:layout_alignBaseline="@+id/cellisshifen"
+            android:layout_below="@+id/cell_nettype"
             android:text="是"
+            android:textColor="@color/text_color_primary"
             android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/go_cell_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/map_icon_arrow"
+            style="@style/TextMedium"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/cell_isshifen"
+            android:textColor="@color/text_color_highlight"
+            android:text="详情"/>
+
+
     </RelativeLayout>
     <View
         android:layout_below="@id/cell_detail"
         android:id="@+id/map_bottom_separator_line2"
         style="@style/separatorHorizontal"
-        android:layout_marginStart="@dimen/map_bottom_separate_line_padding"
-        android:layout_marginEnd="@dimen/map_bottom_separate_line_padding"
+        android:layout_marginLeft="@dimen/map_bottom_vp_margin"
+        android:layout_marginRight="@dimen/map_bottom_vp_margin"
         />
-    <TextView
-        android:layout_above="@+id/map_bottom_separator_line2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextSmall"
-        android:text="左右滑动切换小区"
-        android:layout_marginBottom="2dp"
-        android:layout_alignParentRight="true"/>
+
 
     <LinearLayout
         android:layout_below="@+id/map_bottom_separator_line2"
@@ -311,4 +260,62 @@
     </LinearLayout>
 
 </RelativeLayout>
+</FrameLayout>
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/cellpci"-->
+<!--android:layout_toLeftOf="@+id/cell_pci"-->
+<!--android:text="PCI:"/>-->
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/cell_pci"-->
+<!--android:text="2334"-->
+<!--android:layout_alignParentRight="true"/>-->
 
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/celltac"-->
+<!--android:layout_toLeftOf="@+id/cell_tac"-->
+<!--android:layout_below="@+id/cellpci"-->
+<!--android:text="TAC:"/>-->
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/cell_tac"-->
+<!--android:layout_below="@+id/cellpci"-->
+<!--android:text="2334"-->
+<!--android:layout_alignParentRight="true"/>-->
+
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/cellhigth"-->
+<!--android:layout_toLeftOf="@+id/cell_higth"-->
+<!--android:layout_below="@+id/celltac"-->
+<!--android:text="小区高度:"/>-->
+
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/cell_higth"-->
+<!--android:layout_below="@+id/cell_tac"-->
+<!--android:text="10米"-->
+<!--android:layout_alignParentRight="true"/>-->
+
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/cellisshifen"-->
+<!--android:layout_toLeftOf="@+id/cell_isshifen"-->
+<!--android:layout_below="@+id/cell_higth"-->
+<!--android:text="是否室分:"/>-->
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:id="@+id/cell_isshifen"-->
+<!--android:layout_below="@+id/cell_higth"-->
+<!--android:text="是"-->
+<!--android:layout_alignParentRight="true"/>-->

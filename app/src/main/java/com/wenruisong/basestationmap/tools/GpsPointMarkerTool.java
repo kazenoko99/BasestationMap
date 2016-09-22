@@ -1,9 +1,8 @@
 package com.wenruisong.basestationmap.tools;
 
 import android.widget.Toast;
-
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.LatLng;
 import com.wenruisong.basestationmap.BasestationMapApplication;
 
 import java.util.ArrayList;
@@ -23,12 +22,12 @@ public class GpsPointMarkerTool {
         return instance;
     }
 
-    public static void addMarker(BaiduMap baiduMap,String name,LatLng latLng)
+    public static void addMarker(AMap AMap, String name, LatLng latLng)
     {
         if(markerCounts <= maxCount)
         {
             GpsPointMarker gpsPointMarker = new GpsPointMarker(name,latLng,markerCounts);
-            gpsPointMarker.showInMap(baiduMap);
+            gpsPointMarker.showInMap(AMap);
             markers.add(gpsPointMarker);
             markerCounts++;
         }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="offline_map_hot_citys" translatable="false">
+        <item>全国概要图</item>
+        <item>北京</item>
+        <item>上海</item>
+        <item>广州</item>
+        <item>深圳</item>
+        <item>天津</item>
+        <item>重庆</item>
+        <item>南京</item>
+    </string-array>
+
+
+    <string-array name="around_search_type" translatable="false">
+        <item>around_eat</item>
+        <item>around_hotel</item>
+        <item>around_traffic</item>
+        <item>around_play</item>
+        <item>around_life</item>
+    </string-array>
+
+    <string-array name="common_address">
+        <item>家</item>
+        <item>公司</item>
+    </string-array>
+</resources>

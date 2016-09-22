@@ -2,13 +2,16 @@ package com.wenruisong.basestationmap.map;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Poi;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.RouteActivity;
 import com.wenruisong.basestationmap.adapter.CellInfoPagerAdapter;
@@ -16,17 +19,20 @@ import com.wenruisong.basestationmap.basestation.BasestationManager;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.Marker.SelectedBasestationMarker;
 import com.wenruisong.basestationmap.basestation.Marker.SelectedCellMarker;
-import com.wenruisong.basestationmap.navi.BNDemoMainActivity;
+import com.wenruisong.basestationmap.helper.LocationHelper;
+import com.wenruisong.basestationmap.navi.NaviActivity;
+import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.Logs;
 import com.wenruisong.basestationmap.utils.ResourcesUtil;
 import com.wenruisong.basestationmap.view.BottomCellView;
+import com.wenruisong.basestationmap.view.BottomPoiView;
 import com.wenruisong.basestationmap.view.WrapContentHeightViewPager;
 
 import java.util.ArrayList;
 
 public class MapBottomController  {
     public WrapContentHeightViewPager mDetailViewPager;
-    private LinearLayout mBottomDetailView;
+   // private LinearLayout mBottomDetailView;
     private View mBtmSeparatorLine;
     private LinearLayout mBottomLocActionView;
     private TextView mBottomLocNameView;
@@ -36,13 +42,14 @@ public class MapBottomController  {
     private TextView map_bottom_basestation;
     private TextView map_bottom_route;
     private TextView map_bottom_navi;
-    public BottomCellView bottomCellView;
-    public View bottomCell;
+    public BottomCellView mBottomCellView;
+    private BottomPoiView mBottomPoiView;
+
     OnCellInfoPagerListener onCellInfoPagerChanged;
     public LinearLayout mBottomActionView;
     private CellInfoPagerAdapter cellInfoPagerAdapter;
     private Context mContext;
-    private BaiduMap mBaiduMap;
+    private AMap aMap;
     private ArrayList<Cell> cells = new ArrayList<>();
 
     private int mBtmDetailTwoLineHeight;
@@ -50,12 +57,12 @@ public class MapBottomController  {
 
     public MapBottomController(Context context) {
         this.mContext = context;
-        bottomCellView = new BottomCellView();
-        bottomCell = bottomCellView.initView(context);
+        mBottomCellView = new BottomCellView();
+        mBottomPoiView = new BottomPoiView();
     }
 
-    public void setBaiduMap( BaiduMap baiduMap) {
-        mBaiduMap = baiduMap;
+    public void setAMap(AMap aMap) {
+        this.aMap = aMap;
     }
 
     public void initBottomWidget(View root) {
@@ -71,17 +78,15 @@ public class MapBottomController  {
         map_bottom_navi = (TextView) root.findViewById(R.id.map_bottom_navi);
         map_bottom_route.setOnClickListener(onRouteBtnClickListener);
         map_bottom_navi.setOnClickListener(onNaviBtnClickListener);
-        mBottomDetailView = (LinearLayout)root.findViewById(R.id.map_bottom_detail_layout);
-        mBottomDetailView.setVisibility(View.GONE);
-        mBottomDetailView.addView(bottomCell);
+        mBottomCellView.initView(root,mContext);
+        mBottomPoiView.initView(root,mContext);
         mBottomLocActionView =(LinearLayout) root.findViewById(R.id.map_bottom_act_layout);
-        mBottomActionView = (LinearLayout) root.findViewById(R.id.map_bottom_actionview);
         mBottomLocAddrView = (TextView) root.findViewById(R.id.map_bottom_address);
         mBottomLocDistView = (TextView) root.findViewById(R.id.map_bottom_distance);
         mBottomDetailIcon = (TextView) root.findViewById(R.id.map_bottom_detail);
         mDetailViewPager = (WrapContentHeightViewPager) root.findViewById(R.id.map_bottom_pager);
 
-        mDetailViewPager.setOffscreenPageLimit(2);
+        mDetailViewPager.setOffscreenPageLimit(3);
         mDetailViewPager.setPageMargin(
                 ResourcesUtil.getDimensionPixelSize(R.dimen.map_bottom_page_margin));
         cellInfoPagerAdapter = new CellInfoPagerAdapter(mContext);
@@ -89,7 +94,7 @@ public class MapBottomController  {
         mDetailViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                //   onCellInfoPagerChanged.onCellInfoPagerChanged(cells.get(position).baiduLatLng);
+                //   onCellInfoPagerChanged.onCellInfoPagerChanged(cells.get(position).aMapLatLng);
             }
 
             @Override
@@ -102,8 +107,8 @@ public class MapBottomController  {
                 }
 
                 Cell cell = cells.get(cellIndex);
-                onCellInfoPagerChanged.onCellInfoPagerChanged(cell.baiduLatLng);
-                    SelectedCellMarker.setSelected(mBaiduMap, cell);
+                onCellInfoPagerChanged.onCellInfoPagerChanged(cell.aMapLatLng);
+                    SelectedCellMarker.setSelected(aMap, cell);
             }
 
             @Override
@@ -121,8 +126,22 @@ public class MapBottomController  {
 
     void onCellMarkerClick(Cell cell)
     {
-        SelectedCellMarker.setSelected(mBaiduMap, cell);
+
+        mDetailViewPager.setVisibility(View.VISIBLE);
+        mBottomActionView.setVisibility(View.GONE);
+        SelectedCellMarker.setSelected(aMap, cell);
         cells= BasestationManager.getCellsFromBS(cell);
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        float marginLeftRight;
+        if(cells.size()>1)
+            marginLeftRight = ResourcesUtil.getDimension(R.dimen.mapview_vp_margin_right);
+        else
+            marginLeftRight = ResourcesUtil.getDimension(R.dimen.mapview_layout_margin_left);
+        lp.setMargins((int)marginLeftRight, 0, (int)marginLeftRight, 0);
+        mDetailViewPager.setLayoutParams(lp);
+
+
         cellInfoPagerAdapter.setDates(cells);
         for (int i=0;i<cells.size();i++ ) {
             if(cells.get(i).cellid == cell.cellid)
@@ -131,18 +150,27 @@ public class MapBottomController  {
                 break;
             }
         }
-        mDetailViewPager.setVisibility(View.VISIBLE);
-        mBottomActionView.setVisibility(View.GONE);
+
         cellInfoPagerAdapter.notifyDataSetChanged();
 
     }
 
     void onBasestationMarkerClick(Cell cell)
     {
-        SelectedBasestationMarker.setSelected(mBaiduMap, cell);
+        SelectedBasestationMarker.setSelected(aMap, cell);
         cells= BasestationManager.getCellsFromBS(cell);
         cellInfoPagerAdapter.setDates(cells);
         mDetailViewPager.setVisibility(View.VISIBLE);
+       // LinearLayout.LayoutParams lp =(LinearLayout.LayoutParams)mDetailViewPager.getLayoutParams();
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        float marginLeftRight;
+        if(cells.size()>1)
+            marginLeftRight = ResourcesUtil.getDimension(R.dimen.mapview_vp_margin_right);
+        else
+            marginLeftRight = ResourcesUtil.getDimension(R.dimen.mapview_layout_margin_left);
+
+        lp.setMargins((int)marginLeftRight, 0, (int)marginLeftRight, 0);
+        mDetailViewPager.setLayoutParams(lp);
         mBottomActionView.setVisibility(View.GONE);
         cellInfoPagerAdapter.notifyDataSetChanged();
 
@@ -194,21 +222,43 @@ public class MapBottomController  {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            intent.setClass(mContext, BNDemoMainActivity.class);
+            intent.setClass(mContext, NaviActivity.class);
+            Bundle bundle = new Bundle();
+
+            bundle.putDouble(Constants.START_LAT,LocationHelper.location.getLatitude());
+            bundle.putDouble(Constants.START_LNG,LocationHelper.location.getLongitude());
+
+            bundle.putDouble(Constants.END_LAT,30.3212);
+            bundle.putDouble(Constants.END_LNG,116.4312);
+            intent.putExtra(Constants.NAVI_BUNDLE,bundle);
             mContext.startActivity(intent);
         }
     };
 
+    public void showPoiInfo(Poi poi){
+        if(mBottomPoiView.getVisibility() ==View.GONE) {
+            mBottomPoiView.setVisibility(View.VISIBLE);
+            mBottomCellView.setVisibility(View.GONE);
+        }
+        mBottomPoiView.setDate(poi);
+    }
+
+    public void restore(){
+        mBottomActionView.setVisibility(View.VISIBLE);
+        mDetailViewPager.setVisibility(View.GONE);
+        mBottomPoiView.setVisibility(View.GONE);
+        mBottomCellView.setVisibility(View.GONE);
+    }
 
 
 
     View.OnClickListener onBasestaionBtnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-           if(mBottomDetailView.getVisibility() ==View.GONE )
-               mBottomDetailView.setVisibility(View.VISIBLE);
+            if(mBottomPoiView.getVisibility()==View.VISIBLE)
+            mBottomPoiView.setVisibility(View.GONE);
             else
-               mBottomDetailView.setVisibility(View.GONE);
+            mBottomCellView.setVisibility(View.VISIBLE);
         }
     };
 

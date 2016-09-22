@@ -1,19 +1,25 @@
 package com.wenruisong.basestationmap.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.location.AMapLocation;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Poi;
 import com.wenruisong.basestationmap.R;
+import com.wenruisong.basestationmap.RouteActivity;
+import com.wenruisong.basestationmap.activity.CellDetailActivity;
 import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.basestation.GSMCell;
 import com.wenruisong.basestationmap.basestation.LTECell;
 import com.wenruisong.basestationmap.helper.LocationHelper;
+import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.DistanceUtils;
 
 import java.util.List;
@@ -25,11 +31,16 @@ public class SearchCellResultAdapter extends BaseAdapter {
 
     private List<Cell> mList;
     private Context mContext;
-    private BDLocation myLocation;
+    private AMapLocation myLocation;
     private LatLng locLatLng;
-    public SearchCellResultAdapter(Context context, List<Cell> list) {
+    private boolean isNearby = false;
+    private Poi targetPoi;
+
+    public SearchCellResultAdapter(Context context, List<Cell> list,boolean isNearby) {
         mContext = context;
         mList = list;
+        this.isNearby = isNearby;
+
         if (LocationHelper.getInstance().isLocated) {
             myLocation = LocationHelper.getInstance().location;
             locLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
@@ -41,6 +52,10 @@ public class SearchCellResultAdapter extends BaseAdapter {
        mList = list;
        notifyDataSetChanged();
    }
+
+    public void setTargetPoi(Poi poi){
+        targetPoi = poi;
+    }
     @Override
     public int getCount() {
         return mList == null ? 0 : mList.size();
@@ -57,7 +72,7 @@ public class SearchCellResultAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_search_result_cell, null);
@@ -67,10 +82,14 @@ public class SearchCellResultAdapter extends BaseAdapter {
         holder.cellGothere = (TextView) view.findViewById(R.id.cell_go_there);
         holder.cellDistance = (TextView) view.findViewById(R.id.cell_distance);
         holder.cellNetType = (TextView)view.findViewById(R.id.cell_nettype);
+        holder.cellDetail = (TextView)view.findViewById(R.id.cell_detail);
         final Cell cell = mList.get(position);
         holder.cellName.setText(cell.cellName);
-        if(cell.baiduLatLng!=null && locLatLng!=null)
-        holder.cellDistance.setText(DistanceUtils.getDistance(cell.baiduLatLng ,locLatLng));
+        if(isNearby){
+            holder.cellDistance.setText(DistanceUtils.getDistance(cell.aMapLatLng,targetPoi.getCoordinate()));
+        }
+        else if(cell.aMapLatLng !=null && locLatLng!=null)
+        holder.cellDistance.setText(DistanceUtils.getDistance(cell.aMapLatLng,locLatLng));
         if (cell.address == null)
         holder.cellAddress.setVisibility(View.GONE);
         else {
@@ -83,6 +102,27 @@ public class SearchCellResultAdapter extends BaseAdapter {
         } else if( cell instanceof GSMCell){
             holder.cellNetType.setText("GSM");
         }
+       holder.cellDetail.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(mContext,CellDetailActivity.class);
+               intent.putExtra("CELL",mList.get(position));
+               mContext.startActivity(intent);
+           }
+       });
+        holder.cellGothere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(mContext, RouteActivity.class);
+                Bundle bundle = new Bundle();
+                Cell cell =  (Cell)getItem(position);
+                bundle.putString(Constants.ROUTE_TARGET_NAME,cell.bsName+"(小区)");
+                bundle.putDouble(Constants.ROUTE_TARGET_LAT,cell.aMapLatLng.latitude);
+                bundle.putDouble(Constants.ROUTE_TARGET_LNG,cell.aMapLatLng.longitude);
+                intent.putExtra(Constants.ROUTE_BUNDLE,bundle);
+                mContext.startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -92,6 +132,7 @@ public class SearchCellResultAdapter extends BaseAdapter {
         TextView cellDistance;
         TextView cellGothere;
         TextView cellType;
+        TextView cellDetail;
         TextView cellNetType;
     }
 }

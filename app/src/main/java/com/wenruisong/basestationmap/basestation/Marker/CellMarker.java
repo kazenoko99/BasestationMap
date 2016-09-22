@@ -1,17 +1,8 @@
 package com.wenruisong.basestationmap.basestation.Marker;
 
-import android.widget.Toast;
-
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.MarkerOptions;
-import com.wenruisong.basestationmap.BasestationMapApplication;
-import com.wenruisong.basestationmap.R;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.Marker;
 import com.wenruisong.basestationmap.basestation.Cell;
-
-import java.util.Objects;
 
 /**
  * Created by wen on 2016/2/28.
@@ -26,7 +17,7 @@ public abstract class CellMarker {
     }
 
 
-    abstract void showInMap(BaiduMap baiduMap);
+    abstract void showInMap(AMap aMap);
 
     public void remove()
     {

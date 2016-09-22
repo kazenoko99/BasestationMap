@@ -9,7 +9,9 @@ import com.wenruisong.basestationmap.utils.Logs;
 public class Settings {
     private static Settings mSettings = new Settings();
     private static Context mContext;
+    public static boolean isShowCellName = false;
     private ScreenOnListener screenOnListener;
+    private SignalNotifcationOnListener signalNotifcationOnListener;
     private ZoomSettingListener zoomSettingListener;
     private CenterIndicSettingListener centerIndicSettingListener;
 
@@ -20,6 +22,9 @@ public class Settings {
         return mSettings;
     }
 
+    Settings(){
+        isShowCellName = isShowCellName();
+    }
     public static void initContext(Context context) {
         mContext = context;
     }
@@ -38,8 +43,37 @@ public class Settings {
         }
     }
 
+    public boolean isShowCellName() {
+        SharedPreferences sharedPreferences = SharedPrefer.getInstance().open().read();
+        return sharedPreferences.getBoolean(Constants.SHOW_CELL_NAME, false);
+    }
+
+    public void setShowCellName(boolean show) {
+        isShowCellName = show;
+        SharedPreferences.Editor editor = SharedPrefer.getInstance().open().edit();
+        editor.putBoolean(Constants.SHOW_CELL_NAME, show);
+        editor.apply();
+        if (screenOnListener != null) {
+            screenOnListener.onKeepScreenChange(show);
+        }
+    }
+
+    public void showSingalNotification(boolean show) {
+        SharedPreferences.Editor editor = SharedPrefer.getInstance().open().edit();
+        editor.putBoolean(Constants.SHOW_SIGNAL_NOTIFICATION, show);
+        editor.apply();
+        if (signalNotifcationOnListener != null) {
+            signalNotifcationOnListener.onSignalNotificationChange(show);
+        }
+    }
+
+
     public void setScreenOnListener(ScreenOnListener screenOnListener) {
         this.screenOnListener = screenOnListener;
+    }
+
+    public void setSignalNotifcationOnListener(SignalNotifcationOnListener listener) {
+        this.signalNotifcationOnListener = listener;
     }
 
     public void setZoomSettingListener(ZoomSettingListener zoomSettingListener) {
@@ -48,6 +82,10 @@ public class Settings {
 
     public interface ScreenOnListener {
         void onKeepScreenChange(boolean keepSreenOn);
+    }
+
+    public interface SignalNotifcationOnListener{
+        void onSignalNotificationChange(boolean show);
     }
 
     public boolean isShowZoomButton() {
@@ -110,15 +148,15 @@ public class Settings {
         void onCenterIndicSettingChange(boolean showCenterIndic);
     }
 
-    public static boolean isDatabaseReady(String str) {
+    public static boolean isDatabaseReady(String city,String nettype) {
         SharedPreferences sharedPreferences = SharedPrefer.getInstance().open().read();
-        return sharedPreferences.getBoolean(str+"isDatabaseReady", false);
+        return sharedPreferences.getBoolean(city + nettype +"isDatabaseReady", false);
     }
 
-    public static void setDatabaseReady(String str,boolean isReady) {
+    public static void setDatabaseReady(String city,String nettype,boolean isReady) {
 
         SharedPreferences.Editor editor = SharedPrefer.getInstance().open().edit();
-        editor.putBoolean(str+"isDatabaseReady", isReady);
+        editor.putBoolean(city + nettype+"isDatabaseReady", isReady);
         editor.apply();
     }
 
@@ -134,16 +172,29 @@ public class Settings {
         editor.apply();
     }
 
-    public static boolean isTableExsit(String str) {
-        str = str + "isTableExsit";
+    public static String getMarkerCity() {
         SharedPreferences sharedPreferences = SharedPrefer.getInstance().open().read();
-        return sharedPreferences.getBoolean(str, false);
+        return sharedPreferences.getString("makerCity", "");
     }
 
-    public static void setTableExsit(String str,boolean isReady) {
+    public static void setMarkerCity(String city) {
+
+        SharedPreferences.Editor editor = SharedPrefer.getInstance().open().edit();
+        editor.putString("makerCity", city);
+        editor.apply();
+    }
+
+
+    public static boolean isTableExsit(String city,String str) {
+        str = str + "isTableExsit";
+        SharedPreferences sharedPreferences = SharedPrefer.getInstance().open().read();
+        return sharedPreferences.getBoolean(city+str, false);
+    }
+
+    public static void setTableExsit(String city,String str,boolean isReady) {
         str = str + "isTableExsit";
         SharedPreferences.Editor editor = SharedPrefer.getInstance().open().edit();
-        editor.putBoolean(str, isReady);
+        editor.putBoolean(city+str, isReady);
         editor.apply();
     }
 

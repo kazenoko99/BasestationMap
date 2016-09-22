@@ -1,7 +1,6 @@
 package com.wenruisong.basestationmap.model;
 
-
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.model.LatLng;
 
 public class SearchHistoryItem {
     public String keyword;

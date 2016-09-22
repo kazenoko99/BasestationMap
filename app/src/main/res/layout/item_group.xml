@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="80dp">
+<ImageView
+    android:id="@+id/group_image"
+    android:layout_width="75dp"
+    android:layout_height="75dp"
+    android:layout_centerVertical="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/group_image"
+        android:id="@+id/groupName"
+        android:text="群组名称:"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/groupName"
+        style="@style/TextNormal"
+        android:id="@+id/group_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/group_belong"
+        android:text="群所属:"
+        android:id="@+id/groupBelong"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        style="@style/TextNormal"
+        android:id="@+id/group_belong"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/group_image"
+        android:id="@+id/groupMaker"
+        android:text="群主:"
+        android:layout_below="@+id/group_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/groupMaker"
+        android:id="@+id/group_maker"
+        style="@style/TextNormal"
+        android:layout_below="@+id/group_name"/>
+
+    <TextView
+        android:layout_below="@+id/group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/group_menber_cout"
+        android:text="群人数"
+        android:id="@+id/groupMenberCount"/>
+    <TextView
+        android:layout_below="@+id/group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/group_menber_cout"/>
+    <TextView
+        android:layout_below="@+id/group_menber_cout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        style="@style/TextNormal"
+        android:id="@+id/group_discription"/>
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/list_divider"/>
+</RelativeLayout>

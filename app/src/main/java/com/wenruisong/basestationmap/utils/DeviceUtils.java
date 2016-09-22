@@ -4,18 +4,18 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManager.RunningTaskInfo;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.os.Build;
-import android.telephony.TelephonyManager;
-import android.text.TextUtils;
+import android.os.Environment;
+import android.util.DisplayMetrics;
 
-
-import java.lang.reflect.Field;
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -222,123 +222,125 @@ public final class DeviceUtils {
         }
     }
 
-    private static void getType() {
-        if (hasTypeGot) {
-            return;
+
+
+    public static DisplayMetrics getScreenWH(Context context) {
+        DisplayMetrics dMetrics = new DisplayMetrics();
+        dMetrics = context.getResources().getDisplayMetrics();
+        return dMetrics;
+    }
+
+    /**
+     * 计算焦点及测光区域
+     *
+     * @param focusWidth
+     * @param focusHeight
+     * @param areaMultiple
+     * @param x
+     * @param y
+     * @param previewleft
+     * @param previewRight
+     * @param previewTop
+     * @param previewBottom
+     * @return Rect(left,top,right,bottom) : left、top、right、bottom是以显示区域中心为原点的坐标
+     */
+    public static Rect calculateTapArea(int focusWidth, int focusHeight,
+                                        float areaMultiple, float x, float y, int previewleft,
+                                        int previewRight, int previewTop, int previewBottom) {
+        int areaWidth = (int) (focusWidth * areaMultiple);
+        int areaHeight = (int) (focusHeight * areaMultiple);
+        int centerX = (previewleft + previewRight) / 2;
+        int centerY = (previewTop + previewBottom) / 2;
+        double unitx = ((double) previewRight - (double) previewleft) / 2000;
+        double unity = ((double) previewBottom - (double) previewTop) / 2000;
+        int left = clamp((int) (((x - areaWidth / 2) - centerX) / unitx),
+                -1000, 1000);
+        int top = clamp((int) (((y - areaHeight / 2) - centerY) / unity),
+                -1000, 1000);
+        int right = clamp((int) (left + areaWidth / unitx), -1000, 1000);
+        int bottom = clamp((int) (top + areaHeight / unity), -1000, 1000);
+
+        return new Rect(left, top, right, bottom);
+    }
+
+    public static int clamp(int x, int min, int max) {
+        if (x > max)
+            return max;
+        if (x < min)
+            return min;
+        return x;
+    }
+
+    /**
+     * 检测摄像头设备是否可用
+     * Check if this device has a camera
+     * @param context
+     * @return
+     */
+    public static boolean checkCameraHardware(Context context) {
+        if (context != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            return false;
         }
+    }
 
-        Class clsBuildExt = CompatUtils.getClass("android.os.BuildExt");
-
-        try {
-            IS_MX2 = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_MX2"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_MX3 = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_MX3"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_MX4 = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_MX4"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_MX4_Pro = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_MX4_Pro"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_M1 = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_M1"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_M1_NOTE = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_M1_NOTE"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_M1_NOTEC = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_M71C"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_M2_NOTE = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_M2_NOTE"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_M2 = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_M2"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_M2C = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_M2C"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_M2_NOTEC = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_M2_NOTEC"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            IS_MX5 = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_MX5"));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            boolean isMx5PRO = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                    CompatUtils.getField(clsBuildExt, "IS_MX5_PRO"));
-            boolean isMx5Pro = false;
-            if (!isMx5PRO) {
-                isMx5Pro = (boolean) CompatUtils.getFieldValue(clsBuildExt, false,
-                        CompatUtils.getField(clsBuildExt, "IS_MX5_Pro"));
+    /**
+     * @param context
+     * @return app_cache_path/dirName
+     */
+    public static String getDBDir(Context context) {
+        String path = null;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            path = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                    File.separator + "bbk" + File.separator + "cloudteacher" + File.separator + "db";
+            File externalCacheDir = context.getExternalCacheDir();
+            if (externalCacheDir != null) {
+                path = externalCacheDir.getPath();
             }
-            IS_MX5_Pro = isMx5PRO || isMx5Pro;
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
         }
-
-        hasTypeGot = true;
+        if (path == null) {
+            File cacheDir = context.getCacheDir();
+            if (cacheDir != null && cacheDir.exists()) {
+                path = cacheDir.getPath();
+            }
+        }
+        return path;
     }
 
-    public static boolean isVoiceAssistantUseInLockScreen(Context context) {
-        boolean isChecked;
-        Class clsSys = android.provider.Settings.System.class;
-        Method getInt = CompatUtils.getMethod(clsSys, "getInt", ContentResolver.class, String.class, int.class);
-        Class settingsCls = CompatUtils.getClass("android.provider.MzSettings$System");
-        Field vaUseInLockScreenField = CompatUtils.getField(settingsCls, "VOICE_ASSISTENT_USE_IN_LOCKSCREEN");
-        String vaUseInLockScreenValue = (String) CompatUtils.getFieldValue(settingsCls, null, vaUseInLockScreenField);
-        int checkedValue = (Integer) CompatUtils.invoke(clsSys, 0, getInt, context.getContentResolver(), vaUseInLockScreenValue, 0);
-        isChecked = checkedValue == 1;
-        return isChecked;
+    /**
+     * bitmap旋转
+     * @param b
+     * @param degrees
+     * @return
+     */
+    public static Bitmap rotate(Bitmap b, int degrees) {
+        if (degrees != 0 && b != null) {
+            Matrix m = new Matrix();
+            m.setRotate(degrees, (float) b.getWidth() / 2, (float) b.getHeight() / 2);
+            try {
+                Bitmap b2 = Bitmap.createBitmap(
+                        b, 0, 0, b.getWidth(), b.getHeight(), m, true);
+                if (b != b2) {
+                    b.recycle();  //Android开发网再次提示Bitmap操作完应该显示的释放
+                    b = b2;
+                }
+            } catch (OutOfMemoryError ex) {
+                // Android123建议大家如何出现了内存不足异常，最好return 原始的bitmap对象。.
+            }
+        }
+        return b;
     }
 
+    public static final int getHeightInPx(Context context) {
+        final int height = context.getResources().getDisplayMetrics().heightPixels;
+        return height;
+    }
+
+    public static final int getWidthInPx(Context context) {
+        final int width = context.getResources().getDisplayMetrics().widthPixels;
+        return width;
+    }
 }

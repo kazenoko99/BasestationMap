@@ -1,30 +1,109 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/layout"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-    >
-  <com.baidu.lbsapi.panoramaview.PanoramaView
-      android:id="@+id/panorama"
-      android:layout_width="60dp"
-      android:layout_height="60dp"
-      android:layout_centerInParent="true"
-      android:clickable="true"/>
+                android:layout_height="fill_parent">
 
-  <com.baidu.mapapi.map.MapView
-      android:id="@+id/bmapView"
+  <com.amap.api.maps.MapView
+      android:id="@+id/amapView"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       android:clickable="true" />
   <android.support.v7.widget.Toolbar
-      android:id="@+id/toolbar"
-      android:layout_marginTop="24dp"
-      android:layout_height="55dp"
-      android:gravity="center"
-      android:layout_width="match_parent"/>
-  <com.wenruisong.basestationmap.map.MapController
-      android:id="@+id/map_controller"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent">
-  </com.wenruisong.basestationmap.map.MapController>
+     android:id="@+id/toolbar"
+     android:layout_marginTop="24dp"
+     android:layout_height="55dp"
+     android:gravity="center"
+     android:layout_width="match_parent"/>
+   <include
+       android:id="@+id/map_top_searchview"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+       android:layout_marginRight="@dimen/mapview_layout_margin_right"
+       layout="@layout/map_search_view"
+       android:layout_marginTop="30dp"
+       />
+   <ImageView
+       android:id="@+id/map_mode"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@drawable/map_icon_bg2"
+       android:src="@drawable/map_layer_change"
+       android:layout_alignParentRight="true"
+       android:scaleType="center"
+       android:layout_below="@+id/map_top_searchview"
+       android:layout_marginTop="12dp"
+       android:layout_marginRight="@dimen/mapview_layout_margin_right"
+       android:layout_marginBottom="12dp" />
+
+   <LinearLayout
+       android:id="@+id/bottom_control"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginBottom="@dimen/mapview_icon_margin_bottom"
+       android:gravity="bottom"
+       android:layout_alignParentBottom="true"
+       android:clipChildren="false"
+       android:orientation="vertical">
+     <FrameLayout
+         android:layout_width="match_parent"
+         android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+         android:layout_marginRight="@dimen/mapview_layout_margin_right"
+         android:layout_height="match_parent">
+       <LinearLayout
+           android:id="@+id/map_zoom_in_out_layout"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_alignParentLeft="true"
+           android:layout_marginBottom="12dp"
+           android:layout_above="@+id/map_bottom_actionview"
+           android:background="@drawable/map_zoom_bg">
+         <ImageView
+             android:id="@+id/map_zoom_in"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/map_zoom_in" />
+
+         <ImageView
+             android:id="@+id/map_zoom_out"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/map_zoom_out" />
+       </LinearLayout>
+
+       <ImageView
+           android:id="@+id/map_locate"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/map_location_follow"
+           android:layout_gravity="right|bottom"
+           android:layout_marginBottom="12dp"
+           />
+     </FrameLayout>
+     <include
+         android:id="@+id/map_bottom_actionview"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+         android:layout_marginRight="@dimen/mapview_layout_margin_right"
+         layout="@layout/map_bottom_actionview"
+         android:layout_marginBottom="12dp"/>
+
+     <com.wenruisong.basestationmap.view.WrapContentHeightViewPager
+         android:id="@+id/map_bottom_pager"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="@dimen/mapview_layout_margin_left"
+         android:layout_marginRight="@dimen/mapview_layout_margin_left"
+         android:clipChildren="false" />
+   </LinearLayout>
+   <com.wenruisong.basestationmap.view.CompassView
+       android:id="@+id/compass_view"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_margin="10dp"
+       android:visibility="gone"
+       android:layout_centerInParent="true"/>
 
 </RelativeLayout>

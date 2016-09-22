@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:gravity="left"
+        style="@style/TextLarge"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="@dimen/offline_map_city_item_title_margin_left"
         android:maxWidth="@dimen/offline_map_city_item_title_width"
@@ -23,9 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/tv_city_name"
-        android:layout_marginLeft="@dimen/offline_map_city_item_size_margin_left"
-        android:textSize="@dimen/text_size_normal"
-        android:textColor="@color/black" />
+        android:layout_marginLeft="@dimen/offline_map_city_item_size_margin_left" />
 
 
     <RelativeLayout
@@ -46,6 +45,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/offline_map_city_item_ctrl_margin_right"
             android:text="@string/offline_map_download"
+            android:textColor="@color/white"
+            android:background="@drawable/round_corner_button"
             android:textAllCaps="false"
             android:clickable="false"/>
 

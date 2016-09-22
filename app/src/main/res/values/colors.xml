@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#ff4990e2</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff4990e2</color>
+
+
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#ff7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
@@ -13,7 +18,7 @@
     <color name="background_material_light">#ffeeeeee</color>
     <color name="black">#ff000000</color>
     <color name="trans_black">#80000000</color>
-    <color name="blue">#ff2196f3</color>
+    <color name="blue">#ff4990e2</color>
     <color name="blue_light">#53d3f8</color>
     <color name="body_text_1">#de000000</color>
     <color name="body_text_1_inverse">#deffffff</color>
@@ -218,6 +223,7 @@
     <color name="black_color_alpha_4">#0A000000</color>
     <color name="black_color_ic">#80000000</color>
     <color name="list_divider">#26000000</color>
+    <color name="dialog_divider">#13000000</color>
 
     <color name="mz_theme_color_dodgerblue">#508aeb</color>
     <color name="mz_theme_color_dodgerblue_pressed">#3d68ba</color>

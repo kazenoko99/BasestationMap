@@ -1,6 +1,6 @@
 package com.wenruisong.basestationmap.basestation;
 
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.model.LatLng;
 import com.wenruisong.basestationmap.utils.Constants;
 
 /**
@@ -9,7 +9,7 @@ import com.wenruisong.basestationmap.utils.Constants;
 public class Basestation {
     public String bsName;
     public LatLng latLng;
-    public LatLng baiduLatLng;
+    public LatLng amapLatLng;
     public String address;
     public int type;
 
@@ -25,4 +25,22 @@ public class Basestation {
         else return Constants.TYPE_UNKNOWN;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        // return super.equals(o);
+        if (o instanceof Basestation){
+            if(((Basestation) o).bsName.equals(this.bsName) && ((Basestation) o).latLng.equals (this.latLng)){
+                return true;
+            } else {
+                return false;
+            }
+        } else
+            return false;
+
+    }
+
+      @Override
+      public int hashCode() {
+        return basestationIndex;
+    }
 }

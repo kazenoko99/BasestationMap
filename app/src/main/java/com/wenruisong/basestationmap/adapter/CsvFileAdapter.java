@@ -1,31 +1,38 @@
 package com.wenruisong.basestationmap.adapter;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wenruisong.basestationmap.R;
-import com.wenruisong.basestationmap.common.PathCursor;
+import com.wenruisong.basestationmap.common.CsvFile;
+
+import java.util.ArrayList;
 
 /**
  * Created by wen on 2016/1/24.
  */
 
-public class CsvFileAdapter extends SimpleCursorAdapter {
+public class CsvFileAdapter extends BaseAdapter {
     final class ViewHolder {
         public ImageView iconImageView;
         public TextView nameTextView;
+        public TextView pathTextView;
+    }
+  private ArrayList<CsvFile> mCsvFiles;
+    private Context mContext;
+    public CsvFileAdapter(Context context,ArrayList<CsvFile> csvFiles) {
+        mContext = context;
+        mCsvFiles = csvFiles;
     }
 
-    public CsvFileAdapter(Context context) {
-        super(context, android.R.layout.simple_list_item_2, null,
-                new String[]{PathCursor.CN_FILE_NAME, PathCursor.CN_FILE_PATH},
-                new int[]{android.R.id.text1, android.R.id.text2}, 0);
+    public void setDates(ArrayList<CsvFile> list) {
+        mCsvFiles = list;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,67 +46,31 @@ public class CsvFileAdapter extends SimpleCursorAdapter {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
         if (viewHolder == null) {
             viewHolder = new ViewHolder();
-            viewHolder.iconImageView = (ImageView) view.findViewById(R.id.icon);
+            viewHolder.pathTextView = (TextView) view.findViewById(R.id.path);
             viewHolder.nameTextView = (TextView) view.findViewById(R.id.name);
         }
 
-        if (isDirectory(position)) {
-            viewHolder.iconImageView.setImageResource(R.drawable.ic_theme_folder);
-        } else if (isCSV(position)) {
-            viewHolder.iconImageView.setImageResource(R.drawable.ic_theme_description);
-        }
-        viewHolder.nameTextView.setText(getFileName(position));
+         CsvFile csvFile = mCsvFiles.get(position);
 
+        viewHolder.nameTextView.setText(csvFile.csvName);
+        viewHolder.pathTextView.setText(csvFile.csvPath);
         return view;
     }
 
     @Override
+    public int getCount() {
+        return mCsvFiles ==null? 0 : mCsvFiles.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mCsvFiles.get(position);
+    }
+
+    @Override
     public long getItemId(int position) {
-        final Cursor cursor = moveToPosition(position);
-        if (cursor == null)
-            return 0;
-
-        return cursor.getLong(PathCursor.CI_ID);
+        return position;
     }
 
-    Cursor moveToPosition(int position) {
-        final Cursor cursor = getCursor();
-        if (cursor.getCount() == 0 || position >= cursor.getCount()) {
-            return null;
-        }
-        cursor.moveToPosition(position);
-        return cursor;
-    }
 
-    public boolean isDirectory(int position) {
-        final Cursor cursor = moveToPosition(position);
-        if (cursor == null)
-            return true;
-
-        return cursor.getInt(PathCursor.CI_IS_DIRECTORY) != 0;
-    }
-
-    public boolean isCSV(int position) {
-        final Cursor cursor = moveToPosition(position);
-        if (cursor == null)
-            return true;
-
-        return cursor.getInt(PathCursor.CI_IS_CSV) != 0;
-    }
-
-    public String getFileName(int position) {
-        final Cursor cursor = moveToPosition(position);
-        if (cursor == null)
-            return "";
-
-        return cursor.getString(PathCursor.CI_FILE_NAME);
-    }
-
-    public String getFilePath(int position) {
-        final Cursor cursor = moveToPosition(position);
-        if (cursor == null)
-            return "";
-
-        return cursor.getString(PathCursor.CI_FILE_PATH);
-    }
 }

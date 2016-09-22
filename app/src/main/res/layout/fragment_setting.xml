@@ -1,15 +1,154 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.wenruisong.basestationmap.fragment.SettingFragment">
+             android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:paddingTop="25dp"
+        android:id="@+id/toolbar"
+        android:elevation="3dp"
+        android:background="@color/blue"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <com.baidu.lbsapi.panoramaview.PanoramaView
-        android:background="@color/half_white"
-        android:id="@+id/panorama"
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:id="@+id/settings_city_change_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/mz_item_background"
+        android:minHeight="60dp"
+        android:paddingLeft="20dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/settings_city_change_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_list_item_text_margin_top"
+            android:includeFontPadding="false"
+            android:text="@string/settings_city_change"
+            android:textColor="@color/text_color_primary"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:id="@+id/settings_city_change_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settings_city_change_title"
+            android:layout_marginBottom="@dimen/setting_list_item_text_margin_bottom"
+            android:layout_marginTop="12dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="@dimen/text_size_medium" />
+
+        <ImageView
+            android:layout_width="@dimen/setting_next_btn_width"
+            android:layout_height="@dimen/setting_next_btn_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/setting_next_btn_margin_right"
+            android:src="@drawable/arrow_next_right_normal" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?android:attr/listDivider"
+        android:contentDescription="@null" />
+
+    <RelativeLayout
+    android:id="@+id/settings_keep_screen_on_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/mz_item_background"
+    android:minHeight="60dp">
+
+    <TextView
+        android:id="@+id/settings_keep_screen_on_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="20dp"
+        android:text="@string/settings_keep_screen_on"
+        android:textColor="@color/text_color_primary"
+        android:textSize="@dimen/text_size_normal" />
+
+    <Switch
+        android:id="@+id/settings_keep_screen_on_switch"
+        android:layout_width="@dimen/setting_switch_btn_width"
+        android:layout_height="@dimen/setting_switch_btn_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp" />
+</RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?android:attr/listDivider"
+        android:contentDescription="@null" />
+
+    <RelativeLayout
+    android:id="@+id/settings_show_singal_notification_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/mz_item_background"
+    android:minHeight="60dp">
+
+    <TextView
+        android:id="@+id/settings_show_singal_notification_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="20dp"
+        android:text="@string/settings_show_signal"
+        android:textColor="@color/text_color_primary"
+        android:textSize="@dimen/text_size_normal" />
+
+    <Switch
+        android:id="@+id/settings_show_singal_notification_switch"
+        android:layout_width="@dimen/setting_switch_btn_width"
+        android:layout_height="@dimen/setting_switch_btn_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp" />
+</RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?android:attr/listDivider"
+        android:contentDescription="@null" />
+
+    <RelativeLayout
+        android:id="@+id/settings_about_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mz_item_background"
+        android:minHeight="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp"
+            android:text="@string/settings_about_app"
+            android:textColor="@color/text_color_primary"
+            android:textSize="@dimen/text_size_normal" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?android:attr/listDivider"
+        android:contentDescription="@null" />
+</LinearLayout>

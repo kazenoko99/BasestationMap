@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_poi_tel"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/offline_map_download_recommend_header_height"
+    android:gravity="center"
+    android:background="@color/map_background_gray"
+    android:text="你还没下载离线包,推荐下载以下离线包"/>

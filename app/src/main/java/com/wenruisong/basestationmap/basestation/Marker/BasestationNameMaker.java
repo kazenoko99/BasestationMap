@@ -1,24 +1,34 @@
 package com.wenruisong.basestationmap.basestation.Marker;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.Overlay;
-import com.baidu.mapapi.map.TextOptions;
+
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.Text;
+import com.amap.api.maps.model.TextOptions;
 
 /**
  * Created by wen on 2016/3/1.
  */
 public class BasestationNameMaker extends BasestationMarker {
-
-    public Overlay BSText;
-    private TextOptions textOptions=new TextOptions().fontSize(28).fontColor(0XFF000000).zIndex(10);
-
+    private int mTextSize = 34;
+    public Text BSText;
+    private String basestationName;
+    private TextOptions textOptions=new TextOptions().fontSize(mTextSize).fontColor(0XFF000000).backgroundColor(0X00000000).zIndex(10);
+    public void setTextSize(int size){
+        textOptions.fontSize(size);
+    }
     @Override
-    void showInMap(BaiduMap baiduMap) {
+    public void showInMap(AMap aMap) {
         if( mBasestation.isNameShow)
             return;
-        if (BSText == null)
-            BSText=baiduMap.addOverlay(textOptions.text(mBasestation.bsName)
-                    .position(mBasestation.baiduLatLng));
+        if (BSText == null) {
+            if(mBasestation.bsName.length()>15){
+                basestationName = mBasestation.bsName.substring(0,15)+"...";
+            } else {
+                basestationName = mBasestation.bsName;
+            }
+            BSText = aMap.addText(textOptions.text(basestationName)
+                    .position(mBasestation.amapLatLng));
+        }
         mBasestation.isNameShow=true;
     }
 

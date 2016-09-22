@@ -6,26 +6,24 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.wenruisong.basestationmap.MainActivity;
 import com.wenruisong.basestationmap.R;
+import com.wenruisong.basestationmap.offlinemap.AynscWorkListener;
+import com.wenruisong.basestationmap.offlinemap.OfflineMapLoader;
 import com.wenruisong.basestationmap.utils.Logs;
+import com.wenruisong.basestationmap.utils.NetUtil;
 import com.wenruisong.basestationmap.utils.ResourcesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class OfflineMapFragment extends BackPressHandledFragment{
+public class OfflineMapFragment extends BackPressHandledFragment implements OfflineMapLoader.OfflineMapRemoveListener,NetUtil.NetworkChangeListener{
     private ViewPager mViewPager;
     private List<Fragment> mFragments = new ArrayList<>();
     private OfflineMapPagerAdapter mAdapter;
@@ -42,6 +40,9 @@ public class OfflineMapFragment extends BackPressHandledFragment{
     public View inflateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Logs.d("OfflineMapModule", "OfflineMapFragment onCreateView");
         View root = initView(inflater);
+        initData();
+        // 注册网络监听
+        NetUtil.getInstance().registerNetworkChangeListener(this);
         return root;
     }
 
@@ -60,18 +61,11 @@ public class OfflineMapFragment extends BackPressHandledFragment{
                 ResourcesUtil.getString(R.string.offline_map_download_title),
                 ResourcesUtil.getString(R.string.offline_map_title)
         } ;
-        OfflineMapDownloadFragment downloadFragment = (OfflineMapDownloadFragment) OfflineMapDownloadFragment.getInstance(null);
-        OfflineMapCityFragment cityFragment = (OfflineMapCityFragment) OfflineMapCityFragment.getInstance(null);
-        mFragments.add(downloadFragment);
-        mFragments.add(cityFragment);
+
         mAdapter = new OfflineMapPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(mAdapter);
         mTabLayout=(TabLayout)root.findViewById(R.id.tab_layout);
-        mTabLayout.setOnTabSelectedListener(mTabListener);
-        mTabLayout.setupWithViewPager(mViewPager);
-        final TabLayout.TabLayoutOnPageChangeListener listener =
-                new TabLayout.TabLayoutOnPageChangeListener(mTabLayout);
-        mViewPager.addOnPageChangeListener(listener);
+
         return root;
     }
 
@@ -89,10 +83,87 @@ public class OfflineMapFragment extends BackPressHandledFragment{
     };
 
 
+    private void initData() {
+        Logs.d("OfflineMapModule", "OfflineMapFragment initData");
+
+        doWorkAynsc(new AynscWorkListener() {
+            @Override
+            public void onPreExcuted() {
+                Logs.d("OfflineMapModule", "OfflineMapFragment initData doWorkAynsc onPreExcuted");
+            }
+
+            @Override
+            public Object doInBackground() {
+                // 由于创建OfflineMapManager比较耗时
+                Logs.d("OfflineMapModule", "OfflineMapFragment initData doWorkAynsc doInBackground try initOfflineMapLoader");
+                OfflineMapLoader.initOfflineMapLoader();
+
+                return null;
+            }
+
+            @Override
+            public void onPostResult(Object obj) {
+
+            }
+
+            @Override
+            public void onPostExcuted() {
+                Logs.d("OfflineMapModule", "OfflineMapFragment initData doWorkAynsc doInBackground onPostExcuted");
+                if ((null != OfflineMapLoader.getInstance())&&(OfflineMapFragment.this.isVisible())) {
+                    Logs.d("OfflineMapModule", "OfflineMapFragment initData doWorkAynsc doInBackground onPostExcuted add child Fragment");
+
+                    OfflineMapDownloadFragment downloadFragment = (OfflineMapDownloadFragment) OfflineMapDownloadFragment.getInstance(null);
+                    OfflineMapCityFragment cityFragment = (OfflineMapCityFragment) OfflineMapCityFragment.getInstance(null);
+
+                    OfflineMapLoader.getInstance().registerOfflineMapRemoveListener(OfflineMapFragment.this);
+                    // 由于高德方面API的问题,必须在构造OfflineMapManager之后一会儿后,才能调用其stop函数,这样才是有效的.
+                    OfflineMapLoader.getInstance().finishInit();
+
+                    mFragments.add(downloadFragment);
+                    mFragments.add(cityFragment);
+
+                    mAdapter = new OfflineMapPagerAdapter(getChildFragmentManager());
+                    mViewPager.setAdapter(mAdapter);
+                    mTabLayout.setOnTabSelectedListener(mTabListener);
+                    mTabLayout.setupWithViewPager(mViewPager);
+                    final TabLayout.TabLayoutOnPageChangeListener listener =
+                            new TabLayout.TabLayoutOnPageChangeListener(mTabLayout);
+                    mViewPager.addOnPageChangeListener(listener);
+//                    mViewPager.setOnPageChangeListener(OfflineMapFragment.this);
+
+                    // 假如加载过程中点击Tab，加载完成就跳入对应的Tab
+//                    if((mCurTab>=0)&&(mCurTab<mViewPager.getChildCount())) {
+//                        mViewPager.setCurrentItem(mCurTab);
+//                    }
+                }
+//                // 防止加载的前500ms的时候，点击第二个tab按钮，跳到城市列表的Tab
+//                mActionBar.setTabScrolled(0,0,mState);
+
+                // 隐藏加载框
+//                mLoadingView.hide();
+            }
+        },false);
+    }
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onRemoveStart() {
+
+    }
+
+    @Override
+    public void onRemoveEnd() {
+
+    }
+
+    @Override
+    public void onNetworkStatusChanged(NetUtil.NetType curNetType, NetUtil.NetType lastNetType) {
+
     }
 
     class OfflineMapPagerAdapter extends FragmentPagerAdapter {

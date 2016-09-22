@@ -5,7 +5,7 @@
 
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
-    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="navigation_drawer_width">300dp</dimen>
 
 
     <dimen name="main_search_view_padding_left">13dp</dimen>
@@ -14,8 +14,8 @@
 
     <dimen name="mapview_layout_margin_left">7dp</dimen>
     <dimen name="mapview_layout_margin_right">7dp</dimen>
-    <dimen name="mapview_vp_margin_left">12dp</dimen>
-    <dimen name="mapview_vp_margin_right">12dp</dimen>
+    <dimen name="mapview_vp_margin_left">18dp</dimen>
+    <dimen name="mapview_vp_margin_right">18dp</dimen>
 
     <dimen name="mapview_layout_margin_top">76dp</dimen>
     <dimen name="mapview_layout_margin_bottom">7dp</dimen>
@@ -49,7 +49,7 @@
     <dimen name="drawer_common_icon_width">18dip</dimen>
     <dimen name="drawer_common_icon_margin_left">24dip</dimen>
     <dimen name="drawer_common_name_margin_left">16dip</dimen>
-    <dimen name="drawer_common_tools_margin_left">40dip</dimen>
+    <dimen name="drawer_common_tools_margin_left">45dip</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     //statusbar_mz_height + actionbar_single_line_height 的高度。
@@ -107,6 +107,7 @@
     <dimen name="map_bottom_detail_one_line_height">58dp</dimen>
     <dimen name="map_bottom_act_layout_height">42.33dp</dimen>
     <dimen name="map_bottom_separate_line_padding">12dp</dimen>
+    <dimen name="map_bottom_vp_margin">6dp</dimen>
     <dimen name="map_bottom_detail_padding_top">5dp</dimen>
     <dimen name="map_bottom_detail_padding_right">12dp</dimen>
     <dimen name="map_bottom_distance_padding_right">11dp</dimen>
@@ -253,8 +254,13 @@
     <dimen name="common_address_item_height">63dp</dimen>
     <dimen name="common_address_title_address_width">216dp</dimen>
     <dimen name="common_address_left_pic_margin_left">18dp</dimen>
+    <dimen name="common_address_list_pic_margin_left">22dp</dimen>
     <dimen name="common_address_left_pic_size">24dp</dimen>
+    <dimen name="common_address_list_pic_size">20dp</dimen>
+    <dimen name="common_address_text_margin_top_bottom">10dp</dimen>
     <dimen name="common_address_text_margin_left_right">16dp</dimen>
+    <dimen name="common_address_address_margin_top">12dp</dimen>
+    <dimen name="common_address_list_margin_top">8dp</dimen>
     <dimen name="common_address_address_margin_right">16dp</dimen>
     <dimen name="common_address_title_text_size">16sp</dimen>
     <dimen name="common_address_address_text_size">14sp</dimen>
@@ -266,7 +272,6 @@
     <dimen name="common_address_edit_width">70dp</dimen>
     <dimen name="common_address_horizontal_separator_left_right_margin">12dp</dimen>
     <dimen name="common_address_vertical_separator_height">32dp</dimen>
-
 
     <dimen name="search_result_list_distance_width">71dp</dimen>
     <dimen name="search_result_list_address_margin_left_right">12dp</dimen>
@@ -616,8 +621,10 @@
     <dimen name="route_history_text_margin">7dp</dimen>
 
 
-
     <dimen name="history_item_height">63dp</dimen>
     <dimen name="search_history_padding_left_right">12dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

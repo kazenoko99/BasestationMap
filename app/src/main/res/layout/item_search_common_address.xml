@@ -1,0 +1,70 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:background="@drawable/btn_click_black_havebackground"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+            <ImageView
+                android:id="@+id/titlePic"
+                android:layout_width="@dimen/common_address_list_pic_size"
+                android:layout_height="@dimen/common_address_list_pic_size"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/common_address_list_pic_margin_left"
+                android:background="@null"
+                android:src="@drawable/drawer_comaddr"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/common_address_text_margin_left_right"
+                android:layout_marginRight="@dimen/common_address_text_margin_left_right"
+                android:layout_toLeftOf="@+id/delete"
+                android:layout_toRightOf="@id/titlePic"
+                android:background="@null"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/common_address_title_text_size"/>
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/name"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/search_history_address_text_size"/>
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/title"
+                    android:layout_below="@+id/name"
+                    android:layout_marginTop="@dimen/common_address_list_margin_top"
+                    android:gravity="top"
+                    android:includeFontPadding="false"
+                    android:lines="2"
+                    android:textColor="@color/address_color"
+                    android:textSize="@dimen/search_history_address_text_size"/>
+            </RelativeLayout>
+
+
+            <View
+                android:id="@+id/devide_line"
+                style="@style/separatorHorizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/search_history_separator_padding"
+                android:layout_marginRight="@dimen/search_history_separator_padding"/>
+        </RelativeLayout>

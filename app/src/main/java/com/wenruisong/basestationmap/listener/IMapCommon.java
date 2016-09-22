@@ -2,25 +2,13 @@ package com.wenruisong.basestationmap.listener;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
-
-import com.wenruisong.basestationmap.fragment.BaseFragment;
 
 
 /**
  * Created by wuxuexiang on 15-6-12.
  */
 public interface IMapCommon {
-    interface Global {
 
-        void openOrCloseDrawers();
-
-        BaseFragment getCurrentFragment();
-
-        void setLock(boolean lock);
-
-        Toolbar getToolbar();
-    }
 
     interface FragShower {
         void showFragments(String tag, boolean needback);

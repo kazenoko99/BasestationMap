@@ -1,30 +1,29 @@
 package com.wenruisong.basestationmap.fragment;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.wenruisong.basestationmap.LoginActivity;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.adapter.DrawerListAdapter;
-import com.wenruisong.basestationmap.eventbus.MapToolsEvents;
-import com.wenruisong.basestationmap.helper.LocationHelper;
+import com.wenruisong.basestationmap.group.User;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+
+import cn.bmob.v3.BmobUser;
 
 public class NavigationDrawerFragment extends Fragment {
     /**
@@ -41,8 +40,8 @@ public class NavigationDrawerFragment extends Fragment {
      */
     private NavigationDrawerCallbacks mCallbacks;
     private DrawerLayout mDrawerLayout;
-    private ExpandableListView mDrawerListView;
-    private TextView cityTextView;
+    private ListView mDrawerListView;
+    private TextView mLogin;
     private View mFragmentContainerView;
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
@@ -76,36 +75,38 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         RelativeLayout rootView = (RelativeLayout)inflater.inflate(
                 R.layout.drawer_view, container, false);
-        mDrawerListView = (ExpandableListView)rootView.findViewById(R.id.drawer_list);
-        cityTextView = (TextView)rootView.findViewById(R.id.mCity);
-        LocationHelper.getInstance().RequestLocating(new LocationHelper.RequestLocationCallBack() {
+        mDrawerListView = (ListView)rootView.findViewById(R.id.drawer_list);
+        mLogin = (TextView)rootView.findViewById(R.id.login);
+        mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run(String city) {
-                cityTextView.setText("当前城市:" + city);
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
+
         initList();
-        mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                if (groupPosition != 4)
-                    selectItem(groupPosition);
-                return false;
-            }
-        });
-        mDrawerListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                MapToolsEvents.getBus().post(new MapToolsEvents.OnClickTools(childPosition));
-                mDrawerLayout.closeDrawer(mFragmentContainerView);
-                return false;
-            }
-        });
+        mDrawerListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener()
+                {
+                                                   @Override
+                                                   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                                       selectItem(position);
+                                                   }
+                                               });
+
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return rootView;
     }
 
+    public void initUser(){
+        User user = BmobUser.getCurrentUser(getContext(), User.class);
+        if (user != null) {
+            mLogin.setText(user.getEmail());
+        }
 
+    }
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
     }
@@ -170,14 +171,14 @@ public class NavigationDrawerFragment extends Fragment {
         // 初始化图标
         ArrayList<Integer> iconList = new ArrayList<>();
         iconList.add(R.drawable.drawer_map);
-        iconList.add(R.drawable.drawer_ar);
-        iconList.add(R.drawable.drawer_comaddr);
+        iconList.add(R.drawable.map_icon_basestation);
+        iconList.add(R.drawable.drawer_collected);
         iconList.add(R.drawable.drawer_offlinemap);
-        iconList.add(R.drawable.drawer_subway);
+        iconList.add(R.drawable.drawer_tools);
+        iconList.add(R.drawable.drawer_group);
         iconList.add(R.drawable.drawer_setting);
 
         DrawerListAdapter adapter = new DrawerListAdapter(getActivity(), arrayList, iconList);
-        mDrawerListView.setGroupIndicator(null);
         mDrawerListView.setFooterDividersEnabled(false);
         mDrawerListView.setAdapter(adapter);
 

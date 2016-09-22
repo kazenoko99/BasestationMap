@@ -1,32 +1,33 @@
 package com.wenruisong.basestationmap.pano;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.SupportMapFragment;
-import com.baidu.mapapi.model.LatLng;
-import com.google.gson.Gson;
-import com.wenruisong.basestationmap.R;
-
-import android.content.Intent;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.model.LatLng;
 import com.baidu.lbsapi.panoramaview.ImageMarker;
 import com.baidu.lbsapi.panoramaview.OnTabMarkListener;
 import com.baidu.lbsapi.panoramaview.PanoramaView;
 import com.baidu.lbsapi.panoramaview.PanoramaViewListener;
 import com.baidu.lbsapi.panoramaview.TextMarker;
+import com.baidu.lbsapi.tools.CoordinateConverter;
 import com.baidu.lbsapi.tools.Point;
+import com.google.gson.Gson;
+import com.wenruisong.basestationmap.R;
+import com.wenruisong.basestationmap.basestation.Basestation;
+import com.wenruisong.basestationmap.basestation.Cell;
+import com.wenruisong.basestationmap.basestation.Marker.BasestationNameMaker;
+import com.wenruisong.basestationmap.basestation.Marker.SelectedBasestationMarker;
+import com.wenruisong.basestationmap.map.CustomizedMapView;
 import com.wenruisong.basestationmap.utils.DistanceUtils;
 
 /**
@@ -39,12 +40,15 @@ public class PanoActivity extends AppCompatActivity {
     private final String info = "全景图片拍摄地点距目标基站";
     private boolean isFirstLoad = true;
     private CameraMarker mCameraMarker;
+    private SelectedBasestationMarker mSelectedBasestationMarker;
+    private BasestationNameMaker mBasestationNameMaker;
     private PanoView mPanoView;
-    private MapView mMapView;
-    private BaiduMap mBaiduMap;
+    private AMap aMap;
+    private CustomizedMapView mCustomizedMapView;
     private double lat, lng;
     private LatLng cellLatLng;
     private String cellName;
+    private Cell mCell;
     private int cellHigth;
     private PanoModel mPanoModel;
     private LatLng cameraLatLng;
@@ -58,32 +62,46 @@ public class PanoActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_pano);
         mCameraMarker = new CameraMarker();
+        mBasestationNameMaker = new BasestationNameMaker();
         mPanoModel = new PanoModel();
+        mCustomizedMapView = (CustomizedMapView)findViewById(R.id.map);
+        mCustomizedMapView.onCreate(savedInstanceState);
         initView();
 
         Intent intent = getIntent();
         if (intent != null) {
-            lat = intent.getDoubleExtra("lat", 0);
-            lng = intent.getDoubleExtra("lng", 0);
-            cellLatLng = new LatLng(lat, lng);
-            cellName = intent.getStringExtra("cellName");
-            cellHigth = intent.getIntExtra("higth", 10);
-            testPanoByType();
+            mCell = intent.getParcelableExtra("CELL");
+            cellLatLng = mCell.aMapLatLng;
+            cellName = mCell.cellName;
+            cellHigth = mCell.highth;
+            lng = mCell.aMapLatLng.longitude;
+            lat = mCell.aMapLatLng.latitude;
+            mSelectedBasestationMarker.setSelected(aMap,mCell);
+            Basestation basestation = new Basestation();
+            basestation.amapLatLng = mCell.aMapLatLng;
+            basestation.bsName = mCell.bsName;
 
-            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(new LatLng(lat, lng)));
-            MapStatusUpdate u = MapStatusUpdateFactory.zoomTo(18);
-            mBaiduMap.animateMapStatus(u);
+            mBasestationNameMaker.setBasestation(basestation);
+            mBasestationNameMaker.showInMap(aMap);
+
+            Point sourcePoint = new Point(lng, lat);
+            Point resultPointLL = CoordinateConverter.converter(CoordinateConverter.COOR_TYPE.COOR_TYPE_GCJ02, sourcePoint);
+            testPanoByType(resultPointLL);
             mPanoView.removeAllMarker();
             addImageMarker();
             addCellTextMarker();
+
+            aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng),18));
         }
+
+
 
 
         mPanoView.setOnPanoViewMoveListener(new PanoView.OnPanoViewMoveListener() {
             @Override
             public void viewMoved() {
                 mCameraMarker.update(360-mPanoView.getPanoramaHeading(), mPanoModel.latLng);
-                mCameraMarker.showInMap(mBaiduMap);
+                mCameraMarker.showInMap(aMap);
             }
         });
 
@@ -93,16 +111,11 @@ public class PanoActivity extends AppCompatActivity {
 
     private void initView() {
         mPanoView = (PanoView) findViewById(R.id.panorama);
-        panoInfoTextView =(TextView)findViewById(R.id.pano_info);
+
+        aMap = mCustomizedMapView.getMap();
+         panoInfoTextView =(TextView)findViewById(R.id.pano_info);
         PanoramaView.ImageDefinition high = PanoramaView.ImageDefinition.ImageDefinitionMiddle;
         mPanoView.setPanoramaImageLevel(high);
-
-//            mMapView = (MapView)findViewById(R.id.pano_mapview);
-//            mBaiduMap = mMapView.getMap();
-        SupportMapFragment map1 = (SupportMapFragment) (getSupportFragmentManager()
-                .findFragmentById(R.id.map1));
-
-        mBaiduMap = map1.getBaiduMap();
     }
 
     private Handler mHandler = new Handler(){
@@ -110,14 +123,14 @@ public class PanoActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             panoInfoTextView.setText(info+ msg.getData().get("distance"));
             mCameraMarker.update(360-mPanoView.getPanoramaHeading(), mPanoModel.latLng);
-            mCameraMarker.showInMap(mBaiduMap);
+            mCameraMarker.showInMap(aMap);
         }
     };
 
-    private void testPanoByType() {
+    private void testPanoByType(Point point) {
         mPanoView.setShowTopoLink(true);
         Log.d(LTAG, "lat is" + lat + "lng is" + lng);
-        mPanoView.setPanorama(lng, lat);
+        mPanoView.setPanorama(point.x, point.y);
         // 测试回调函数,需要注意的是回调函数要在setPanorama()之前调用，否则回调函数可能执行异常
         mPanoView.setPanoramaViewListener(new PanoramaViewListener() {
 
@@ -229,20 +242,41 @@ public class PanoActivity extends AppCompatActivity {
             mPanoView.removeMarker(cellTextMark);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
+        Log.i("sys", "mf onResume");
         super.onResume();
+        mCustomizedMapView.onResume();
+    }
+
+    /**
+     * 方法必须重写
+     * map的生命周期方法
+     */
+    @Override
+    public void onPause() {
+        Log.i("sys", "mf onPause");
+        super.onPause();
+        mCustomizedMapView.onPause();
+    }
+
+    /**
+     * 方法必须重写
+     * map的生命周期方法
+     */
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.i("sys", "mf onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+        mCustomizedMapView.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onDestroy() {
         mPanoView.destroy();
-        mBaiduMap.clear();
+        aMap.clear();
+        mCustomizedMapView.onDestroy();
         super.onDestroy();
     }
 

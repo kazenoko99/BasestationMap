@@ -55,14 +55,20 @@ public class SearchBasestationFragment extends BaseFragment{
     public View inflateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_search_result, container, false);
         cell_result_listView = (ListView)v.findViewById(R.id.result_list);
-        searchBsResultAdapter = new SearchBsResultAdapter(getActivity(),bsSearchResults);
+        searchBsResultAdapter = new SearchBsResultAdapter(getActivity(),bsSearchResults,false);
         cell_result_listView.setAdapter(searchBsResultAdapter);
-        if(mType == 0) {
-            cell_result_listView.setOnItemClickListener(normalSearchClick);
-        } else {
-            cell_result_listView.setOnItemClickListener(placePickClick);
+        switch (mType)
+        {
+            case Constants.NormalSearch:
+                cell_result_listView.setOnItemClickListener(normalSearchClick);
+                break;
+            case Constants.RoutePicPlace:
+                cell_result_listView.setOnItemClickListener(placePickClick);
+                break;
+            case Constants.CommonPlacePic:
+                cell_result_listView.setOnItemClickListener(commonAddressPickClick);
+                break;
         }
-
 
         return  v;
     }
@@ -72,7 +78,7 @@ public class SearchBasestationFragment extends BaseFragment{
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Basestation bs = bsSearchResults.get(position);
             saveSearchAction(bs);
-            SearchResultEvents.getBus().post(new SearchResultEvents.OnCellClick(bs.baiduLatLng,bs.basestationIndex,bs.getInstanceType()));
+            SearchResultEvents.getBus().post(new SearchResultEvents.OnCellClick(bs.amapLatLng,bs.basestationIndex,bs.getInstanceType()));
             getActivity().finish();
         }
     };
@@ -84,8 +90,8 @@ public class SearchBasestationFragment extends BaseFragment{
             Intent intent=new Intent();
             Bundle bundle = new Bundle();
             bundle.putString("NAME", bs.bsName);
-            bundle.putDouble("LAT",bs.baiduLatLng.latitude);
-            bundle.putDouble("LNG",bs.baiduLatLng.longitude);
+            bundle.putDouble("LAT",bs.amapLatLng.latitude);
+            bundle.putDouble("LNG",bs.amapLatLng.longitude);
             intent.putExtras(bundle);
 
             getActivity().setResult(2,intent);
@@ -93,11 +99,28 @@ public class SearchBasestationFragment extends BaseFragment{
         }
    };
 
+    private AdapterView.OnItemClickListener commonAddressPickClick = new AdapterView.OnItemClickListener(){
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Basestation bs = bsSearchResults.get(position);
+            Intent intent=new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString("NAME", bs.bsName);
+            bundle.putString("ADDRESS", bs.address);
+            bundle.putDouble("LAT",bs.amapLatLng.latitude);
+            bundle.putDouble("LNG",bs.amapLatLng.longitude);
+            intent.putExtras(bundle);
+
+            getActivity().setResult(3,intent);
+            getActivity().finish();
+        }
+    };
+
     private void saveSearchAction(Basestation bs){
         SearchHistoryItem searchHistoryItem = new SearchHistoryItem();
         searchHistoryItem.address = bs.address;
         searchHistoryItem.keyword = bs.bsName+"(基站)";
-        searchHistoryItem.latLng = bs.baiduLatLng;
+        searchHistoryItem.latLng = bs.amapLatLng;
         searchHistoryItem.searchtype = Constants.SEARCH_TYPE_BASESTATION;
         searchHistoryItem.nettype =bs.getInstanceType();
         searchHistoryItem.cellindex = bs.basestationIndex;

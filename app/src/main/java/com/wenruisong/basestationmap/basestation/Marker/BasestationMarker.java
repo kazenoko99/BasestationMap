@@ -1,7 +1,7 @@
 package com.wenruisong.basestationmap.basestation.Marker;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.Marker;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.Marker;
 import com.wenruisong.basestationmap.basestation.Basestation;
 
 /**
@@ -16,8 +16,8 @@ public abstract class BasestationMarker {
         mBasestation = basestation;
     }
 
-
-    abstract void showInMap(BaiduMap baiduMap);
+    abstract void setTextSize(int size);
+    abstract void showInMap(AMap aMap);
 
     abstract void remove();
 

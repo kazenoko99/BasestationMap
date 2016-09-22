@@ -4,34 +4,34 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
-   <LinearLayout
+   <RelativeLayout
        android:id="@+id/toptab"
        android:paddingTop="25dp"
        android:layout_width="fill_parent"
        android:layout_height="70dp"
-       android:background="@color/blue"
-       android:orientation="horizontal">
+       android:background="@color/blue">
        <ImageView
            android:id="@+id/drawer_icon"
            android:layout_width="wrap_content"
            android:layout_height="match_parent"
            android:paddingStart="@dimen/main_search_view_padding_left"
            android:paddingEnd="@dimen/main_search_view_icon_padding"
-           android:src="@drawable/mz_titlebar_ic_list_dark"
-           android:tint="@color/white"
+           android:src="@drawable/mz_titlebar_ic_list"
            android:layout_gravity="center_vertical"
            />
        <android.support.design.widget.TabLayout
            android:id="@+id/tab_layout"
-           android:layout_width="match_parent"
+           android:layout_centerHorizontal="true"
+           android:layout_width="wrap_content"
            android:layout_height="fill_parent"
-           app:tabIndicatorColor="@color/blue_light"
+           app:tabIndicatorColor="@color/half_white"
            app:tabSelectedTextColor="@color/white"
-           app:tabTextColor="@color/gray"
-
+           app:tabTextColor="@color/half_white"
+           app:tabTextAppearance="@style/MyCustomTabTextAppearance"
+           app:tabIndicatorHeight="4dp"
 
            />
-   </LinearLayout>
+   </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_container"

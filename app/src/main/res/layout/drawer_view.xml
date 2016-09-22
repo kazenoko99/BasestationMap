@@ -6,22 +6,50 @@
     android:layout_gravity="start"
     android:background="@color/white"
     android:clickable="true">
-    <TextView
-        android:id="@+id/mCity"
+
+    <LinearLayout
+        android:id="@+id/login_layout"
+        android:layout_width="match_parent"
         android:paddingTop="25dp"
+        android:layout_height="83dp"
+        android:orientation="horizontal"
+        android:background="#f3f3f3">
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="19dp"
+            android:src="@drawable/account_unlogin"
+            android:layout_gravity="center_vertical"/>
+    <TextView
+        android:id="@+id/login"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextLarge"
-        android:text="当前城市："/>
-    <ExpandableListView
-        android:layout_below="@id/mCity"
+        style="@style/TextNormal"
+        android:layout_gravity="center_vertical"
+        android:ellipsize = "middle"
+
+        android:text="您还未登陆"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/header"
+        android:layout_below="@+id/login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+     android:background="@color/list_divider"/>
+    <ListView
+        android:layout_below="@id/header"
         android:id="@+id/drawer_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
         android:divider="@drawable/common_list_divider_12dp"
-        android:childDivider="@drawable/common_list_divider_12dp"
-        android:dividerHeight="2dp"
+        android:dividerHeight="1px"
         android:listSelector="@drawable/item_background"/>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/sidebar_top_mask"
+        />
 </RelativeLayout>

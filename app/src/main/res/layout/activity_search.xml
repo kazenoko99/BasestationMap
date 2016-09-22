@@ -5,11 +5,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:gravity="center_vertical"
         android:background="@color/blue"
+        android:elevation="3dp"
         >
         <ImageView
             android:id="@+id/btn_back"
@@ -72,7 +75,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue"
-    >
+        android:elevation="3dp">
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="wrap_content"
@@ -82,7 +86,19 @@
         app:tabIndicatorColor="@color/half_white"
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/half_white"
+        android:visibility="gone"
         />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            app:tabIndicatorHeight="4dp"
+            android:layout_marginLeft="50dp"
+            app:tabIndicatorColor="@color/half_white"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/half_white"
+            />
     </FrameLayout>
 
     <LinearLayout
@@ -93,6 +109,7 @@
         android:orientation="horizontal"
         android:visibility="visible">
        <FrameLayout
+           android:id="@+id/my_location_layout"
            android:layout_width="0dp"
            android:layout_height="match_parent"
            android:layout_weight="1">
@@ -113,7 +130,31 @@
             android:layout_gravity="right|center_vertical"
             android:layout_height="24dp" />
     </FrameLayout>
+
         <FrameLayout
+            android:id="@+id/gps_location_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/gps_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/mz_item_background"
+                android:gravity="center"
+                android:paddingBottom="@dimen/search_map_select_point_padding"
+                android:paddingTop="@dimen/search_map_select_point_padding"
+                android:text="@string/gps_location"
+                android:textColor="@color/mz_theme_color_dodgerblue"
+                android:textSize="@dimen/search_history_title_text_size" />
+            <View
+                style="@style/separatorVertical"
+                android:layout_gravity="right|center_vertical"
+                android:layout_height="24dp" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/common_address_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -135,6 +176,7 @@
                 android:layout_height="24dp" />
         </FrameLayout>
         <FrameLayout
+            android:id="@+id/map_select_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -155,17 +197,15 @@
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/alpha_black_bg">
+        android:layout_height="match_parent">
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/search_history"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_guide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </FrameLayout>
 </LinearLayout>

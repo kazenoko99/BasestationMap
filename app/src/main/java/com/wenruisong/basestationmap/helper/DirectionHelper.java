@@ -6,11 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Criteria;
-import android.location.LocationManager;
-import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.wenruisong.basestationmap.BasestationMapApplication;
 
@@ -92,6 +88,7 @@ public class DirectionHelper {
                 if(Math.abs(mLastDirection - mCurrentDirection) > 0.05){
                     mLastDirection = mCurrentDirection;
                 }
+            if(onDirectionChangedListener!=null)
             onDirectionChangedListener.onGetNewDirection(mCurrentDirection);
         }
 

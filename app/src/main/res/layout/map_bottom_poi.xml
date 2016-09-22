@@ -1,0 +1,73 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/map_bottom_margin_left"
+    android:layout_marginRight="@dimen/map_bottom_margin_right"
+    android:gravity="center_vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/poi_layout"
+        android:layout_marginStart="@dimen/map_bottom_separate_line_padding"
+        android:layout_marginEnd="@dimen/map_bottom_separate_line_padding"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/map_bottom_detail"
+        android:paddingEnd="@dimen/map_bottom_detail_padding_right">
+
+        <TextView
+            android:id="@+id/map_bottom_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            style="@style/TextNormal"
+            android:includeFontPadding="false"
+            android:text="@string/mypoistion" />
+
+        <TextView
+            android:id="@+id/map_bottom_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/map_bottom_name"
+            android:paddingTop="@dimen/map_bottom_detail_padding_top"
+            android:paddingEnd="@dimen/map_bottom_distance_padding_right"
+            android:includeFontPadding="false"
+            style="@style/TextSmall" />
+
+        <TextView
+            android:id="@+id/map_bottom_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/map_bottom_name"
+            android:layout_toRightOf="@id/map_bottom_distance"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/map_bottom_detail_padding_top"
+            style="@style/TextSmall" />
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/map_bottom_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:drawableRight="@drawable/map_icon_arrow"
+        style="@style/TextMedium"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/text_color_highlight"
+        android:text="附近基站"
+        android:layout_marginRight="@dimen/map_bottom_separate_line_padding"/>
+
+    <View
+        android:id="@+id/map_bottom_separator_line"
+        style="@style/separatorHorizontal"
+        android:layout_below="@+id/poi_layout"
+        android:layout_marginStart="@dimen/map_bottom_separate_line_padding"
+        android:layout_marginEnd="@dimen/map_bottom_separate_line_padding"
+        />
+</RelativeLayout>

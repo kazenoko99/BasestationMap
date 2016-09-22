@@ -1,53 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/search_layout"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:gravity="center_vertical"
-        android:background="@color/blue"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="4dp"
-            android:layout_height="32dp"
-            android:gravity="center_vertical"
-            android:layout_marginRight="5dp"
-            android:scaleType="center"
-            android:text="文件路径"
-            android:lines="2"
-            android:textColor="@color/button_material_light" />
-        <TextView
-            android:id="@+id/importbtn"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/mz_search_view_textfield_hover_color_dodgerblue"
-            android:layout_marginRight="5dp"
-            android:text="请输入内容"
-            android:gravity="center_vertical"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"
-            />
-        <TextView
-            android:id="@+id/start_import"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_height="32dp"
-            android:gravity="right|center_vertical"
-            android:layout_marginRight="5dp"
-            android:scaleType="center"
-            android:text="开始导入"
-            android:textColor="@color/gray" />
-    </LinearLayout>
         <ListView
             android:id="@+id/cell_list"
             android:layout_width="match_parent"
