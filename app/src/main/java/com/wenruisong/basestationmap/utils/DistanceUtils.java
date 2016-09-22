@@ -2,22 +2,25 @@ package com.wenruisong.basestationmap.utils;
 
 import android.util.Log;
 
-import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.utils.DistanceUtil;
+import com.amap.api.maps.AMapUtils;
+import com.amap.api.maps.model.LatLng;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 
 /**
  * Created by wen on 2016/2/16.
  */
 public class DistanceUtils {
     static DecimalFormat df = new DecimalFormat("#.00");
+
+
     public static String getDistance(LatLng latLng1, LatLng latLng2)
     {
 
-        double dis= DistanceUtil.getDistance(latLng1,latLng2);
+        double dis= AMapUtils.calculateLineDistance(latLng1,latLng2);
         if (dis == -1.0D)
             return "未知";
         if(dis<1000)
@@ -36,7 +39,7 @@ public class DistanceUtils {
         pastLatLng=iterator.next();
         while(iterator.hasNext()){
             currentLatLng=iterator.next();
-            distence=distence+DistanceUtil.getDistance(pastLatLng, currentLatLng);
+            distence=distence+AMapUtils.calculateLineDistance(pastLatLng, currentLatLng);
             pastLatLng=currentLatLng;
         }
 

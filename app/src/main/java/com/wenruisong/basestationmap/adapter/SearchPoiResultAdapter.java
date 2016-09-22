@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
-import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.search.sug.SuggestionResult;
+import com.amap.api.location.AMapLocation;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.services.help.Tip;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.helper.LocationHelper;
+import com.wenruisong.basestationmap.utils.AMapUtil;
 import com.wenruisong.basestationmap.utils.DistanceUtils;
 
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ import java.util.List;
  */
 public class SearchPoiResultAdapter extends BaseAdapter {
     private Context mContext;
-    private BDLocation myLocation;
-     private List<SuggestionResult.SuggestionInfo> suggestionInfos = new ArrayList<>();
+    private AMapLocation myLocation;
+     private List<Tip> tips = new ArrayList<>();
     private LatLng locLatLng;
     public SearchPoiResultAdapter(Context context) {
         mContext = context;
@@ -32,20 +33,20 @@ public class SearchPoiResultAdapter extends BaseAdapter {
             locLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
         }
     }
-    public void setDatas(SuggestionResult suggestionResult)
+    public void setDatas( List<Tip> infos)
     {
-        suggestionInfos =  suggestionResult.getAllSuggestions();
+        tips =  infos;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return suggestionInfos == null ? 0 : suggestionInfos.size();
+        return tips == null ? 0 : tips.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return suggestionInfos == null ? 0 : suggestionInfos.get(position);
+        return tips == null ? 0 : tips.get(position);
     }
 
     @Override
@@ -64,15 +65,17 @@ public class SearchPoiResultAdapter extends BaseAdapter {
         holder.poiInfoGothere = (TextView) view.findViewById(R.id.poi_go_there);
         holder.poiInfoDistance = (TextView) view.findViewById(R.id.poi_distance);
 
-        final SuggestionResult.SuggestionInfo poiInfo = suggestionInfos.get(position);
-        holder.poiInfoName.setText(poiInfo.key);
-        if(poiInfo.pt!=null && locLatLng!=null)
-            holder.poiInfoDistance.setText(DistanceUtils.getDistance(poiInfo.pt, locLatLng));
-        if (poiInfo.district == null)
+        final Tip tip = tips.get(position);
+        holder.poiInfoName.setText(tip.getName());
+        if(tip.getPoint()!=null && locLatLng!=null) {
+            LatLng pt = AMapUtil.convertToLatLng(tip.getPoint());
+            holder.poiInfoDistance.setText(DistanceUtils.getDistance(pt, locLatLng));
+        }
+        if (tip.getDistrict() == null)
             holder.poiInfoAddress.setVisibility(View.GONE);
         else {
             holder.poiInfoAddress.setVisibility(View.VISIBLE);
-            holder.poiInfoAddress.setText(poiInfo.district.toString());
+            holder.poiInfoAddress.setText(tip.getDistrict());
         }
         return view;
     }

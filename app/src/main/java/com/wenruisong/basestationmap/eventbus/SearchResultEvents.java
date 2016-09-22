@@ -1,6 +1,6 @@
 package com.wenruisong.basestationmap.eventbus;
 
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.model.LatLng;
 import com.squareup.otto.Bus;
 
 /**

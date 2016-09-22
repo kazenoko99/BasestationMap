@@ -7,8 +7,6 @@ import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 
 
-import com.wenruisong.basestationmap.R;
-
 import java.util.ArrayList;
 import java.util.List;
 

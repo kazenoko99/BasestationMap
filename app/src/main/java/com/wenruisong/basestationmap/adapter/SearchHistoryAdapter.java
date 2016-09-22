@@ -21,7 +21,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<RecyclerView.View
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        public void removeItem(int position);
+        void removeItem(int position);
         void clickItem(int position);
     }
 

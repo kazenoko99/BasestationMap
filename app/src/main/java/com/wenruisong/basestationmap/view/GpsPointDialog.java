@@ -5,18 +5,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.model.LatLng;
 import com.wenruisong.basestationmap.BasestationMapApplication;
 import com.wenruisong.basestationmap.R;
 
 /**
  * Created by wen on 2016/2/11.
- */
+*/
 public class GpsPointDialog extends Dialog {
     public GpsPointDialog(Context context) {
         super(context);
@@ -27,9 +27,9 @@ public class GpsPointDialog extends Dialog {
         private EditText gpsPointName;
         private EditText gpsPointLat;
         private EditText gpsPointLng;
-        private Button clearAllPoint;
-        private Button confirmButton;
-        private Button cancelButton;
+        private TextView clearAllPoint;
+        private TextView confirmTextView;
+        private TextView cancelTextView;
         private View contentView;
         private OnAddGpsPointListner onAddGpsPointListner;
 
@@ -58,9 +58,9 @@ public class GpsPointDialog extends Dialog {
             gpsPointName = (EditText) dialog.findViewById(R.id.gps_point_name);
             gpsPointLat = (EditText) dialog.findViewById(R.id.gps_point_lat);
             gpsPointLng = (EditText) dialog.findViewById(R.id.gps_point_lng);
-            confirmButton = (Button) dialog.findViewById(R.id.gps_point_close);
-            clearAllPoint = (Button) dialog.findViewById(R.id.gps_point_clear);
-            cancelButton = (Button) dialog.findViewById(R.id.gps_point_cancel);
+            confirmTextView = (TextView) dialog.findViewById(R.id.gps_point_close);
+            clearAllPoint = (TextView) dialog.findViewById(R.id.gps_point_clear);
+            cancelTextView = (TextView) dialog.findViewById(R.id.gps_point_cancel);
             clearAllPoint.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -68,7 +68,7 @@ public class GpsPointDialog extends Dialog {
                     dialog.dismiss();
                 }
             });
-            confirmButton.setOnClickListener(new View.OnClickListener() {
+            confirmTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (gpsPointLat.getText().toString().isEmpty() || gpsPointLng.getText().toString().isEmpty()) {

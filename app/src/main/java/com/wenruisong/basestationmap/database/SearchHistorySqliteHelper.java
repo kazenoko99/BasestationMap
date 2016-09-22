@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.model.LatLng;
 import com.wenruisong.basestationmap.model.RouteHistoryItem;
 import com.wenruisong.basestationmap.model.SearchHistoryItem;
 

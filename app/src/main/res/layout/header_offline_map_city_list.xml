@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/offline_map_city_header_title_height"
+        android:textColor="@color/black_color_alpha_30"
+        android:background="@color/map_background_gray"
+        android:paddingLeft="@dimen/offline_map_city_header_title_padding_left"
+        android:includeFontPadding="false"
+        android:text="热门城市"
+        android:gravity="center_vertical|left"/>
+
+    <ListView
+        android:id="@+id/lv_offline_hot_city_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/common_list_divider_12dp"
+        android:dividerHeight="1px"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/offline_map_city_header_tail_height"
+        android:background="@color/map_background_gray"/>
+
+</LinearLayout>

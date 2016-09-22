@@ -1,55 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="1dp"
+    app:cardPreventCornerOverlap="false">
+<RelativeLayout
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/poi_icon"
-        android:layout_alignTop="@+id/poi_name"
-        android:src="@drawable/map_poi"/>
- <TextView
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_toRightOf="@+id/poi_icon"
-     android:id="@+id/poi_name"
-     android:layout_marginLeft="5dp"
-     android:layout_marginTop="8dp"
-     android:text="地方名称这个东西一个不会太差"
-     style="@style/TextNormal"
-     />
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/icon_poi"
+        android:src="@drawable/map_poi_pressed"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/poi_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/poi_icon"
-        android:id="@+id/poi_address"
-        android:layout_below="@id/poi_name"
+        android:layout_toRightOf="@+id/icon_poi"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="7dp"
+        android:padding="4dp"
         android:text="地方名称这个东西一个不会太差"
-        android:maxLines="2"
-        style="@style/TextMedium"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/poi_go_there"
-        android:layout_toRightOf="@+id/poi_icon"
-        android:layout_alignLeft="@+id/poi_name"
-        android:layout_marginTop="4dp"
-        android:text="去这里"
-        android:textColor="@color/blue"
-        android:layout_below="@+id/poi_address"
-        android:drawableLeft="@drawable/map_icon_route_light"/>
+        android:textColor="#333333"
+        android:textSize="18sp"
+        />
 
     <TextView
+        android:id="@+id/poi_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/poi_distance"
+        android:layout_alignBaseline="@+id/poi_name"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginRight="10dp"
         android:text="13.2公里"
-        android:layout_below="@+id/poi_address"/>
+        />
+
+
+
+    <TextView
+        android:id="@+id/poi_address"
+        style="@style/TextMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/poi_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:layout_toRightOf="@+id/icon_poi"
+        android:maxLines="2"
+        android:text="地方名称这个东西一个不会太差"/>
+
+    <TextView
+        android:id="@+id/poi_go_there"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/poi_address"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="3dp"
+        style="@style/TextMedium"
+        android:text="线路"
+        android:drawableLeft="@drawable/map_icon_route_light"
+        android:textColor="@color/colorAccent"/>
+
+
 </RelativeLayout>
+</android.support.v7.widget.CardView>

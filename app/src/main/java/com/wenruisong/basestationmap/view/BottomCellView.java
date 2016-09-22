@@ -1,42 +1,44 @@
 package com.wenruisong.basestationmap.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MapStatus;
-import com.wenruisong.basestationmap.MainActivity;
 import com.wenruisong.basestationmap.R;
+import com.wenruisong.basestationmap.activity.MarkerCitySelectActivity;
+import com.wenruisong.basestationmap.basestation.BasestationManager;
 import com.wenruisong.basestationmap.basestation.Marker.MarkerManager;
-import com.wenruisong.basestationmap.basestation.Marker.ShowGsmCellMarkerTask;
-import com.wenruisong.basestationmap.basestation.Marker.ShowLteCellMarkerTask;
+import com.wenruisong.basestationmap.common.Settings;
 import com.wenruisong.basestationmap.model.PhoneState;
+import com.wenruisong.basestationmap.service.SingalAnalyzeService;
 
 /**
  * Created by wen on 2016/3/5.
  */
-public class BottomCellView {
+public class BottomCellView implements View.OnClickListener,SingalAnalyzeService.OnCellInfoChange{
     CheckBox gsmCheckBox;
     CheckBox lteCheckBox;
-    private TextView maxlon;
-    private TextView maxlat;
-    private TextView minon;
-    private TextView minlat;
-   private TextView zoom;
+    CheckBox bsNameCheckBox;
+
     private TextView gsmcount;
     private TextView ltecount;
     private TextView netType;
-    private TextView lteRSRP;
-
+    private TextView signalStrength;
+    private TextView currentCell;
+    private TextView cellDistance;
+    private TextView changeMakerCity;
+    private TextView signalDetail;
+    private TextView cellId;
+    private ViewGroup rootLayout;
     private static boolean showGsm = true;
     private static boolean showLte = false;
-
+    private  PhoneState mPhoneState;
     private static boolean showPhoteState = true;
 
     private Context mContext;
@@ -44,20 +46,26 @@ public class BottomCellView {
     public void setShowPhoteStateFlag(boolean flag){
         showPhoteState = flag;
     }
-   public View initView(Context context)
+   public View initView(View root,Context context)
     {
         mContext = context;
-        View root = LayoutInflater.from(context).inflate(R.layout.map_bottom_cell, null);
+        rootLayout =(ViewGroup)root.findViewById(R.id.map_bottom_cell);
         gsmCheckBox = (CheckBox)root.findViewById(R.id.show_gsm);
-        maxlon =(TextView)root.findViewById(R.id.max_lon);
-        maxlat =(TextView)root.findViewById(R.id.max_lat);
-        minon =(TextView)root.findViewById(R.id.min_lon);
-        minlat =(TextView)root.findViewById(R.id.min_lat);
-         zoom =(TextView)root.findViewById(R.id.map_zoom);
-       gsmcount =(TextView)root.findViewById(R.id.cell_size);
-        ltecount =(TextView)root.findViewById(R.id.lte_size);
+        bsNameCheckBox = (CheckBox)root.findViewById(R.id.show_bs_name);
+        SingalAnalyzeService.setOnCellInfoChange(this);
+//       gsmcount =(TextView)root.findViewById(R.id.cell_size);
+//        ltecount =(TextView)root.findViewById(R.id.lte_size);
         netType =(TextView)root.findViewById(R.id.net_type);
-         lteRSRP =(TextView)root.findViewById(R.id.lte_rsrp);
+        signalStrength =(TextView)root.findViewById(R.id.signal_db);
+        cellId = (TextView)root.findViewById(R.id.cell_id);
+        signalDetail =(TextView)root.findViewById(R.id.signal_detail);
+        signalDetail.setOnClickListener(this);
+        currentCell = (TextView)root.findViewById(R.id.current_cell);
+        changeMakerCity =(TextView)root.findViewById(R.id.current_select_city);
+        changeMakerCity.setOnClickListener(this);
+        cellDistance =(TextView)root.findViewById(R.id.currentCellDistance);
+
+
         gsmCheckBox.setChecked(true);
         lteCheckBox = (CheckBox)root.findViewById(R.id.show_lte);
         lteCheckBox.setChecked(false);
@@ -76,55 +84,24 @@ public class BottomCellView {
                 MarkerManager.getInstance().setMarkerType(getMakerType());
             }
         });
-        listenProgress();
+
+        bsNameCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Settings.getInstance().setShowCellName(isChecked);
+                MarkerManager.getInstance().setMarkerType(getMakerType());
+            }
+        });
         return root;
     }
 
+    public void setVisibility(int visibility){
 
-    public void updateView(BaiduMap map){
-        MapStatus ms = map.getMapStatus();
-        zoom.setText(""+ms.zoom);
-        maxlon.setText(""+ms.bound.northeast.longitude);
-        maxlat.setText(""+ms.bound.northeast.latitude);
-        minon.setText(""+ms.bound.southwest.longitude);
-        minlat.setText("" + ms.bound.southwest.latitude);
-
-        gsmcount.setText("" + ShowGsmCellMarkerTask.cellCount);
-        ltecount.setText("" + ShowLteCellMarkerTask.cellCount);
+        rootLayout.setVisibility(visibility);
+        changeMakerCity.setText(BasestationManager.getCurrentShowCity());
     }
 
-    public void updatePhoneState(PhoneState phoneState){
-        if(phoneState == null)
-            return;
-        netType.setText(phoneState.netType);
-        lteRSRP.setText(phoneState.lteRSRP);
-    }
 
-    public void listenProgress(){
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while(showPhoteState){
-                    try {
-                        Thread.sleep(1000);
-                        mHandler.sendEmptyMessage(0);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        }).start();
-    }
-
-    private Handler mHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            updatePhoneState(((MainActivity)mContext).getPhoneState());
-        }
-    };
 
     private MarkerManager.MarkerType getMakerType()
     {
@@ -142,5 +119,38 @@ public class BottomCellView {
         }
 
     }
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            netType.setText(mPhoneState.netType);
+            if(mPhoneState.netType.equals("LTE")) {
+                signalStrength.setText(mPhoneState.lteRSRP+"dbm");
+                currentCell.setText(mPhoneState.lteCellname);
+                cellId.setText(mPhoneState.lteCI);
+                cellDistance.setText(mPhoneState.lteCellDistance);
+            }
+        }
+    };
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.current_select_city:
+                Intent intent = new Intent(mContext, MarkerCitySelectActivity.class);
+                mContext.startActivity(intent);
+                break;
+        }
+    }
+
+
+    @Override
+    public void onChanged(PhoneState phoneState) {
+        mPhoneState = phoneState;
+        if(mPhoneState == null)
+            return;
+
+        mHandler.sendEmptyMessage(0);
+
+    }
 }

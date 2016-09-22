@@ -1,9 +1,6 @@
 package com.wenruisong.basestationmap.basestation.Marker;
 
-import android.database.sqlite.SQLiteDatabase;
-
-import com.baidu.mapapi.map.BaiduMap;
-import com.wenruisong.basestationmap.basestation.BasestationManager;
+import com.amap.api.maps.AMap;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -30,11 +27,10 @@ public class MarkerManager {
 
 
 
-    public void setMap(BaiduMap map) {
+    public void setMap(AMap map) {
         ShowGsmCellMarkerTask.setMap(map);
         ShowLteCellMarkerTask.setMap(map);
     }
-
 
     public void setMarkerType(MarkerType type) {
         mMarkerType = type;

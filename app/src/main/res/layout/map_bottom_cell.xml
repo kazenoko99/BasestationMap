@@ -1,182 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
- <CheckBox
-     android:id="@+id/show_gsm"
-     android:text="GSM"
-     android:textSize="@dimen/text_size_small"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content" />
-
-    <CheckBox
-        android:layout_below="@+id/show_gsm"
-        android:id="@+id/show_lte"
-        android:text="LTE"
-        android:textSize="@dimen/text_size_small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/mapzoom"
-        android:layout_toRightOf="@+id/show_gsm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="zoom"/>
-
- <TextView
-     android:id="@+id/map_zoom"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_toRightOf="@+id/mapzoom"
-     android:text="17"
-     android:maxLength="4"/>
-
-    <TextView
-        android:id="@+id/cellsize"
-        android:layout_toRightOf="@+id/show_gsm"
-        android:layout_below="@+id/map_zoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="g size"/>
-
-    <TextView
-    android:id="@+id/cell_size"
-        android:layout_toRightOf="@+id/cellsize"
-        android:layout_below="@+id/map_zoom"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="223"/>
-
-    <TextView
-    android:id="@+id/ltesize"
-    android:layout_toRightOf="@+id/show_gsm"
-    android:layout_below="@+id/show_gsm"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="l size"/>
-
-    <TextView
-        android:id="@+id/lte_size"
-        android:layout_toRightOf="@+id/cellsize"
-        android:layout_below="@+id/show_gsm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="332"/>
-
-
-
-
-    <TextView
-        android:id="@+id/maxlat"
-        android:layout_toRightOf="@+id/cell_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="max lat"
-        android:textSize="@dimen/text_size_small"
-        android:maxLength="9"/>
-
-    <TextView
-        android:id="@+id/max_lat"
-        android:layout_toRightOf="@+id/maxlat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="27.66332"
-        android:textSize="@dimen/text_size_small"
-        android:maxLength="9"/>
-
-    <TextView
-        android:id="@+id/maxlon"
-        android:layout_toRightOf="@+id/cell_size"
-        android:layout_below="@+id/maxlat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+<RelativeLayout android:id="@+id/map_bottom_cell_layout"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/cell_info"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
-        android:textSize="@dimen/text_size_small"
-        android:text="max lon"/>
-
-    <TextView
-        android:id="@+id/max_lon"
-        android:layout_toRightOf="@+id/maxlat"
-        android:layout_below="@+id/maxlat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="113.66332"
-        android:textSize="@dimen/text_size_small"
-        android:maxLength="9"/>
-
-    <TextView
-        android:id="@+id/minlat"
-        android:layout_below="@+id/max_lon"
-        android:layout_toRightOf="@+id/cell_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textSize="@dimen/text_size_small"
-        android:text="min lat"/>
-
-    <TextView
-        android:id="@+id/min_lat"
-        android:layout_toRightOf="@+id/minlat"
-        android:layout_below="@+id/max_lon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="27.66332"
-        android:textSize="@dimen/text_size_small"
-        android:maxLength="9"/>
-
-    <TextView
-        android:id="@+id/minlon"
-        android:layout_toRightOf="@+id/cell_size"
-        android:layout_below="@+id/minlat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textSize="@dimen/text_size_small"
-        android:text="minlon"/>
-
-    <TextView
-        android:id="@+id/min_lon"
-        android:layout_toRightOf="@+id/minlat"
-        android:layout_below="@+id/minlat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="113.66332"
-        android:textSize="@dimen/text_size_small"
-        android:maxLength="9"/>
-
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
    <LinearLayout
-       android:layout_below="@+id/show_lte"
-       android:layout_width="match_parent"
+       android:id="@+id/signal_info"
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:orientation="horizontal">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="TYPE:"/>
-      <TextView
-          android:id="@+id/net_type"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="@color/black"
-          android:text="NONE"/>
+        <TextView
+            android:id="@+id/netType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前网络:"/>
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="5dp"
-          android:text="RSRP:"/>
-      <TextView
-          android:id="@+id/lte_rsrp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="@color/black"/>
-   </LinearLayout>
+        <TextView
+            android:id="@+id/net_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NONE"
+            android:textColor="@color/black"/>
+      </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+        <TextView
+            android:id="@+id/signalDb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="信号强度:"/>
+
+        <TextView
+            android:id="@+id/signal_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signal_detail"
+            android:textColor="@color/text_color_highlight"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@drawable/map_icon_arrow"
+            android:text="信号详情"/>
+
+        <LinearLayout
+            android:id="@+id/current_cell_layout"
+            android:layout_below="@+id/signal_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/currentCell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务小区:"/>
+
+        <TextView
+            android:id="@+id/current_cell"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NONE"
+            android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/currentCellDistance"
+                android:layout_below="@+id/signal_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25km"/>
+          </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_below="@+id/current_cell_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/cellId"
+                android:layout_below="@+id/signal_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CI:"/>
+
+            <TextView
+                android:id="@+id/cell_id"
+                android:layout_toRightOf="@+id/currentCell"
+                android:layout_below="@+id/signal_info"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NONE"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextMedium"
+                android:text="基站显示城市："/>
+        <TextView
+            android:id="@+id/current_select_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/map_icon_arrow"
+            style="@style/TextMedium"
+            android:textColor="@color/text_color_highlight"
+            android:text="萍乡市"/>
+    </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/show_info"
+        android:layout_below="@+id/cell_info"
+        android:layout_alignLeft="@+id/cell_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/show_gsm"
+
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="显示GSM"
+        android:textSize="@dimen/text_size_small"/>
+
+    <CheckBox
+        android:id="@+id/show_lte"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="显示LTE"
+        android:textSize="@dimen/text_size_small"/>
+
+    <CheckBox
+        android:id="@+id/show_bs_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="显示基站名"
+        android:textSize="@dimen/text_size_small"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="1px"
+        android:layout_marginRight="10dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/show_info"
+        android:layout_alignTop="@+id/show_info"
+        android:layout_toLeftOf="@+id/show_info"
+        android:background="@color/separate_line_color"
+        android:layout_below="@+id/cell_info"
+        />
+    <View
+        android:id="@+id/map_bottom_separator_line"
+        style="@style/separatorHorizontal"
+        android:layout_below="@+id/show_info"
+        android:layout_marginStart="@dimen/map_bottom_separate_line_padding"
+        android:layout_marginEnd="@dimen/map_bottom_separate_line_padding"
+        />
 
 </RelativeLayout>

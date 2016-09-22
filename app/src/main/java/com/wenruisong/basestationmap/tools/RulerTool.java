@@ -1,10 +1,9 @@
 package com.wenruisong.basestationmap.tools;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.Overlay;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.PolylineOptions;
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Polyline;
+import com.amap.api.maps.model.PolylineOptions;
 import com.wenruisong.basestationmap.utils.DistanceUtils;
 
 import java.util.ArrayList;
@@ -14,13 +13,13 @@ import java.util.ArrayList;
  */
 public class RulerTool {
     private static RulerTool instance;
-    private static Overlay rulerLine;
+    private static Polyline rulerLine;
     private static ArrayList<RulerPointMarker> rulerPoints = new ArrayList<RulerPointMarker>();
-    private static ArrayList<Overlay> rulerLines = new ArrayList<Overlay>();
+    private static ArrayList<Polyline> rulerLines = new ArrayList<Polyline>();
     private static ArrayList<LatLng> rulerLagLngs = new ArrayList<LatLng>();
     private static PolylineOptions polylineOptions = new PolylineOptions().width(10)
             .color(0xAAFF0000).zIndex(9);
-    private static OverlayOptions rulerPolyline;
+    private static PolylineOptions rulerPolyline;
     public static RulerTool getInstance()
     {
         if (instance==null)
@@ -28,16 +27,16 @@ public class RulerTool {
         return instance;
     }
 
-    public static String addRulerPoint(BaiduMap mBaiduMap, LatLng point)
+    public static String addRulerPoint(AMap mAMap, LatLng point)
     {
         RulerPointMarker rulerPointMarker= new RulerPointMarker(point);
         rulerLagLngs.add(point);
         rulerPoints.add(rulerPointMarker);
-        rulerPointMarker.addPointInMap(mBaiduMap);
+        rulerPointMarker.addPointInMap(mAMap);
         if(rulerLagLngs.size()>1)
         {
-            rulerPolyline = polylineOptions.points(rulerLagLngs);
-            rulerLine = mBaiduMap.addOverlay(rulerPolyline);
+            rulerPolyline = polylineOptions.addAll(rulerLagLngs);
+            rulerLine = mAMap.addPolyline(rulerPolyline);
             rulerLines.add(rulerLine);
             return DistanceUtils.totalDistance(rulerLagLngs);
         }
@@ -49,7 +48,7 @@ public class RulerTool {
         for (RulerPointMarker rulerMarker: rulerPoints) {
             rulerMarker.clearPoint();
         }
-        for (Overlay line: rulerLines) {
+        for (Polyline line: rulerLines) {
             line.remove();
         }
         rulerPoints.clear();

@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/CameraPreview.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/CropImageView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/CropperImage.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/FocusView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/CropOverlayView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/edge/Edge.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/edge/EdgePair.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/handle/CenterHandleHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/handle/CornerHandleHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/handle/Handle.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/handle/HandleHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/handle/HorizontalHandleHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/cropwindow/handle/VerticalHandleHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/util/AspectRatioUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/util/HandleUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/util/ImageViewUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/wenruisong/basestationmap/tools/camera/util/PaintUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_close_click.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_close_normal.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_focus_failed.9.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_focus_focused.9.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_focus_focusing.9.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_ok_click.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_ok_normal.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_takephoto_click.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_takephoto_normal.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_close_selector.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_ok_selector.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_takephoto_selector.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/crop_image_view.xml" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

@@ -1,7 +1,7 @@
 package com.wenruisong.basestationmap.model;
 
 
-import com.baidu.mapapi.model.LatLng;
+import com.amap.api.maps.model.LatLng;
 
 public class RouteHistoryItem {
     public String mStartName;

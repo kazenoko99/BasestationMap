@@ -1,10 +1,9 @@
 package com.wenruisong.basestationmap.basestation.Marker;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.MarkerOptions;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.BitmapDescriptor;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.MarkerOptions;
 import com.wenruisong.basestationmap.R;
 
 /**
@@ -14,16 +13,21 @@ public class BasestationGsmMarker extends BasestationMarker {
 
     private static BitmapDescriptor cell_gsm_shifen = BitmapDescriptorFactory.fromResource(R.drawable.basestation_blue);
 
-    private MarkerOptions marker_gsm_shifen = new MarkerOptions().zIndex(5).icon(cell_gsm_shifen);
+    private MarkerOptions marker_gsm_shifen = new MarkerOptions().zIndex(5).icon(cell_gsm_shifen).anchor(0.5f, 0.5f);
 
-    public void showInMap(BaiduMap baiduMap) {
+    @Override
+    void setTextSize(int size) {
+
+    }
+
+    public void showInMap(AMap aMap) {
         mBasestation.isMakerShow = true;
         if (basestaionMarker == null) {
-            basestaionMarker = (Marker) baiduMap.addOverlay(marker_gsm_shifen.position(mBasestation.baiduLatLng));
+            basestaionMarker = aMap.addMarker(marker_gsm_shifen.position(mBasestation.amapLatLng));
         } else {
-            basestaionMarker.setPosition(mBasestation.baiduLatLng);
+            basestaionMarker.setPosition(mBasestation.amapLatLng);
         }
-        basestaionMarker.setTitle(Integer.toString(mBasestation.basestationIndex));
+        basestaionMarker.setObject(mBasestation.basestationIndex);
     }
 
     @Override

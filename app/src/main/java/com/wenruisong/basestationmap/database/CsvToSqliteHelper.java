@@ -7,13 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.csvreader.CsvReader;
 import com.wenruisong.basestationmap.R;
-import com.wenruisong.basestationmap.basestation.Cell;
 import com.wenruisong.basestationmap.common.Settings;
+import com.wenruisong.basestationmap.model.ImportedCity;
 import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.Logs;
 
@@ -35,15 +34,16 @@ public class CsvToSqliteHelper extends SQLiteOpenHelper {
     private static SQLiteDatabase mDatebase;
     private static int csvRowsCount;
     private static ProgressDialog mProgress;
-    private static Cell.CellType mCellType;
-    public CsvToSqliteHelper(Context context, String name, Cell.CellType cellType,String csvPath,int version) {
+    private static String mCellType;
+    private ImportedCellsSqliteHelper mImportedCellsSqliteHelper;
+    public CsvToSqliteHelper(Context context, String name, String cellType,String csvPath,int version) {
         super(context, name, null, version);
         mCellType = cellType;
         mContext = context;
         mCsvPath = csvPath;
     }
 
-    public CsvToSqliteHelper(Context context,String name, Cell.CellType cellType,int version) {
+    public CsvToSqliteHelper(Context context,String name, String cellType,int version) {
         super(context, name, null, version);
         mCellType = cellType;
         mContext = context;
@@ -52,38 +52,38 @@ public class CsvToSqliteHelper extends SQLiteOpenHelper {
 
 
 
-    public static void createCellTable( SQLiteDatabase db,String path, Cell.CellType type)
+    public  void createCellTable( SQLiteDatabase db,String path,String city, String type)
     {
         Logs.d(Tag,path);
         mCsvPath = path;
         mDatebase = db;
         mCellType = type;
         switch (type) {
-            case GSM: {
-                if (Settings.isTableExsit("GSM")) {
+            case "GSM": {
+                if (Settings.isTableExsit(city,"GSM")) {
                     Logs.d(Tag, "GSM is Exsit");
-                    db.execSQL(Constants.DROP_DB_GSM);
+                    db.execSQL(String.format(Constants.DROP_DB_GSM,city));
                 }
-                db.execSQL(Constants.CREATE_DB_GSM);
-                Settings.setTableExsit("GSM", true);
+                db.execSQL(String.format(Constants.CREATE_DB_GSM,city));
+                Settings.setTableExsit(city,"GSM", true);
                 //create table gsm_cells(CID integer,NAME VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double);
             }
-            case LTE: {
+            case "LTE": {
                 Logs.d(Tag, Constants.CREATE_DB_LTE);
                 mDatebase = db;
-                if(Settings.isTableExsit("LTE")) {
+                if(Settings.isTableExsit(city,"LTE")) {
                     Logs.d(Tag, "LTE is Exsit");
-                    db.execSQL(Constants.DROP_DB_LTE);
+                    db.execSQL(String.format(Constants.DROP_DB_LTE,city));
                 }
-                db.execSQL(Constants.CREATE_DB_LTE);
-                Settings.setTableExsit("LTE", true);
+                db.execSQL(String.format(Constants.CREATE_DB_LTE,city));
+                Settings.setTableExsit(city,"LTE", true);
                 //create table gsm_cells(CID integer,NAME VARCHAR2(30),LAC integer,BCCH integer,LAT double,LON double,AZIMUTH integer,TOTAL_DOWNTILT integer,DOWNTILT integer,HEIGHT integer,TYPE integer,BAIDULAT double,BAIDULON double);
             }
 
         }
         CreateTableTask task = new CreateTableTask();
         setCellType(type);
-        task.execute(type);
+        task.execute(type,city);
     }
 
 
@@ -113,7 +113,7 @@ public class CsvToSqliteHelper extends SQLiteOpenHelper {
         mProgress.show();
     }
 
-    public static void setCellType(Cell.CellType cellType)
+    public static void setCellType(String cellType)
     {
         mCellType = cellType;
     }
@@ -128,31 +128,36 @@ public class CsvToSqliteHelper extends SQLiteOpenHelper {
 
     }
 
-    static class CreateTableTask extends AsyncTask<Cell.CellType, Integer, Integer> {
+     class CreateTableTask extends AsyncTask<String, Integer, Integer> {
+        private String mCity;
+        private String mNetType;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             showProgress();
+            mImportedCellsSqliteHelper = new ImportedCellsSqliteHelper(mContext);
         }
 
         @Override
-        protected Integer doInBackground(Cell.CellType... params) {
+        protected Integer doInBackground(String... params) {
             try {
+                mCity = params[1];
+                mNetType = params[0];
                 CsvReader r = new CsvReader(mCsvPath, ',', Charset.forName("GBK"));
                 r.readHeaders();
                 csvRowsCount = CsvParser.csvGetRows(mCsvPath);
                 mProgress.setMax(csvRowsCount);
                 Logs.d(Tag, "get csvRowsCount" + csvRowsCount);
                 switch (params[0]) {
-                    case GSM:
+                    case "GSM":
                         for (int i = 0; i < csvRowsCount; i++) {
-                            CsvParser.csvToDatebaseGSM(mDatebase, r, i);
+                            CsvParser.csvToDatebaseGSM(mDatebase,params[1], r, i);
                             publishProgress(i);
                         }
                         break;
-                    case LTE:
+                    case "LTE":
                         for (int i = 0; i < csvRowsCount; i++) {
-                            CsvParser.csvToDatebaseLTE(mDatebase, r, i);
+                            CsvParser.csvToDatebaseLTE(mDatebase,params[1], r, i);
                             publishProgress(i);
                         }
                         break;
@@ -179,15 +184,13 @@ public class CsvToSqliteHelper extends SQLiteOpenHelper {
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-            switch (mCellType) {
-                case GSM:
-                    Settings.setDatabaseReady("GSM", true);
-                    break;
-                case LTE:
-                    Settings.setDatabaseReady("LTE", true);
-                    break;
+                    Settings.setDatabaseReady(mCity,mNetType, true);
+                    ImportedCity importedCell = new ImportedCity();
+                    importedCell.cellCount = csvRowsCount;
+                    importedCell.netType = mNetType;
+                    importedCell.city =mCity;
+                    mImportedCellsSqliteHelper.insertImportedCells(importedCell);
 
             }
-        }
     }
 }

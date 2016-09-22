@@ -1,22 +1,23 @@
 package com.wenruisong.basestationmap.fragment;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.listener.CallBack;
 import com.wenruisong.basestationmap.listener.IMapCommon;
+import com.wenruisong.basestationmap.offlinemap.AynscWorkListener;
+import com.wenruisong.basestationmap.utils.Logs;
+
+import java.util.List;
 
 public abstract class BackPressHandledFragment extends BaseFragment implements CallBack {
     public static final String TAG = BackPressHandledFragment.class.getSimpleName();
@@ -24,13 +25,12 @@ public abstract class BackPressHandledFragment extends BaseFragment implements C
     protected Handler mUnMainHandler;
     protected HandlerThread mHandlerThread;
     protected Handler mMainHandler;
-    protected IMapCommon.Global mIMapCommon;
     protected IMapCommon.FragShower mFragShower;
     protected IMapCommon.NavOnClickProvider mNavOnClickProvider;
     protected IMapCommon.BarChangeListener mBarChangeListener;
     protected boolean mHasSetToolBarAfterViewCreated = false;//bug#203525
 
-
+    public Toolbar mToolbar;
 
     public BackPressHandledFragment() {
 
@@ -42,23 +42,6 @@ public abstract class BackPressHandledFragment extends BaseFragment implements C
         mMainHandler = new Handler();
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        //bug#修复改变系统字体大小后，activity引用重建，重置接口
-        if (activity instanceof IMapCommon.Global) {
-            mIMapCommon = ((IMapCommon.Global) activity);
-        }
-        if (activity instanceof IMapCommon.FragShower) {
-            mFragShower = ((IMapCommon.FragShower) activity);
-        }
-        if (activity instanceof IMapCommon.NavOnClickProvider) {
-            mNavOnClickProvider = ((IMapCommon.NavOnClickProvider) activity);
-        }
-        if (activity instanceof IMapCommon.BarChangeListener) {
-            mBarChangeListener = ((IMapCommon.BarChangeListener) activity);
-        }
-    }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
@@ -90,13 +73,7 @@ public abstract class BackPressHandledFragment extends BaseFragment implements C
         super.onPause();
     }
 
-    public void setMapGlobal(IMapCommon.Global mIMapCommon) {
-        this.mIMapCommon = mIMapCommon;
-    }
 
-    public IMapCommon.Global getMapGlobal() {
-        return mIMapCommon;
-    }
 
     public void setFragShower(IMapCommon.FragShower mFragShower) {
         this.mFragShower = mFragShower;
@@ -176,7 +153,6 @@ public abstract class BackPressHandledFragment extends BaseFragment implements C
     public void onDestroy() {
         mMainHandler.removeCallbacksAndMessages(null);
         mMainHandler = null;
-        mIMapCommon = null;
         mFragShower = null;
         mNavOnClickProvider = null;
         mBarChangeListener = null;
@@ -213,5 +189,99 @@ public abstract class BackPressHandledFragment extends BaseFragment implements C
     public Handler getMainHandler() {
         return mMainHandler;
     }
+
+    protected void doWorkAynsc(final AynscWorkListener aynscWorkListener) {
+        mMainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Logs.e("MapViewFragment", "doWorkAsync");
+               // showDialog(ResourcesUtil.getString(R.string.map_loading), null);
+                aynscWorkListener.onPreExcuted();
+                getUnMainHandler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Object temp = null;
+                        if (aynscWorkListener != null) {
+                            temp = aynscWorkListener.doInBackground();
+                        }
+                        final Object object = temp;
+                        if (mMainHandler == null) {
+                            return;
+                        }
+                        mMainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (aynscWorkListener != null && object != null) {
+                                        if (object instanceof List && ((List) object).size() <= 0) {
+                                            aynscWorkListener.onPostExcuted();
+                                        } else {
+                                            aynscWorkListener.onPostResult(object);
+                                        }
+
+                                    } else if (aynscWorkListener != null && object == null) {
+                                        aynscWorkListener.onPostExcuted();
+                                    }
+                                   // dismissDialog();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    protected void doWorkAynsc(final AynscWorkListener aynscWorkListener, final boolean showDialogInner) {
+        mMainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (showDialogInner) {
+                    //showDialog(ResourcesUtil.getString(R.string.map_loading), null);
+                }
+                aynscWorkListener.onPreExcuted();
+                getUnMainHandler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Object temp = null;
+                        if (aynscWorkListener != null) {
+                            temp = aynscWorkListener.doInBackground();
+                        }
+                        final Object object = temp;
+                        if (mMainHandler == null) {
+                            return;
+                        }
+                        mMainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (aynscWorkListener != null && object != null) {
+                                        if (object instanceof List && ((List) object).size() <= 0) {
+                                            aynscWorkListener.onPostExcuted();
+                                        } else {
+                                            aynscWorkListener.onPostResult(object);
+                                        }
+
+                                    } else if (aynscWorkListener != null && object == null) {
+                                        aynscWorkListener.onPostExcuted();
+                                    }
+                                    if (showDialogInner) {
+                                      //  dismissDialog();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
 
 }

@@ -2,18 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="15dp"
     android:descendantFocusability="blocksDescendants"
     android:minHeight="@dimen/offline_map_download_list_item_height">
 
 
     <RelativeLayout
         android:id="@+id/rl_control_download"
-        android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/offline_map_download_list_item_btn_touch_margin_right"
+        android:layout_width="@dimen/offline_map_download_list_item_btn_touch_width"
         android:layout_height="@dimen/offline_map_download_list_item_btn_touch_height"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/offline_map_download_list_item_btn_touch_margin_right"
-        >
+        android:layout_centerVertical="true">
 
         <Button
             android:id="@+id/btn_control_download"
@@ -23,70 +23,40 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/offline_map_download_list_item_btn_margin_right"
             android:clickable="false"
-            android:textAllCaps="false"
-            android:text="查看"
-            android:textColor="@color/gray"
             android:background="@drawable/round_corner_button"
-            android:textSize="@dimen/text_size_normal" />
-
-        <Button
-            android:id="@+id/btn_control_delete"
-            android:layout_width="@dimen/offline_map_download_list_item_btn_width"
-            android:layout_height="@dimen/offline_map_download_list_item_btn_height"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/btn_control_download"
-            android:layout_marginRight="@dimen/offline_map_download_list_item_btn_margin_right"
-            android:clickable="false"
-            android:text="删除"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:background="@drawable/round_corner_button"
-            android:textSize="@dimen/text_size_normal" />
+            android:textAllCaps="false" />
     </RelativeLayout>
 
 
     <TextView
         android:id="@+id/tv_city_name"
+        android:layout_marginLeft="@dimen/offline_map_download_list_item_btn_touch_margin_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/offline_map_download_list_item_title_margin_top"
-        android:text="城市名字"
-        style="@style/TextLarge"
-        android:includeFontPadding="false" />
-
-    <TextView
-        android:id="@+id/tv_city_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tv_city_name"
-        android:layout_marginLeft="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignBaseline="@+id/tv_city_name"
-        android:text="可更新"
-        style="@style/TextMedium"
-        android:includeFontPadding="false" />
+        android:includeFontPadding="false"
+        style="@style/TextLarge"/>
 
     <TextView
         android:id="@+id/tv_city_size"
+        android:layout_marginLeft="@dimen/offline_map_download_list_item_btn_touch_margin_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tv_city_name"
         android:layout_marginTop="@dimen/offline_map_download_list_item_status_margin_top"
-        android:text="32.24"
-        android:includeFontPadding="false" />
+        android:includeFontPadding="false"/>
 
 
     <TextView
-        android:id="@+id/tv_city_server_size"
+        android:id="@+id/tv_download_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_city_name"
         android:layout_marginTop="@dimen/offline_map_download_list_item_status_margin_top"
         android:layout_toRightOf="@id/tv_city_size"
-        android:text="/42.54M"
         android:includeFontPadding="false" />
 
 
@@ -96,8 +66,8 @@
         android:layout_width="@dimen/offline_map_download_list_item_progress_width"
         android:layout_height="@dimen/offline_map_download_list_item_progress_height"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/tv_city_server_size"
-        android:layout_marginTop="@dimen/offline_map_download_list_item_progress_margin_top"
-        />
+        android:layout_marginLeft="@dimen/offline_map_download_list_item_btn_touch_margin_right"
+        android:layout_below="@id/tv_download_status"
+        android:layout_marginTop="@dimen/offline_map_download_list_item_progress_margin_top" />
 
 </RelativeLayout>

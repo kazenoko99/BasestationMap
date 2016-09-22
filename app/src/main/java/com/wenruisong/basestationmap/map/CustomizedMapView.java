@@ -1,16 +1,16 @@
 package com.wenruisong.basestationmap.map;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
-import com.baidu.mapapi.map.MapView;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.MapView;
 import com.wenruisong.basestationmap.R;
 import com.wenruisong.basestationmap.utils.MapViewUtils;
 
@@ -23,7 +23,7 @@ public class CustomizedMapView extends FrameLayout {
     private ImageView mapZoomOut;
     private ImageView mapZoomIn;
     private MapView mMapView;
-    private BaiduMap mBaiduMap;
+    private AMap aMap;
     private Context mContext;
 
 
@@ -33,8 +33,8 @@ public class CustomizedMapView extends FrameLayout {
         View root = LayoutInflater.from(context).inflate(R.layout.map_customized_view, this, true);
     }
 
-    public BaiduMap getMap(){
-        return mBaiduMap;
+    public AMap getMap(){
+        return aMap;
     }
 
 
@@ -47,9 +47,10 @@ public class CustomizedMapView extends FrameLayout {
         mapZoomOut = (ImageView) findViewById(R.id.map_zoom_out);
         location_btn = (ImageView) findViewById(R.id.map_locate);
         mMapView = (MapView)findViewById(R.id.mapview);
+//        MapViewUtils.hideZoomView(mMapView);
+//        MapViewUtils.hideLogo(mMapView);
         MapViewUtils.hideZoomView(mMapView);
-        MapViewUtils.hideLogo(mMapView);
-        mBaiduMap=mMapView.getMap();
+        aMap =mMapView.getMap();
         location_btn.setOnClickListener(onLacatingClickListener);
         mapZoomIn.setOnClickListener(onZoomInClickListener);
         mapZoomOut.setOnClickListener(onZoomOutClickListener);
@@ -59,23 +60,13 @@ public class CustomizedMapView extends FrameLayout {
     private OnClickListener onZoomInClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            mapZoomLevel = mBaiduMap.getMapStatus().zoom;
-            mapZoomLevel++;
-            if (mapZoomLevel >= 20)
-                mapZoomLevel = 20;
-            MapStatusUpdate u = MapStatusUpdateFactory.zoomTo(mapZoomLevel);
-            mBaiduMap.animateMapStatus(u);
+            aMap.animateCamera(CameraUpdateFactory.zoomIn());
         }
     };
     private OnClickListener onZoomOutClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            mapZoomLevel = mBaiduMap.getMapStatus().zoom;
-            mapZoomLevel--;
-            if (mapZoomLevel <= 3)
-                mapZoomLevel = 3;
-            MapStatusUpdate u = MapStatusUpdateFactory.zoomTo(mapZoomLevel);
-            mBaiduMap.animateMapStatus(u);
+            aMap.animateCamera(CameraUpdateFactory.zoomOut());
         }
     };
 
@@ -85,4 +76,24 @@ public class CustomizedMapView extends FrameLayout {
                     location_btn.setImageResource(R.drawable.map_location_follow);
         }
     };
+
+    public void onCreate(Bundle savedInstanceState) {
+        mMapView.onCreate(savedInstanceState);
+    }
+
+    public void onResume() {
+        mMapView.onResume();
+    }
+
+    public void onPause() {
+        mMapView.onPause();
+    }
+
+    public void onSaveInstanceState(Bundle outState) {
+        mMapView.onSaveInstanceState(outState);
+    }
+
+    public void onDestroy() {
+        mMapView.onDestroy();
+    }
 }

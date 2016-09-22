@@ -1,7 +1,6 @@
 package com.wenruisong.basestationmap.map;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.TextView;
 
 import com.wenruisong.basestationmap.basestation.Cell;
@@ -14,13 +13,14 @@ public abstract class CellInfoView {
     Context mContext;
     TextView cellid;
     TextView cellname;
-    TextView celllat;
-    TextView celllng;
+//    TextView celllat;
+//    TextView celllng;
     TextView cellhigth;
     TextView cellazumith;
     TextView cellisshifen;
-
+    TextView cellAddress;
     TextView goPanorama;
+    TextView cellDetail;
     TextView goRoute;
     TextView goNavi;
 

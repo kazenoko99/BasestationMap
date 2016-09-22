@@ -1,10 +1,9 @@
 package com.wenruisong.basestationmap.basestation.Marker;
 
-import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.MarkerOptions;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.BitmapDescriptor;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.MarkerOptions;
 import com.wenruisong.basestationmap.R;
 
 /**
@@ -14,15 +13,16 @@ public class CellLteMarker extends CellMarker {
     private static BitmapDescriptor cell_lte = BitmapDescriptorFactory.fromResource(R.drawable.cell_green);
     private MarkerOptions marker_lte = new MarkerOptions().zIndex(4).icon(cell_lte);
 
-    public void showInMap(BaiduMap baiduMap) {
+    public void showInMap(AMap aMap) {
         cell.isShow = true;
         if (cellMarker == null) {
-            cellMarker = (Marker) baiduMap.addOverlay(marker_lte.position(cell.baiduLatLng).rotate(cell.azimuth));
-            cellMarker.setTitle(Integer.toString(cell.index));
+            cellMarker = aMap.addMarker(marker_lte.position(cell.aMapLatLng));
+            cellMarker.setRotateAngle(cell.azimuth);
+            cellMarker.setObject(cell.index);
         } else {
-            cellMarker.setPosition(cell.baiduLatLng);
-            cellMarker.setRotate(cell.azimuth);
-            cellMarker.setTitle(Integer.toString(cell.index));
+            cellMarker.setPosition(cell.aMapLatLng);
+            cellMarker.setRotateAngle(cell.azimuth);
+            cellMarker.setObject(cell.index);
         }
     }
 }

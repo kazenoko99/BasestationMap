@@ -2,8 +2,6 @@ package com.wenruisong.basestationmap.eventbus;
 
 import com.squareup.otto.Bus;
 
-import java.io.File;
-
 /**
  * Created by wen on 2016/2/18.
  */
@@ -15,12 +13,11 @@ public class MapToolsEvents  {
     }
 
     private MapToolsEvents() {
-        // No instances.
     }
 
     public static class OnClickTools {
         public int mIndex;
-
+        
         public OnClickTools(int index) {
             mIndex = index;
         }

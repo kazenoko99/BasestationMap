@@ -12,9 +12,12 @@ import com.wenruisong.basestationmap.common.BackInterruptFlag;
 import com.wenruisong.basestationmap.fragment.BackPressHandledFragment;
 import com.wenruisong.basestationmap.fragment.BaseFragment;
 import com.wenruisong.basestationmap.fragment.BasestationSettingFragment;
+import com.wenruisong.basestationmap.fragment.CommonAddressFragment;
+import com.wenruisong.basestationmap.fragment.GroupFragment;
 import com.wenruisong.basestationmap.fragment.MapFragment;
 import com.wenruisong.basestationmap.fragment.OfflineMapFragment;
 import com.wenruisong.basestationmap.fragment.SettingFragment;
+import com.wenruisong.basestationmap.fragment.ToolBoxFragment;
 import com.wenruisong.basestationmap.listener.IMapCommon;
 import com.wenruisong.basestationmap.utils.Constants;
 import com.wenruisong.basestationmap.utils.Logs;
@@ -38,7 +41,8 @@ public class MapCoreActivity extends AppCompatActivity implements FragmentManage
     public static final String FRAG_COMMON_ADDRESS = "common_address_frag";
     public static final String FRAG_SETTINGS = "settings_frag";
     public static final String FRAG_BTS_SETTING = "settings_bts_frag";
-    public static final String FRAG_AR_PHOTO = "ar_photo_frag";
+    public static final String FRAG_TOOL_BOX = "tool_box";
+    public static final String FRAG_GROUP= "group_frag";
     public static final String FRAG_OFFLINE_MAP = "offline_map_frag";
     public static final String FRAG_SETTING = "setting_frag";
     public static final String FRAG_POI_DETAIL = "poi_detail_frag";
@@ -298,10 +302,13 @@ public class MapCoreActivity extends AppCompatActivity implements FragmentManage
            return BasestationSettingFragment.getInstance(bundle);
        }else if (FRAG_SETTINGS.equals(tag)) {
            return SettingFragment.getInstance(bundle);
+       }else if (FRAG_GROUP.equals(tag)) {
+           return GroupFragment.getInstance(bundle);
+       }else if(FRAG_COMMON_ADDRESS.equals(tag)){
+           return CommonAddressFragment.getInstance(bundle);
+       }else if(FRAG_TOOL_BOX.equals(tag)){
+           return ToolBoxFragment.getInstance(bundle);
        }
-
-
-
 
         return null;
     }
